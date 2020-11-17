@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5955755264.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
     {% if title %}
       <title>SMS online - {{ title }}</title>
     {% else %}
@@ -14,7 +15,7 @@
   </head>
   <body>
     <header class="site-header">
-      <nav class="navbar bg-primary navbar-dark navbar-expand-md fixed-top">
+      <nav class="navbar bg-dark navbar-dark navbar-expand-md fixed-top">
         <div class="container">
 
           <a href="" class="navbar-brand mr-4">SMS online</a>
@@ -22,24 +23,38 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
+          {% if request.user.is_authenticated %}
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="">Home</a>
             </div>
-            <form class="form-inline">
-              <input class="form-control mr-sm-2 input-sm" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-light btn-sm my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            </form>
+
+            <div id="wrap">
+              <form action="" autocomplete="on">
+                <input id="search" name="search" type="text" placeholder="Who are we looking for ?">
+                <input id="search_submit" value="Rechercher" type="submit">
+              </form>
+            </div>
+
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="">New Group</a>
               <a class="nav-item nav-link" href="">Profile</a>
               <a class="nav-item nav-link" href="">Logout</a>
             </div>
           </div>
+          {% endif %}
 
         </div>
       </nav>
     </header>
+
+    <main role="main" class="container" style="padding:10vh;">
+      <div class="row">
+        <div class="col-md-12">
+          {% block content %}{% endblock content %}
+        </div>
+      </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
