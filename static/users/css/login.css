@@ -1,0 +1,15 @@
+.content-section{
+  margin-top: 12vh;
+  background-color: rgb(48, 57, 72, 0.8);
+  border-radius: 5%;
+  display: block;
+  width: 90%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  color: white;
+}
+
+.small{
+  width: 50%;
+  margin-left: 23vh;
+}
