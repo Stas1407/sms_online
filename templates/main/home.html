@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+{% load static %}
 
-  </body>
-</html>
+{% block links %}
+  <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+{% endblock links %}
+
+{% block content %}
+
+<script type="text/javascript" src="{% static 'main/js/home.js' %}"></script>
+{% endblock content %}
