@@ -6,6 +6,13 @@
 {% endblock links %}
 
 {% block content %}
+  <div class="buttons">
+     <div class="inner">
+       <h1 id="main_text">Ready to start sending SMS-es online?</h1>
+      <a type="button" class="btn btn-lg btn-primary custom" href="{% url 'login' %}"><span>Login</span></a>
+      <a type="button" class="btn btn-lg ml-2 btn-dark custom" href="{% url 'register' %}"><span>Register</span></a>
+    </div>
+  </div>
 
-<script type="text/javascript" src="{% static 'main/js/landing_page.js' %}"></script>
+  <script type="text/javascript" src="{% static 'main/js/landing_page.js' %}"></script>
 {% endblock content %}
