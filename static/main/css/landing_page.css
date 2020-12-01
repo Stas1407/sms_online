@@ -40,3 +40,103 @@ span{
   position: relative;
   top: 7%;
 }
+
+@keyframes wobble {
+
+	33% {
+		transform: translateX(-50px);
+	}
+
+	66% {
+		transform: translateX(50px);
+	}
+
+}
+
+@keyframes up {
+
+	0% {
+		opacity: 0;
+	}
+
+	2%, 38% {
+		opacity: 1;
+	}
+
+	40% {
+		opacity: 0;
+		transform: translateY(-30vh);
+	}
+
+  100% {
+    opacity: 0;
+    transform: translateY(-30vh);
+  }
+}
+
+.dymki{
+  display: block;
+}
+
+.dymek1{
+  position: relative;
+  left: 50%;
+  top: -10vh;
+  width: 5vh;
+  height: 5vh;
+  animation: wobble 3s infinite ease-in-out;
+}
+
+.dymek2{
+  position: relative;
+  left: 70%;
+  top: -15vh;
+  width: 6vh;
+  height: 6vh;
+  animation: wobble 3s 1s infinite ease-in-out;
+}
+.dymek3{
+  position: relative;
+  left: 90%;
+  top: -20vh;
+  width: 4vh;
+  height: 4vh;
+  animation: wobble 3s 2s infinite ease-in-out;
+}
+.dymek4{
+  position: relative;
+  left: 100%;
+  top: -22vh;
+  width: 3vh;
+  height: 3vh;
+  animation: wobble 3s 1s infinite ease-in-out;
+}
+.dymek5{
+  position: relative;
+  top: -28vh;
+  left: 130%;
+  width: 5vh;
+  height: 5vh;
+  animation: wobble 3s 0.5s infinite ease-in-out;
+}
+
+.up1{
+  opacity: 0;
+  animation: up 7.5s infinite;
+}
+.up2{
+  opacity: 0;
+  animation: up 7.5s 6s infinite;
+}
+.up3{
+  opacity: 0;
+  animation: up 7.5s 8s infinite;
+}
+.up4{
+  opacity: 0;
+  animation: up 7.5s 2s infinite;
+}
+.up5{
+  opacity: 0;
+  animation: up 7.5s 4s infinite;
+}
