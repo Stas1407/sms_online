@@ -4,10 +4,13 @@
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'users/css/login.css' %}">
+  <link rel="stylesheet" href="{% static 'main/css/transition.css' %}">
 {% endblock links %}
 
 {% block content %}
-  <div class="content-section mx-auto">
+  <div class="transition transition-2 is-active"></div>
+
+  <div class="content-section">
     {% if messages %}
       {% for message in messages %}
         <div class="alert alert-{{ message.tags }}">
@@ -15,20 +18,25 @@
         </div>
       {% endfor %}
     {% endif %}
-    <form method="post" style="width:50%; display:block;" class="mx-auto">
+    <form method="post">
       {% csrf_token %}
+      <div class="picture_div">
+        <img src="{% static 'main/icons/user_icon.png' %}" class="picture">
+      </div>
       <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Log In</legend>
+        <legend class="mb-4 text-center">Log In</legend>
         {{ form|crispy }}
-        <div class="form-group">
-          <button type="submit" class="btn btn-outline-info mx-auto" style="display: block;">Login</button>
+        <div class="form-group center">
+          <button type="submit" class="btn btn-outline-info mt-2 login_bt">Login</button>
         </div>
       </fieldset>
     </form>
 
-    <div class="border-top pt-3 small">
-      <small class="text-muted">Need an account? <a href="url 'register' ">Sign Up Now</a></small>
+    <div class="border-top pt-1">
+      <small class="text-muted">Need an account? <a href="{% url 'register' %}">Sign Up Now</a></small>
     </div>
 
   </div>
+
+  <script type="text/javascript" src="{% static 'main/js/transition.js' %}"></script>
 {% endblock content %}

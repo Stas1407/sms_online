@@ -4,9 +4,12 @@
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'users/css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'main/css/transition.css' %}">
 {% endblock links %}
 
 {% block content %}
+  <div class="transition transition-3 is-active"></div>
+
   <div class="content-section">
     <form method="post">
       {% csrf_token %}
@@ -22,4 +25,6 @@
       <small class="text-muted">Already have an account? <a href="{% url 'login' %}" class="ml-2">Sign In</a></small>
     </div>
   </div>
+
+  <script type="text/javascript" src="{% static 'main/js/transition.js' %}"></script>
 {% endblock content %}

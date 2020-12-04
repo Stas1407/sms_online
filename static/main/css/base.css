@@ -1,8 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
-@import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
 
 body, html{
-  background-image: url("../../backgrounds/background.jpg");
+  background-image: url("../../backgrounds/landing_bg.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
