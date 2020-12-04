@@ -1,10 +1,16 @@
+body, html{
+  overflow-y: hidden;
+}
+
 .content-section{
-  background-color: rgb(48, 57, 72, 0.8);
+  background-color: rgb(247, 247, 247, 1);
   border-radius: 5%;
   display: block;
   width: 90%;
   padding: 5%;
-  color: white;
+  color: black;
+  position: relative;
+  left: 45vh;
 }
 
 .small{

@@ -1,11 +1,4 @@
-body, html{
-  background-image: url("../../backgrounds/landing_bg.jpg");
-  background-position: center;
-  background-size: cover;
-  overflow-x: hidden;
-  width: 100%;
-  height: 100%;
-}
+
 
  .buttons{
    display: table;
@@ -76,6 +69,7 @@ span{
 
 .dymki{
   display: block;
+  pointer-events: none;
 }
 
 .dymek1{

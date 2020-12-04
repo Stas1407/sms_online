@@ -1,15 +1,48 @@
+body, html{
+  overflow-y: hidden;
+}
+
 .content-section{
-  margin-top: 12vh;
-  background-color: rgb(48, 57, 72, 0.8);
+  background-color: rgb(247, 247, 247, 1);
   border-radius: 5%;
   display: block;
-  width: 90%;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  color: white;
+  width: 66vh;
+  height: 85vh;
+  padding: 5%;
+  position: relative;
+  left: 55vh;
+  display: table-cell;
+  vertical-align: bottom;
 }
 
 .small{
   width: 50%;
   margin-left: 23vh;
+}
+
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form, .border-top{
+  margin-bottom: 5vh;
+}
+
+.picture{
+  width: 40%;
+  height: 40%;
+}
+
+.picture_div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3vh;
+}
+
+legend{
+  font-size: 200%;
+  font-weight: 500;
 }
