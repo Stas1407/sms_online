@@ -1,13 +1,21 @@
 
+body, html{
+  overflow-x: hidden;
+}
 
- .buttons{
+ .content_div{
    display: table;
    position: relative;
-   left: 30vh;
+   left: 20vh;
    top: 25vh;
    color: white;
    text-align: center;
    width: 120%;
+ }
+
+ .dymki{
+   position: relative;
+   top: 9vh;
  }
 
  .inner {
@@ -18,21 +26,92 @@
 
 #main_text{
   margin-bottom: 6vh;
-  font-size: 8vh;
+  font-size: 3.5vw;
 }
 
 .custom{
   height: 8vh;
   width: 20%;
+  height: 120%;
   text-align: center;
 }
 
 span{
-  font-size: 3vh;
+  font-size: 2vw;
   font-weight: 500;
   position: relative;
   top: 7%;
 }
+
+@media(min-height:900px){
+  .dymki{
+    top: 5vh;
+    left: -5vh;
+  }
+  .content_div{
+    left: 25vh;
+  }
+}
+
+@media(max-width: 1200px) {
+  .content_div{
+    left: 15vh;
+  }
+}
+
+@media(max-width: 800px) {
+  .content_div{
+    left: 6vh;
+    top: 30vh;
+  }
+
+  .custom{
+    font-size: 3vw;
+  }
+
+  #main_text{
+    font-size: 4vw;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) and (min-width: 1200px) {
+  #main_text{
+    font-size: 10vw;
+  }
+
+  .content_div{
+    position: relative;
+    display: block;
+    left: -3vh;
+    top: 22vh;
+    margin: 0 auto;
+  }
+
+  .custom{
+    width: 50%;
+    height: 7vh;
+  }
+
+  span{
+    font-size: 5vw;
+  }
+
+  #login_bt{
+    position: absolute;
+    left: -5%;
+  }
+
+  #register_bt{
+    position: relative;
+    left: 30%;
+  }
+
+  .dymki{
+    position: relative;
+    left: -18vh;
+  }
+}
+
 
 @keyframes wobble {
 

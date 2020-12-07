@@ -35,17 +35,16 @@
               <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
             </div>
 
-            <div id="wrap">
-              <form action="" autocomplete="on">
-                <input id="search" name="search" type="text" placeholder="Who are we looking for ?">
-                <input id="search_submit" value="Rechercher" type="submit">
-              </form>
-            </div>
-
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="">New Group</a>
-              <a class="nav-item nav-link" href="">Profile</a>
-              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              <div id="wrap">
+                <form action="" autocomplete="on">
+                  <input id="search" name="search" type="text" placeholder="Who are we looking for ?">
+                  <input id="search_submit" value="Rechercher" type="submit">
+                </form>
+              </div>
+              <a class="nav-item btn btn-outline-light no_border text-center" href="">New Group</a>
+              <a class="nav-item btn btn-outline-light no_border" href="">Profile</a>
+              <a class="nav-item btn btn-outline-light no_border" href="{% url 'logout' %}">Logout</a>
             </div>
           </div>
           {% else %}

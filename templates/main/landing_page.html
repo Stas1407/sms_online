@@ -9,11 +9,11 @@
 {% block content %}
   <div class="transition transition-1 is-active"></div>
 
-  <div class="buttons">
+  <div class="content_div">
      <div class="inner">
        <h1 id="main_text">Ready to start sending SMS-es online?</h1>
-      <a type="button" class="btn btn-lg btn-primary custom" href="{% url 'login' %}"><span>Login</span></a>
-      <a type="button" class="btn btn-lg ml-2 btn-dark custom" href="{% url 'register' %}"><span>Register</span></a>
+      <a type="button" id="login_bt" class="btn btn-lg btn-primary custom" href="{% url 'login' %}"><span>Login</span></a>
+      <a type="button" id="register_bt" class="btn btn-lg ml-2 btn-dark custom" href="{% url 'register' %}"><span>Register</span></a>
     </div>
   </div>
   <div class="dymki">
