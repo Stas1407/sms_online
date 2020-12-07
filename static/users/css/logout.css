@@ -1,4 +1,10 @@
+html, body{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 main{
+  overflow-y: hidden;
   position: relative;
   left: 40vh;
   top: 10vh;

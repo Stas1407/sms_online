@@ -9,6 +9,12 @@ body, html{
   font-size: 110%;
 }
 
+@media (max-aspect-ratio: 16/9) and (min-width: 1200px){
+  body, html{
+    background-image: url("../../backgrounds/mobile_bg.png");
+  }
+}
+
 #wrap {
   margin: 0px 10px;
   display: inline-block;
@@ -81,3 +87,8 @@ body, html{
 .no_border{
   border-width: 0px;
 }
+
+.navbar-toggler:focus{
+  outline: none;
+}
+
