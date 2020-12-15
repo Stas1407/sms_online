@@ -67,7 +67,7 @@ legend{
   @media (pointer:none), (pointer:coarse) {
     .content-section{
       position: fixed;
-      top: 10vh;
+      top: 7vh;
       bottom: 0;
       left: 0;
       right: 0;

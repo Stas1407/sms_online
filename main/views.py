@@ -9,3 +9,6 @@ def landing_page(request):
     if request.user.is_authenticated:
         return redirect('home')
     return render(request, 'main/landing_page.html')
+
+def chat_view(request):
+    return render(request, 'main/chat_view.html')

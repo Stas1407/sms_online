@@ -17,8 +17,8 @@
   </head>
   <body>
     <header class="site-header">
-      <nav class="navbar bg-dark navbar-dark navbar-expand-md fixed-top">
-        <div class="container">
+      <nav class="navbar bg-dark navbar-dark navbar-expand-lg fixed-top">
+        <div class="" id="container_navbar">
 
           {% if request.user.is_authenticated %}
           <a href="/home" class="navbar-brand mr-4">SMS online</a>
@@ -30,18 +30,18 @@
           </button>
 
           {% if request.user.is_authenticated %}
+          <div id="wrap">
+            <form action="" autocomplete="on">
+              <input id="search" name="search" type="text" placeholder="Who are we looking for ?">
+              <input id="search_submit" value="Rechercher" type="submit">
+            </form>
+          </div>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
             </div>
 
             <div class="navbar-nav">
-              <div id="wrap">
-                <form action="" autocomplete="on">
-                  <input id="search" name="search" type="text" placeholder="Who are we looking for ?">
-                  <input id="search_submit" value="Rechercher" type="submit">
-                </form>
-              </div>
               <a class="nav-item btn btn-outline-light no_border text-center" href="">New Group</a>
               <a class="nav-item btn btn-outline-light no_border" href="">Profile</a>
               <a class="nav-item btn btn-outline-light no_border" href="{% url 'logout' %}">Logout</a>
@@ -72,5 +72,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static 'main/js/base.js' %}"></script>
+    {% block js_links %}
+    {% endblock js_links %}
   </body>
 </html>

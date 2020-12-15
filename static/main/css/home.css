@@ -9,7 +9,7 @@ body, html{
 html::-webkit-scrollbar {
     display: none;
 }
-  
+
 
 html {
     -ms-overflow-style: none;  /* IE and Edge */
@@ -27,9 +27,9 @@ html {
 
 .navbar {
     background-color: rgb(28, 22, 22, 0.91) !important;
-    transition: top 0.3s; 
+    transition: top 0.3s;
 }
-  
+
 main{
     height: 90vh;
 }
@@ -46,7 +46,7 @@ main{
     min-height: 91vh;
     width: 55%;
     position: absolute;
-    top: -1vh;
+    top: -2vh;
     border-top: none;
 }
 
@@ -54,6 +54,7 @@ main{
     width: 11vh;
     height: 11vh;
     margin-left: 4vh;
+    cursor: pointer;
 }
 
 .row{
@@ -75,14 +76,228 @@ main{
     height: 100%;
     margin-left: 2vh;
     padding: 2.5vh;
+    cursor: pointer;
 }
 
 .last_message{
     font-size: 1.5vw;
-    font-family: 'Brush Script MT', cursive;
-    color: rgb(255,255,255, 0.8);
+    font-weight: lighter;
+    color: rgb(255,255,255, 0.7);
 }
 
 .name{
     font-size: 2vw;
+    font-weight: 400;
+}
+
+@media(min-width:1800px) and (min-height: 850px){
+  #main_content{
+    width: 75%;
+    top: -2.5vh;
+  }
+}
+
+@media (min-width: 1666px) and (min-height: 850px){
+  #main_content{
+    top: -3.5vh;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  @media (min-height: 850px){
+    #main_content{
+      top: -3vh;
+    }
+  }
+
+  @media (pointer:none), (pointer:coarse) {
+
+    html, body{
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    .name{
+      font-size: 6vw !important;
+    }
+
+    .last_message{
+      font-size: 4vw !important;
+    }
+
+    #main_content{
+      top: 0;
+      height: 104vh !important;
+      overflow-x: hidden;
+    }
+
+    main{
+      overflow-x: hidden;
+      height: 100vh;
+    }
+  }
+
+  #search:focus{
+    width: 55vh;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape){
+  html, body{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  #main_content{
+    margin-top: -2vh;
+    left: 0%;
+    top: 7vh !important;
+    height: 104vh !important;
+    overflow-x: hidden;
+  }
+
+  #search:focus{
+    width: 200vh !important;
+  }
+
+  .column{
+    height: 24vh;
+  }
+
+  .profile_img{
+    width: 18vh;
+    height: 18vh;
+  }
+
+  .name{
+    margin-top: -1vh !important;
+    font-size: 4.2vw !important;
+  }
+
+  .last_message{
+    font-size: 3vw !important;
+  }
+
+  main{
+    overflow-x: hidden;
+    height: 100vh;
+  }
+
+  @media(max-height: 300px){
+    #main_content{
+      top: 27vh !important;
+    }
+
+    .column{
+      height: 50vh;
+    }
+
+    .profile_img{
+      width: 34vh;
+      height: 34vh;
+    }
+
+    .text{
+      margin-left: 3%;
+    }
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: portrait) and (max-height: 500px){
+  #main_content{
+    left: -17%;
+    top: 2vh !important;
+  }
+
+  .column{
+    height: 23vh;
+  }
+
+  .profile_img{
+    width: 18vh;
+    height: 18vh;
+  }
+}
+
+@media (max-width: 991px){
+  #main_content{
+    width: 100%;
+    top: -3.5vh;
+  }
+
+  .name{
+    font-size: 3.2vw;
+    margin-top: 1vh;
+  }
+
+  .last_message{
+    font-size: 2vw;
+    width: 150%;
+    margin-top: 1vh;
+  }
+
+  @media (max-width: 800px){
+      #main_content{
+        width: 150%;
+      }
+  }
+  @media (max-width: 760px){
+      #main_content{
+        width: 180%;
+      }
+  }
+}
+
+@keyframes hide_on_the_left {
+	0% {
+		opacity: 1;
+    visibility: visible;
+  }
+
+	80% {
+		transform: translateX(-100%);
+	}
+
+  90% {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+
+  100%{
+    visibility: none;
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+}
+
+@keyframes hide_up {
+	0% {
+		opacity: 1;
+    visibility: visible;
+  }
+
+	80% {
+		transform: translateY(-100%);
+	}
+
+  90% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100%{
+    visibility: none;
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.hide_left{
+  animation: hide_on_the_left 0.6s ease-in-out 0s forwards;
+}
+
+.hide_up{
+  animation: hide_up 0.3s ease-in-out 0.1s forwards;
 }

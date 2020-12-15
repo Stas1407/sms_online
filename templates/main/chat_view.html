@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'main/css/chat_view.css' %}">
+{% endblock links %}
+
+{% block content %}
+<div class="chat_icons">
+  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+</div>
+<div class="chat_view">
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="input_box">
+    <input type="text" placeholder="Write message..." id="message_in" autocomplete='off' spellcheck='false' autocorrect='off'>
+    <button type="button" id="send_bt"></button>
+  </div>
+</div>
+{% endblock content %}
+
+{% block js_links %}
+<script type="text/javascript" src="{% static 'main/js/chat_view.js' %}"></script>
+{% endblock js_links %}

@@ -1,0 +1,146 @@
+body, html{
+    background-image: url("../../backgrounds/home_bg.jpg");
+    height: 100%;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+nav{
+  visibility: hidden;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.no_border{
+    display: flex;
+    align-items: center;
+    height: 70%;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #777;
+}
+
+.navbar {
+    background-color: rgb(28, 22, 22, 0.91) !important;
+    transition: top 0.3s;
+}
+
+.profile_img{
+    width: 12.2vh;
+    height: 12.2vh;
+    margin-left: 4vh;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 1.7vh;
+}
+
+.chat_icons{
+  /* background-color: rgb(21, 15, 15, 0.91); */
+  background-color: #0f0c0c;
+  width: 9%;
+  height: 100vh;
+  padding: 1.5% 0% 2% 0%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: scroll;
+}
+
+.chat_icons::-webkit-scrollbar{
+  display: none;
+}
+
+.chat_view{
+  position: fixed;
+  top: 0;
+  left: 9%;
+  width: 61%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.88);
+}
+
+.input_box{
+  position: fixed;
+  bottom: 0;
+  left: 9%;
+  background-color: #0f0c0c;
+  width: 61%;
+  height: 8vh;
+  padding: 2vh;
+}
+
+#message_in{
+  width: 90%;
+  margin-left: 1%;
+  height: 103%;
+  background-image: url('../../backgrounds/input_bg.png');
+  background-color: transparent;
+  border: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 1vh;
+  padding-left: 4vh;
+  color: white;
+  font-size: 1vw;
+  color: rgb(255, 255, 255, 0.75)
+}
+
+#message_in:focus{
+  outline: none;
+}
+
+#send_bt{
+  background-image: url('../../backgrounds/send_bg.png');
+  background-color: transparent;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 3.5%;
+  height: 6.5vh;
+  border: none;
+  position: fixed;
+  bottom: 0.6vh;
+  margin-left: 1%;
+}
+
+#send_bt:focus{
+  outline: none;
+}
+
+.clicked{
+  background-image: url('../../backgrounds/send_bg_clicked.png') !important;
+}
+
+.my_message{
+  color: white;
+  position: relative;
+  background-color: #16ba09;
+  margin-right: 2%;
+}
+
+.others_message{
+  color: white;
+  position: relative;
+  background-color: #5E9ADE;
+  margin-left: 2%;
+  clear: both;
+}
+
+.message{
+  font-size: 2.5vh;
+  padding: 5px;
+  padding-left: 13px;
+  padding-right: 13px;
+  margin-top: 2vh;
+  border-radius: 15px;
+  max-width: 50%;
+}
