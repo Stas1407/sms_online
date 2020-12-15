@@ -9,7 +9,7 @@ body, html{
   font-size: 110%;
 }
 
-@media (max-aspect-ratio: 16/9) and (min-width: 1200px){
+@media (max-aspect-ratio: 16/9){
   body, html{
     background-image: url("../../backgrounds/mobile_bg.png");
   }
@@ -18,11 +18,11 @@ body, html{
 #wrap {
   margin: 0px 10px;
   display: inline-block;
-  position: relative;
+  position: fixed;
+  left: 68%;
   height: 53px;
   float: right;
   padding: 0;
-  position: relative;
 }
 
 #search {
@@ -49,7 +49,7 @@ body, html{
 }
 
 #search:focus {
-  width: 500px;
+  width: 70vh;
   z-index: 1;
   border-bottom: 1px solid white;
   cursor: text;
@@ -92,3 +92,27 @@ body, html{
   outline: none;
 }
 
+.container-fluid{
+  margin-left: 30vh;
+  margin-right: 30vh;
+}
+
+@media (max-width: 991px){
+  #wrap{
+    position: fixed;
+    left: 80%;
+  }
+
+  #search:focus{
+    width: 50vh !important;
+  }
+}
+
+@media (max-width: 767px){
+  #wrap{
+    left: 75%;
+  }
+  #search:focus{
+    width: 35vh !important;
+  }
+}
