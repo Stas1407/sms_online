@@ -57,7 +57,7 @@ span{
   .content_div{
     left: 15vh;
   }
-}
+} 
 
 @media(max-width: 800px) {
   .content_div{

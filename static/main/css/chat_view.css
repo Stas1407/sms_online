@@ -18,6 +18,21 @@ html {
     scrollbar-width: none;  /* Firefox */
 }
 
+p{
+  background-color: rgb(255, 255, 255, 0.7);
+  color: black;
+  border-radius: 20px;
+  position: absolute;
+  margin-top: -5vh;
+  margin-left: 62%;;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .no_border{
     display: flex;
     align-items: center;
@@ -33,14 +48,15 @@ html {
 }
 
 .profile_img{
-    width: 12.2vh;
-    height: 12.2vh;
+    width: 13.2vh;
+    height: 13.2vh;
     margin-left: 4vh;
     cursor: pointer;
     display: block;
     position: relative;
     margin: 0 auto;
     margin-bottom: 1.7vh;
+    transition: top 2s;
 }
 
 .chat_icons{
@@ -62,36 +78,48 @@ html {
 .chat_view{
   position: fixed;
   top: 0;
+  opacity: 0;
   left: 9%;
   width: 61%;
   height: 100vh;
+  padding-bottom: 9vh;
   background-color: rgb(0, 0, 0, 0.88);
+  overflow-y: scroll;
+  animation: slide_in_from_right 0.4s ease-in-out 0.1s forwards;
+}
+
+.chat_view::-webkit-scrollbar {
+  display: none;
 }
 
 .input_box{
+  opacity: 0;
   position: fixed;
   bottom: 0;
   left: 9%;
   background-color: #0f0c0c;
   width: 61%;
-  height: 8vh;
+  height: 9vh;
   padding: 2vh;
+  animation: slide_in_from_bottom 0.4s ease-in-out 0.3s forwards;
 }
 
 #message_in{
   width: 90%;
   margin-left: 1%;
-  height: 103%;
+  height: 110%;
   background-image: url('../../backgrounds/input_bg.png');
   background-color: transparent;
   border: none;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   padding: 1vh;
   padding-left: 4vh;
   color: white;
   font-size: 1vw;
-  color: rgb(255, 255, 255, 0.75)
+  color: rgb(255, 255, 255, 0.75);
+  position: relative;
+  top: -0.4vh;
 }
 
 #message_in:focus{
@@ -108,8 +136,10 @@ html {
   height: 6.5vh;
   border: none;
   position: fixed;
-  bottom: 0.6vh;
+  bottom: 1.5vh;
   margin-left: 1%;
+  opacity: 0;
+  animation: fade_in 0.35s ease-in-out 0.8s forwards;
 }
 
 #send_bt:focus{
@@ -123,24 +153,287 @@ html {
 .my_message{
   color: white;
   position: relative;
-  background-color: #16ba09;
+  background-image: linear-gradient(#4460a8, #00d4ff) !important;
   margin-right: 2%;
+  clear: both;
 }
 
 .others_message{
   color: white;
   position: relative;
-  background-color: #5E9ADE;
+  background-image: linear-gradient(#6a7070, #627677) !important;
   margin-left: 2%;
   clear: both;
 }
 
 .message{
-  font-size: 2.5vh;
+  font-size: 115%;
   padding: 5px;
-  padding-left: 13px;
-  padding-right: 13px;
+  padding-left: 15px; 
+  padding-right: 15px;
   margin-top: 2vh;
+  margin-bottom: 2vh;
   border-radius: 15px;
   max-width: 50%;
+}
+
+#back{
+  position: absolute;
+  bottom: 3vh;
+  color: #6C757D;
+  width: 60%;
+}
+
+#back:hover{
+  color: white;
+}
+
+#back_wraper{
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1250px){
+  .chat_icons{
+    width: 12%;
+  }
+
+  .chat_view{
+    left: 12%;
+  }
+
+  .input_box{
+    left: 12%;
+  }
+
+  #send_bt{
+    bottom: 1.2vh;
+  }
+}
+
+@media (max-width: 1500px){
+  .profile_img{
+    width: 13vh;
+    height: 13vh;
+  }
+
+  #message_in{
+    background-image: url('../../backgrounds/input_bg.png');
+    font-size: 1.2vw;
+    padding-bottom: 2vh;
+  }
+
+  #send_bt{
+    width: 6%;
+    height: 7vh;
+  }
+}
+
+
+
+@media (max-width: 1000px), (max-aspect-ratio: 16/9) and (pointer:none), (pointer:coarse){
+  .chat_icons{
+    width: 18%;
+  }
+
+  .chat_view{
+    left: 18%;
+    width: 82%;
+  }
+
+  .input_box{
+    left: 18%;
+    width: 82%;
+  }
+
+  #message_in{
+    background-image: url('../../backgrounds/input_bg2.png');
+    font-size: 2vw;
+  }
+
+  
+  #send_bt{
+    width: 6%;
+    height: 7vh;
+  }
+}
+
+@media (max-aspect-ratio: 18/9) and (pointer:none), (pointer:coarse) and (orientation: portrait){
+  .chat_icons{
+    opacity: 0;
+    left: -30%;
+    width: 30%;
+    height: 90vh;
+  }
+
+  .chat_view{
+    left: 0;
+    width: 100%;
+    height: 83vh;
+    background-color: rgb(0, 0, 0, 0.6);
+    padding-bottom: 7vh;
+  }
+
+  .input_box{
+    left: 0;
+    width: 100%;
+    height: 12vh;
+    border-radius: 15px 15px 0 0;
+    border-top-style: solid;
+    border-top-color: rgb(15, 12, 12, 0.8);
+  }
+
+  #message_in{
+    background-image: url('../../backgrounds/input_bg4.png');
+    font-size: 5vw;
+    top: 0vh;
+    width: 85%;
+  }
+
+  #send_bt{
+    width: 16%;
+    height: 8vh;
+    bottom: 2vh;
+  }
+
+  .chat_icons{
+    opacity: 0;
+    visibility: hidden;
+    animation: none;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: portrait) and (max-height: 500px){
+  #message_in{
+    background-image: url('../../backgrounds/input_bg3.png');
+  }
+
+  #send_bt{
+    width:17%;
+    height: 12vh;
+    bottom: 0;
+  }
+
+  .profile_img{
+    height: 20vh;
+    width: 20vh;
+  }
+}
+
+
+@keyframes show{
+  0%{
+    opacity: 0;
+    visibility: hidden;
+    left: -30%;
+  }
+
+  1%{
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+  }
+
+  100%{
+    left: 0;
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+@keyframes hide{
+  0%{
+    left: 0;
+    opacity: 1;
+    z-index: 2;
+    visibility: visible;
+  }
+
+  100%{
+    visibility: hidden;
+    opacity: 0;
+    left: -30%;
+  }
+}
+
+@keyframes slide_in_from_right{
+  0%{
+    opacity: 0;
+    right: -100%;
+    left: 100%;
+  }
+  10%{
+    opacity: 1;
+  }
+  100%{
+    right: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slide_in_from_left{
+  0%{
+    opacity: 0;
+    left: -100%;
+  }
+  10%{
+    opacity: 1;
+  }
+  100%{
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slide_in_from_bottom{
+  0%{
+    opacity: 0;
+    bottom: -20%;
+  }
+  10%{
+    opacity: 1;
+  }
+  100%{
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes fade_in{
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes hide_on_right{
+  0%{
+    opacity: 1;
+    right: 0;
+  }
+  100%{
+    right: -100%;
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.animation_chat_icons{
+  opacity: 0;
+  animation: slide_in_from_left 0.6s ease-in-out 0s forwards;
+}
+
+.animation_hide_on_right{
+  animation: hide_on_right 0.3s ease-in-out 0s forwards;
+}
+
+.animation_show{
+  animation: show 0.3s ease-in-out 0s forwards;
+}
+
+.animation_hide{
+  animation: hide 0.3s ease-in-out 0s forwards;
+}
+
+.animation_picture{
+  animation: picture_up 5s ease-in-out 0s forwards;
 }

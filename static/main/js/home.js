@@ -9,6 +9,15 @@ jQuery(document).ready(function(){
     }
     prevScrollpos = currentScrollPos;
   }
+  setTimeout(function(){
+    document.querySelector(".navbar").style.top = "0px";
+    $('#main_content').addClass('show');
+  }, 300)
+
+  setTimeout(function(){
+    $('#main_content').css('opacity', '1');
+    $('#main_content').removeClass('show');
+  }, 500)
 });
 
 $('.navbar-toggler').click(function(){
@@ -19,6 +28,6 @@ $('.column').click(function(){
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
   setTimeout(function(){
-    window.location.href = "/home";
+    window.location.href = "/chat_view";
   }, 600)
 })
