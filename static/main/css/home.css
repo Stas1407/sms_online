@@ -27,6 +27,7 @@ html {
 
 .navbar {
     background-color: rgb(28, 22, 22, 0.91) !important;
+    top: -100px;
     transition: top 0.3s;
 }
 
@@ -48,6 +49,7 @@ main{
     position: absolute;
     top: -2vh;
     border-top: none;
+    opacity: 0;
 }
 
 .profile_img{
@@ -89,6 +91,7 @@ main{
     font-size: 2vw;
     font-weight: 400;
 }
+
 
 @media(min-width:1800px) and (min-height: 850px){
   #main_content{
@@ -151,7 +154,7 @@ main{
   }
 
   #main_content{
-    margin-top: -2vh;
+    margin-top: 0vh;
     left: 0%;
     top: 7vh !important;
     height: 104vh !important;
@@ -294,10 +297,30 @@ main{
   }
 }
 
+@keyframes slide_in{
+  0%{
+    opacity: 0;
+    top: unset;
+    bottom: -100vh;
+  }
+  5%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+    bottom: 0;
+  }
+}
+
+
 .hide_left{
   animation: hide_on_the_left 0.6s ease-in-out 0s forwards;
 }
 
 .hide_up{
   animation: hide_up 0.3s ease-in-out 0.1s forwards;
+}
+
+.show{
+  animation: slide_in 0.4s ease-in-out 0s forwards;
 }

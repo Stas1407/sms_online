@@ -7,16 +7,49 @@
 
 {% block content %}
 <div class="chat_icons">
-  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
-  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
-  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
-  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
-  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
-  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
-  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
-  <img src="{% static 'backgrounds/home_bg.jpg' %}" alt="" class="rounded-circle profile_img">
+  <div id="i1">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i1" class="rounded-circle profile_img">
+    <p>2</p>
+  </div>
+  <div id="i2">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i2" class="rounded-circle profile_img">
+    <p>2</p>
+  </div>
+  <div id="i3">
+    <img src="{% static 'backgrounds/landing_bg.jpg' %}" id="i3" class="rounded-circle profile_img">
+    <p>3</p>
+  </div>
+  <div id="i4">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i4" class="rounded-circle profile_img">
+    <p>2</p>
+  </div>
+  <div id="i5">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img">
+    <p>2</p>
+  </div>
+  <div id="back_wraper">
+    <a class="btn btn-outline-secondary" id="back">Back</a>
+  </div>
 </div>
 <div class="chat_view">
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
+  <div class="my_message float-right message">Hello how are you?</div>
+  <div class="others_message float-left message">I'm fine thanks</div>
   <div class="my_message float-right message">Hello how are you?</div>
   <div class="others_message float-left message">I'm fine thanks</div>
   <div class="input_box">
@@ -28,4 +61,5 @@
 
 {% block js_links %}
 <script type="text/javascript" src="{% static 'main/js/chat_view.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 {% endblock js_links %}
