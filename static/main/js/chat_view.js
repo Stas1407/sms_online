@@ -4,6 +4,7 @@ jQuery(document).ready(function(){
   if(cookie != 'true'){
     $('.chat_icons').addClass('animation_chat_icons')
   } else {
+    $('.chat_icons').css('opacity', '1')
     Cookies.remove('same_site')
   }
 });
@@ -15,7 +16,7 @@ $('#send_bt').click(function(){
     $('#send_bt').removeClass('clicked');
   }, 200);
 })
-
+ 
 $('.profile_img').click(function(){
   $('.chat_view').addClass('animation_hide_on_right')
   $('.input_box').addClass('animation_hide_on_right')

@@ -55,7 +55,7 @@ p{
     display: block;
     position: relative;
     margin: 0 auto;
-    margin-bottom: 1.7vh;
+    margin-bottom: 2vh;
     transition: top 2s;
 }
 
@@ -69,6 +69,7 @@ p{
   left: 0;
   top: 0;
   overflow-y: scroll;
+  opacity: 0;
 }
 
 .chat_icons::-webkit-scrollbar{
