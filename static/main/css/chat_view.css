@@ -64,7 +64,7 @@ p{
   background-color: #0f0c0c;
   width: 9%;
   height: 100vh;
-  padding: 1.5% 0% 2% 0%;
+  padding:  1.5% 0% 2% 0%;
   position: fixed;
   left: 0;
   top: 0;
@@ -173,14 +173,14 @@ p{
   padding-left: 15px; 
   padding-right: 15px;
   margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-bottom: 2.1vh;
   border-radius: 15px;
   max-width: 50%;
 }
 
 #back{
-  position: absolute;
-  bottom: 3vh;
+  position: relative;
+  top: -1.5vh;
   color: #6C757D;
   width: 60%;
 }
@@ -193,6 +193,62 @@ p{
   display: flex;
   justify-content: center;
 }
+
+
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 15vh;
+  padding: 5px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card:hover .flip-card-inner p {
+  opacity: 0;
+}
+
+.settings{
+  width: 70% !important;
+  height: 70% !important;
+}
+
+.settings:hover{
+  content: url('../icons/settings_hover.png');
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: black;
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 @media (max-width: 1250px){
   .chat_icons{
