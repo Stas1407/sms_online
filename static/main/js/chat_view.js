@@ -9,6 +9,18 @@ jQuery(document).ready(function(){
   }
 });
 
+$('#message_in').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      $('#send_bt').trigger('click');  
+      // $('#send_bt').addClass('clicked');
+
+      // setTimeout(function(){
+      //   $('#send_bt').removeClass('clicked');
+      // }, 200);
+    }
+});
+
 $('#send_bt').click(function(){
   $('#send_bt').addClass('clicked');
 
@@ -17,10 +29,10 @@ $('#send_bt').click(function(){
   }, 200);
 })
  
-$('.profile_img').click(function(){
+$('.redirect').click(function(){
   $('.chat_view').addClass('animation_hide_on_right')
   $('.input_box').addClass('animation_hide_on_right')
-  $("#"+this.id).prependTo('.chat_icons');
+  $("#"+this.id).prependTo('.top');
   Cookies.set('same_site', 'true');
   setTimeout(function(){
     window.location.href = '/chat_view';
@@ -36,6 +48,15 @@ $('#back').click(function(){
   setTimeout(function(){
     window.location.href = '/home';
   }, 300)
+})
+
+$('.flip-card').click(function(){
+  $('.flip-card-inner').css('transform', 'rotateY(180deg)')
+  $('#top_unread').css('opacity', '0')
+  setTimeout(() => {
+    $('.flip-card-inner').css('transform', 'none')
+    $('#top_unread').css('opacity', '1')
+  }, 3000);
 })
 
 class Swipe {

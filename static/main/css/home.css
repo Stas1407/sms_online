@@ -92,6 +92,19 @@ main{
     font-weight: 400;
 }
 
+.settings{
+  position: relative;
+  top: -4vh;
+  width: 4%;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.settings:hover{
+  transform: rotate(270deg);
+  width: 10%;
+}
 
 @media(min-width:1800px) and (min-height: 850px){
   #main_content{
@@ -156,7 +169,7 @@ main{
   #main_content{
     margin-top: 0vh;
     left: 0%;
-    top: 7vh !important;
+    top: 5vh !important;
     height: 104vh !important;
     overflow-x: hidden;
   }
@@ -187,6 +200,7 @@ main{
     overflow-x: hidden;
     height: 100vh;
   }
+  
 
   @media(max-height: 300px){
     #main_content{
@@ -311,7 +325,6 @@ main{
     bottom: 0;
   }
 }
-
 
 .hide_left{
   animation: hide_on_the_left 0.6s ease-in-out 0s forwards;

@@ -24,7 +24,16 @@ $('.navbar-toggler').click(function(){
     $('#wrap').toggle(200);
 });
 
+$('.settings').click(function(){
+  $('#main_content').addClass('hide_left');
+  $('nav').addClass('hide_up');
+  setTimeout(function(){
+    window.location.href = "/group_settings";
+  }, 500)
+})
+
 $('.column').click(function(){
+  
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
   setTimeout(function(){

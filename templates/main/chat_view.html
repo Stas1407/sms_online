@@ -7,28 +7,48 @@
 
 {% block content %}
 <div class="chat_icons">
-  <div id="i1">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i1" class="rounded-circle profile_img">
-    <p>2</p>
+  <div id="back_wraper">
+    <a class="btn btn-outline-secondary" id="back">Back</a>
+  </div>
+  <div class="top"></div>
+  <div id="i1" class="flip-card mb-1">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i1" class="rounded-circle profile_img">
+        <p id="top_unread">2</p>
+      </div>
+      <div class="flip-card-back rounded-circle profile_img">
+        <img src="{% static 'main/icons/settings.png' %}" class="rounded-circle settings">
+      </div>
+    </div>
   </div>
   <div id="i2">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i2" class="rounded-circle profile_img">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i2" class="rounded-circle profile_img redirect">
     <p>2</p>
   </div>
   <div id="i3">
-    <img src="{% static 'backgrounds/landing_bg.jpg' %}" id="i3" class="rounded-circle profile_img">
+    <img src="{% static 'backgrounds/landing_bg.jpg' %}" id="i3" class="rounded-circle profile_img redirect">
     <p>3</p>
   </div>
   <div id="i4">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i4" class="rounded-circle profile_img">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i4" class="rounded-circle profile_img redirect">
     <p>2</p>
   </div>
   <div id="i5">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img redirect">
     <p>2</p>
   </div>
-  <div id="back_wraper">
-    <a class="btn btn-outline-secondary" id="back">Back</a>
+  <div id="i5">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img redirect">
+    <p>2</p>
+  </div>
+  <div id="i5">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img redirect">
+    <p>2</p>
+  </div>
+  <div id="i5">
+    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img redirect">
+    <p>2</p>
   </div>
 </div>
 <div class="chat_view">
