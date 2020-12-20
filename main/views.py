@@ -12,3 +12,6 @@ def landing_page(request):
 
 def chat_view(request):
     return render(request, 'main/chat_view.html')
+
+def new_group(request):
+    return render(request, 'main/new_group.html')

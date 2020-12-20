@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'main/css/new_group.css' %}">
+{% endblock links %}
+
+{% block content %}
+<div id="main_content">
+    <div class="row">
+      <div class="col-sm-12 top_column">
+        <img src="{% static 'main/icons/group_icon.png' %}" id="group_icon">
+        <div id="group_name_div">
+            <input type="text" id="group_name_in" placeholder="Group name..." autocomplete='off' spellcheck='false' autocorrect='off'>
+        </div>
+      </div>
+      <div class="col-sm-12 column_splitter" id="top">
+        <div id="splitter"></div>
+      </div>
+      <div class="col-sm-12 column" id="top">
+        <div class="person_bg">
+            <img src="{% static 'backgrounds/home_bg.jpg' %}" class="person_profile_pic rounded-circle">
+            <div class="person_name_bg">
+                <h4 class="person_name">Name</h4>
+                <button class="add_person" id='1'></button>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-12 column" id="top">
+        <div class="person_bg">
+            <img src="{% static 'backgrounds/home_bg.jpg' %}" class="person_profile_pic rounded-circle">
+            <div class="person_name_bg">
+                <h4 class="person_name">Name</h4>
+                <button class="add_person" id='2'></button>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-12 column" id="top">
+        <div class="person_bg">
+            <img src="{% static 'backgrounds/home_bg.jpg' %}" class="person_profile_pic rounded-circle">
+            <div class="person_name_bg">
+                <h4 class="person_name">Name</h4>
+                <button class="add_person" id='3'></button>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-12 column" id="top">
+        <div class="person_bg">
+            <img src="{% static 'backgrounds/home_bg.jpg' %}" class="person_profile_pic rounded-circle">
+            <div class="person_name_bg">
+                <h4 class="person_name">Name</h4>
+                <button class="add_person" id='4'></button>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-12 column" id="top">
+        <div class="person_bg">
+            <img src="{% static 'backgrounds/home_bg.jpg' %}" class="person_profile_pic rounded-circle">
+            <div class="person_name_bg">
+                <h4 class="person_name">Name</h4>
+                <button class="add_person" id='5'></button>
+            </div>
+        </div>
+      </div>
+    </div> 
+</div>
+{% endblock content %}
+
+{% block js_links %}
+  <script type="text/javascript" src="{% static 'main/js/new_group.js' %}"></script>
+{% endblock js_links %}

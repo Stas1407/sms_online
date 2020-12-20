@@ -44,7 +44,7 @@ main{
 #main_content{
     background-color: rgb(28, 22, 22, 0.91);
     background-attachment: fixed;
-    min-height: 91vh;
+    min-height: 92vh;
     width: 55%;
     position: absolute;
     top: -2vh;

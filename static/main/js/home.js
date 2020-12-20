@@ -32,6 +32,17 @@ $('.settings').click(function(){
   }, 500)
 })
 
+$('#new_group').click(function(e){
+  e.preventDefault();
+  var target = e.target.href;
+  $('#main_content').addClass('hide_left');
+  $('nav').addClass('hide_up');
+  setTimeout(function(){
+    window.location.href = e.target.href;
+  }, 600)
+})
+
+
 $('.column').click(function(){
   
   $('#main_content').addClass('hide_left');
