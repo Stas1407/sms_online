@@ -28,7 +28,7 @@ $('.settings').click(function(){
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
   setTimeout(function(){
-    window.location.href = "/group_settings";
+    window.location.href = "/settings";
   }, 500)
 })
 

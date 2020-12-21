@@ -3,15 +3,26 @@
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'main/css/new_group.css' %}">
+  {% if settings %}
+    <link rel="stylesheet" href="{% static 'main/css/settings.css' %}">
+  {% endif %}
 {% endblock links %}
 
 {% block content %}
 <div id="main_content">
     <div class="row">
       <div class="col-sm-12 top_column">
-        <img src="{% static 'main/icons/group_icon.png' %}" id="group_icon">
+        <label for="file_input">
+          <div class="group_icon_wrapper">
+            <img src="{% static 'main/icons/group_icon.png' %}" id="group_icon">
+          </div>
+        </label>
+        <input type="file" id="file_input">
         <div id="group_name_div">
             <input type="text" id="group_name_in" placeholder="Group name..." autocomplete='off' spellcheck='false' autocorrect='off'>
+        </div>
+        <div id="next_wrapper">
+          <button id="next" class="not_clicked"><i class="fas fa-arrow-right"></i></button>
         </div>
       </div>
       <div class="col-sm-12 column_splitter" id="top">

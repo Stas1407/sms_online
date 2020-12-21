@@ -59,6 +59,16 @@ $('.flip-card').click(function(){
   }, 3000);
 })
 
+$('.settings').click(function(){
+  $('.chat_view').addClass('animation_hide_on_right')
+  $('.input_box').addClass('animation_hide_on_right')
+  $('.chat_icons').addClass('animation_hide')
+
+  setTimeout(function(){
+    window.location.href = '/settings';
+  }, 300)
+})
+
 class Swipe {
   constructor(element) {
       this.xDown = null;

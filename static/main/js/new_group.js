@@ -21,6 +21,32 @@ jQuery(document).ready(function(){
   });
   
 
-  $('.add_person').click(function(){
+$('.add_person').click(function(){
     $('#' + this.id).toggleClass('clicked');
 })
+
+$('#next').click(function(){
+  $('#next').removeClass('not_clicked');
+  $('#next').addClass('next_clicked');
+  $('#main_content').addClass('hide_left');
+  document.querySelector(".navbar").style.top = "-100px";
+
+  setTimeout(function(){
+    window.location.href = '/chat_view';
+  }, 600)
+})
+
+document.getElementById('file_input').onchange = function (evt) {
+  var tgt = evt.target || window.event.srcElement,
+      files = tgt.files;
+
+  // FileReader support
+  if (FileReader && files && files.length) {
+      var fr = new FileReader();
+      fr.onload = function () {
+          document.getElementById('group_icon').src = fr.result;
+          $('#group_icon').addClass('group_icon_new')
+      }
+      fr.readAsDataURL(files[0]);
+  }
+}
