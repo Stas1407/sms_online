@@ -15,3 +15,6 @@ def chat_view(request):
 
 def new_group(request):
     return render(request, 'main/new_group.html')
+
+def settings(request):
+    return render(request, 'main/new_group.html', {"settings": True})
