@@ -1,2 +1,2 @@
 # sms_online
-Website that allows you to text online
+Website that allows you to send messages online
