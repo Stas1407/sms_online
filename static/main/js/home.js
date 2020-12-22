@@ -51,3 +51,46 @@ $('.column').click(function(){
     window.location.href = "/chat_view";
   }, 600)
 })
+
+// var t1;
+// var t2;
+
+$('.settings_div').hover(function(){
+  console.log('hover')
+  $('.settings_inner_div').on("mouseover",function(){
+    console.log('over')
+    var id = $('#'+ this.id + '> .settings_div > img').attr('id')
+    $('#' + id).addClass('settings_hover')
+    
+    var id2 = $('#'+ this.id + '> .remove').attr('id');
+    var id3 = $('#'+ this.id + '> .settings_inner_icon').attr('id');
+
+    // t1 = setTimeout(function(){
+      $('#' + id3).addClass('settings_extended');
+    // }, 100)
+
+    // t2 = setTimeout(function(){
+      $('#' + id2).addClass('remove_extended');
+    // }, 400)
+  })
+
+  $('.settings_inner_div').on("mouseleave", function(){
+    // window.clearTimeout(t1)
+    // window.clearTimeout(t2)
+    $('.settings_inner_div').unbind('mouseenter mouseleave mouseover');
+    var id3 = $('#'+ this.id + '> .settings_inner_icon').attr('id')
+    var id2 = $('#'+ this.id + '> .remove').attr('id')
+    var id = $('#'+ this.id + '> .settings_div > img').attr('id')
+    $('#' + id3).removeClass('settings_extended')
+    $('#' + id2).removeClass('remove_extended')
+    $('#' + id).removeClass('settings_hover')
+    console.log('leave')
+    // // setTimeout(function(){
+    //   $('#' + id3).removeClass('settings_extended')
+    // // }, 600)
+
+    // // setTimeout(function(){
+    //    $('#' + id).removeClass('settings_hover')
+    // // }, 400) 
+  })
+}, function(){})
