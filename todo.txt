@@ -1,1 +1,9 @@
+Profile:
+Force to write in current password before changing, add "forgot the password?" option
+Save nick on enter
 
+Home:
+Fix the settings icon click event
+
+Make everything responsive
+Clean up code, prepare for backend
