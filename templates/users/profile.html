@@ -10,41 +10,51 @@
   <div class="row">
     <div class="col-sm-12" id="first_row">
         <div id="picture_and_nick_bg">
-            <div id="img_wrapper">
-                <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle" id="profile_pic">
-                <div id="camera_icon">
-                    <i class="fas fa-camera"></i>
+            <label for="img_input">
+                <div id="img_wrapper">
+                    <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle" id="profile_pic">
+                    <div id="camera_icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
                 </div>
-            </div>
+            </label>
+            <input type="file" id="img_input" style="display: none;">
             <div id="nick_wrapper">
                 <h2 id="nick">Stasninja</h2>
-                <i class="fas fa-pencil-alt"></i>
+                <input type="text" id="edit_nick_in" value="Stasninja">
+                <i class="fas fa-check fa-lg" id="nick_done"></i>
+                <i class="fas fa-pencil-alt" id="nick_edit_icon"></i>
             </div>
         </div>
     </div>
     <div class="col-sm-12" id="second_row">
         <div id="username_and_passwd_bg">
-            <label>Email</label>
+            <label class="text_label">Email</label>
             <div class="input_wrapper">
                 <input type="email" value="stanislaw.rajm@gmail.com" class="in"></input>
                 <i class="fas fa-pencil-alt inside_input"></i>
             </div>
-            <label class="passwd_label">Password</label>
+            <label class="text_label" class="passwd_label">Password</label>
             <div class="input_wrapper">
-                <input type="password" value="**********" class="in"></input>
+                <input type="password" value="some secret passwd" class="in"></input>
                 <i class="fas fa-pencil-alt inside_input"></i>
             </div>
         </div>
     </div>
     <div class="col-sm-12" id="third_row">
         <div id="manage_adding_to_groups_bg">
-            <label>Who can add you to a group?</label>
+            <label class="text_label">Who can add you to a group?</label>
             <div id="manage_wrapper">
-                <p>Everybody</p>
-                <div id="switch"></div>
-                <p>Only person I've started a conversation with</p>
+                <p id="everybody">Everybody</p>
+                <div id="switch">
+                    <div id="switch_inner"></div>
+                </div>
+                <p id="conversation">Only a person I've started a conversation with</p>
             </div>
         </div>
+    </div>
+    <div class="col-sm-12" id="fourth_row">
+        <button id="done_bt">Done <i class="fas fa-check done_icon"></i></button>
     </div>
   </div> 
 </div>

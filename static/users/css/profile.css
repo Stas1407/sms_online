@@ -122,12 +122,39 @@ main{
     font-size: 40px;
     font-weight: normal;
     margin-right: 4%;
+    white-space: nowrap;
 }
 
 .fa-pencil-alt{
     transform: rotate(343deg);
     margin-left: 4%;
     font-size: 23px;
+    cursor: pointer;
+}
+
+#nick_done{
+  position: absolute;
+  margin-left: 70%;
+  cursor: pointer;
+}
+
+#edit_nick_in{
+  border: none;
+  background-color: transparent;
+  border-radius: 70px;
+  width: 75%;
+  height: 140%;
+  font-size: 150%;
+  box-shadow: inset -3px -3px 8px #383232, inset 3px 3px 9px #000000bb;
+  color: white;
+  padding-left: 10%;
+  padding-right: 15%;
+  display: block;
+  margin: 0 auto;
+}
+
+#edit_nick_in:focus{
+  outline: none;
 }
 
 #second_row{
@@ -152,9 +179,10 @@ main{
     color: white;
 }
 
-label{
+.text_label{
     color: rgba(255, 255, 255, 0.68);
     font-size: 30px;
+    text-align: center;
 }
 
 .in{
@@ -210,6 +238,84 @@ label{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#everybody{
+  width: 30%;
+  margin-right: 7%;
+  text-align: center;
+  padding: 2%;
+  box-shadow: -3px -3px 8px #383232, 3px 3px 9px #000000bb;
+  border-radius: 20px;
+  margin-top: 3%;
+}
+
+#conversation{
+  width: 30%;
+  text-align: center;
+  margin-left: 7%;
+  padding: 2%;
+  box-shadow: -3px -3px 8px #383232, 3px 3px 9px #000000bb;
+  border-radius: 20px;
+}
+
+#switch{
+  width: 20%;
+  height: 30%;
+  box-shadow: inset -3px -3px 8px #383232, inset 3px 3px 9px #000000bb;
+  border-radius: 70px;
+  display: block;
+  align-items: center;
+}
+
+#switch_inner{
+  border-radius: 50%;
+  width: 50%;
+  background-color: #0FBFB3;
+  box-shadow: -3px -3px 8px #383232, 3px 3px 9px #000000bb;
+  position: relative;
+  left: 0%;
+  transition: all 0.5s;
+}
+
+.switch_clicked{
+  left: 60% !important;
+  background-color: #1BBF0F !important;
+}
+
+#manage_wrapper{
+  margin-top: 8%;
+}
+
+#fourth_row{
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4vh;
+}
+
+#done_bt{
+  border: none;
+  background-color: #242322;
+  color: white;
+  border-radius: 70px;
+  box-shadow: -3px -3px 8px #383232, 3px 3px 9px #000000bb;
+  height: 60%;
+  width: 30%;
+}
+
+.done_icon{
+  margin-left: 5%;
+}
+
+.done_clicked{
+  box-shadow: inset -3px -3px 8px #383232, inset 3px 3px 9px #000000bb !important;
+}
+
+#done_bt:focus{
+  outline: none;
 }
 
 @media(min-width:1800px) and (min-height: 850px){
@@ -315,6 +421,32 @@ label{
     opacity: 1;
     bottom: 0;
   }
+}
+
+@keyframes hide_on_the_left {
+	0% {
+		opacity: 1;
+    visibility: visible;
+  }
+
+	80% {
+		transform: translateX(-100%);
+	}
+
+  90% {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+
+  100%{
+    visibility: none;
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+}
+
+.hide_left{
+  animation: hide_on_the_left 0.6s ease-in-out 0s forwards;
 }
 
 .show{

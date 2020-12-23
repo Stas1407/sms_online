@@ -40,8 +40,11 @@ document.getElementById('file_input').onchange = function (evt) {
   var tgt = evt.target || window.event.srcElement,
       files = tgt.files;
 
+  var extension = files[0].name.split('.').pop().toLowerCase(),  // todo: check ext on server side
+      isSuccess = fileTypes.indexOf(extension) > -1;
+
   // FileReader support
-  if (FileReader && files && files.length) {
+  if (FileReader && files && files.length && isSuccess) {
       var fr = new FileReader();
       fr.onload = function () {
           document.getElementById('group_icon').src = fr.result;
