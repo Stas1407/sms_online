@@ -185,6 +185,20 @@ main{
     text-align: center;
 }
 
+.passwd_done_icon{
+  position: absolute;
+  margin-left: 77%;
+  cursor: pointer;
+}
+
+.forgot_passwd{
+  opacity: 0.8;
+  margin-bottom: 1vh;
+  width: 70%;
+  position: relative;
+  cursor: pointer;
+}
+
 .in{
     background-color: transparent;
     border: none;
@@ -209,7 +223,7 @@ main{
     padding-left: 4%;
     display: flex;
     align-items: center;
-    margin-bottom: 4vh;
+    margin-bottom: 2vh;
 }
 
 #third_row{
