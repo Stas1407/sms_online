@@ -34,11 +34,14 @@
                 <input type="email" value="stanislaw.rajm@gmail.com" class="in"></input>
                 <i class="fas fa-pencil-alt inside_input"></i>
             </div>
-            <label class="text_label" class="passwd_label">Password</label>
+            <label class="text_label" id="passwd_label">Password</label>
             <div class="input_wrapper">
-                <input type="password" value="some secret passwd" class="in"></input>
-                <i class="fas fa-pencil-alt inside_input"></i>
+                <input type="password" value="***************" class="in" id="passwd_in"></input>
+                <i class="fas fa-pencil-alt inside_input" id="passwd_edit_icon"></i>
+                <i class="fas fa-check passwd_done_icon" id="old_passwd_done_icon"></i>
+                <i class="fas fa-check passwd_done_icon" id="new_passwd_done_icon"></i>
             </div>
+            <small class="forgot_passwd mb-4"><a>Forgot your password?</a></small>
         </div>
     </div>
     <div class="col-sm-12" id="third_row">
@@ -61,5 +64,6 @@
 {% endblock content %}
 
 {% block js_links %}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="{% static 'users/js/profile.js' %}"></script>
 {% endblock js_links %}
