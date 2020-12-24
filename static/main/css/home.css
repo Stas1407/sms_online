@@ -411,3 +411,11 @@ main{
 .show{
   animation: slide_in 0.4s ease-in-out 0s forwards;
 }
+
+.settings_wrapper{
+  pointer-events: none;
+}
+
+.settings_inner_div{
+  pointer-events: all;
+}

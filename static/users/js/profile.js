@@ -174,6 +174,61 @@ $('#old_passwd_done_icon').click(function(){
   }
 })
 
+// Repeat password
+$('#new_passwd_done_icon').click(function(){
+  // Hide label
+  $('#passwd_label').animate({opacity: '0'})
+  
+  // Wait until label hides and change text
+  setTimeout(function(){
+    $('#passwd_label').text('Confirm tour')
+  }, 400)
+
+  new_password = $('#passwd_in').val()
+
+  if(new_password.length < 8){
+    // Wait until label hides and change text
+    setTimeout(function(){
+      $('#passwd_label').text('Password is too short')
+    }, 400)
+
+    setTimeout(function(){
+      $('#passwd_label').animate({opacity: '100%'})   // Show label
+    }, 500)
+
+    setTimeout(function(){
+      $('#passwd_label').text('Type in a new password')
+    }, 2000)
+  } else {
+
+    // Show label, change input value not to contain password
+    setTimeout(function(){
+      $('#passwd_label').animate({opacity: '100%'})
+      $('#passwd_in').val('**************')
+    }, 500)
+
+    // Hide label again
+    setTimeout(function(){
+      $('#passwd_label').animate({opacity: '0'})
+    }, 1500)
+    
+    // Reset label text to the starting one
+    setTimeout(function(){
+      $('#passwd_label').text('Password')
+    }, 2000)
+
+    // Reset input state to the starting one
+    setTimeout(function(){
+      $('#passwd_label').animate({opacity: '100%'})
+      $('#new_passwd_done_icon').hide(300)
+      $('#passwd_edit_icon').show(300)
+      current_bt = $('#passwd_edit_icon')
+    }, 2500)
+    
+    stage = 0;  // Go back to beginning
+  }
+})
+
 
 // Done - Save new password
 $('#new_passwd_done_icon').click(function(){
