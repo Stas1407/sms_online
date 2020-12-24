@@ -193,9 +193,9 @@ main{
 
 .forgot_passwd{
   opacity: 0.8;
-  margin-bottom: 1vh;
+  margin-top: 62%;
   width: 70%;
-  position: relative;
+  position: absolute;
   cursor: pointer;
 }
 

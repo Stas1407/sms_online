@@ -24,12 +24,24 @@ $('.navbar-toggler').click(function(){
     $('#wrap').toggle(200);
 });
 
-$('.settings').click(function(){
+$('.settings_inner_icon').click(function(){
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
+
+  var id = this.id.split('s')[1]
+
   setTimeout(function(){
     window.location.href = "/settings";
-  }, 500)
+    // window.location.href = '/settings/' + id
+  }, 400)
+})
+
+$('.remove').click(function(){
+  var id = this.id.split('r')[1]
+  if(confirm("Are you sure you want to delete this conversation")){
+    // ajax code to do post request to delete conversation
+    alert('deleted')
+  }
 })
 
 $('#new_group').click(function(e){
@@ -43,7 +55,7 @@ $('#new_group').click(function(e){
 })
 
 
-$('.column').click(function(){
+$('.profile_img').click(function(){
   
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
@@ -51,6 +63,15 @@ $('.column').click(function(){
     window.location.href = "/chat_view";
   }, 600)
 })
+
+$('.text').click(function(){
+  $('#main_content').addClass('hide_left');
+  $('nav').addClass('hide_up');
+  setTimeout(function(){
+    window.location.href = "/chat_view";
+  }, 600)
+})
+
 
 // var t1;
 // var t2;
