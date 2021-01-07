@@ -422,6 +422,30 @@ main{
     }
 }
 
+@media (pointer:none), (pointer:coarse) and (orientation: landscape){
+  html, body{
+    overflow: hidden;
+  }
+
+  #main_content{
+    width: 100%; 
+    top: -1.5vh !important;
+    padding-bottom: 20vh;
+  }
+  main{
+    overflow: hidden;
+  }
+
+  #first_row{
+    height: 60vh;
+  }
+
+  #camera_icon{
+    margin-left: 10%;
+    margin-top: 10%;
+  }
+}
+
 @keyframes slide_in{
   0%{
     opacity: 0;

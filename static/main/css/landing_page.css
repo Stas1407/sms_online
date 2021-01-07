@@ -113,6 +113,34 @@ span{
   }
 }
 
+@media (pointer:none), (pointer:coarse) and (orientation: landscape) and (min-width: 700px){
+  #main_text{
+    font-size: 6vw;
+  }
+
+  .dymki{
+    top: -2vh;
+  }
+
+  .custom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    height: 12vh;
+  }
+
+  #register_bt{
+    margin-left: 16% !important;
+    background-color: #06131C;
+  }
+
+  #login_bt{
+    margin-left: 4% !important;
+    background-color: #0087FE;
+  }
+}
+
 
 @keyframes wobble {
 

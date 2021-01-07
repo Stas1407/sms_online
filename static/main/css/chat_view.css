@@ -109,12 +109,11 @@ p{
   width: 90%;
   margin-left: 1%;
   height: 110%;
-  background-image: url('../../backgrounds/input_bg.png');
+  border-radius: 20px;
+  box-shadow: inset -3px -3px 8px #221e1e, inset 3px 3px 9px #000000bb;
   background-color: transparent;
   border: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: 1vh;
+  padding-top: 0vh;
   padding-left: 4vh;
   color: white;
   font-size: 1vw;
@@ -275,7 +274,7 @@ p{
   }
 
   #message_in{
-    background-image: url('../../backgrounds/input_bg.png');
+    /* background-image: url('../../backgrounds/input_bg.png'); */
     font-size: 1.2vw;
     padding-bottom: 2vh;
   }
@@ -304,7 +303,7 @@ p{
   }
 
   #message_in{
-    background-image: url('../../backgrounds/input_bg2.png');
+    /* background-image: url('../../backgrounds/input_bg2.png'); */
     font-size: 2vw;
   }
 
@@ -341,7 +340,7 @@ p{
   }
 
   #message_in{
-    background-image: url('../../backgrounds/input_bg4.png');
+    /* background-image: url('../../backgrounds/input_bg4.png'); */
     font-size: 5vw;
     top: 0vh;
     width: 85%;
@@ -362,7 +361,7 @@ p{
 
 @media (pointer:none), (pointer:coarse) and (orientation: portrait) and (max-height: 500px){
   #message_in{
-    background-image: url('../../backgrounds/input_bg3.png');
+    /* background-image: url('../../backgrounds/input_bg3.png'); */
   }
 
   #send_bt{
@@ -376,6 +375,19 @@ p{
     width: 20vh;
   }
 }
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape){
+  p{
+    margin-left: 55%;
+  }
+
+  .profile_img{
+    /* width: 18vh;
+    height: 18vh;
+    margin-bottom: 5vh; */
+  }
+}
+
 
 
 @keyframes show{
