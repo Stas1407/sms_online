@@ -7,7 +7,7 @@ jQuery(document).ready(function(){
     $('.chat_icons').css('opacity', '1')
     Cookies.remove('same_site')
   }
-});
+}); 
 
 $('#message_in').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -18,7 +18,7 @@ $('#message_in').keypress(function(event){
       // setTimeout(function(){
       //   $('#send_bt').removeClass('clicked');
       // }, 200);
-    }
+    } 
 });
 
 $('#send_bt').click(function(){
@@ -32,6 +32,10 @@ $('#send_bt').click(function(){
 $('.redirect').click(function(){
   $('.chat_view').addClass('animation_hide_on_right')
   $('.input_box').addClass('animation_hide_on_right')
+  $('.flip-card').hover(function(){
+    $('.flip-card-inner').css('transform', 'none')
+    $('p').css('opacity', '1')
+  })
   $("#"+this.id).prependTo('.top');
   Cookies.set('same_site', 'true');
   setTimeout(function(){

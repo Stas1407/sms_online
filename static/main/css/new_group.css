@@ -328,6 +328,14 @@ label{
     }
 }
 
+@media (pointer:none), (pointer:coarse) and (orientation: portrait){
+  #main_content{
+    width: 150% !important;
+    top:0;
+  }
+
+}
+
 @media (pointer:none), (pointer:coarse) and (orientation: portrait) and (max-height: 500px){
     #main_content{
       left: -17%;
@@ -353,6 +361,42 @@ label{
         }
     }
 }
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape) and (min-width: 800px){
+  html, body{
+    overflow: hidden;
+  }
+
+  #main_content{
+    width: 100%;
+    top: 1vh !important; 
+  }
+
+  .column{
+    height: 30vh;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape) and (min-width: 700px){
+
+  .row{
+    margin-top: -1.5vh;
+  }
+
+  #main_content{
+    width: 100%;
+    left: 0% !important;
+    top: 0vh !important; 
+  }
+
+  .column{
+    height: 20vh;
+  }
+  main{
+    overflow: hidden;
+  }
+}
+
 
 @keyframes slide_in{
     0%{

@@ -77,3 +77,18 @@ legend{
     }
   }
 }
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape){
+  html, body{
+    overflow: scroll;
+  }
+
+  .content-section{
+    overflow: scroll;
+  }
+
+  .picture{
+    width: 30%;
+    height: 30%;
+  }
+}

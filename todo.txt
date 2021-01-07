@@ -1,6 +1,0 @@
-Chat view:
-Fix the flip to settings icon animation when clicked the second image from top
-Make the input more responsive
-
-Make everything responsive
-Clean up code, prepare for backend

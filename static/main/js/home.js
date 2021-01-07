@@ -77,9 +77,7 @@ $('.text').click(function(){
 // var t2;
 
 $('.settings_div').hover(function(){
-  console.log('hover')
   $('.settings_inner_div').on("mouseover",function(){
-    console.log('over')
     var id = $('#'+ this.id + '> .settings_div > img').attr('id')
     $('#' + id).addClass('settings_hover')
     
