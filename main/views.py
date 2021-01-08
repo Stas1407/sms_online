@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
+from main.models import *
+from operator import attrgetter
 
 # Create your views here.
 def home(request):
-    context = {'title': 'home'}
+    context = {
+        'title': 'home'
+    }
     return render(request,'main/home.html', context)
 
 def landing_page(request):
@@ -14,7 +18,10 @@ def chat_view(request):
     return render(request, 'main/chat_view.html')
 
 def new_group(request):
-    return render(request, 'main/new_group.html')
+    context = {
+        "conversations": sorted(request.user.conversation_set.all(), key=attrgetter('last_message_date'), reverse=True)
+    }
+    return render(request, 'main/new_group.html', context)
 
 def settings(request):
     return render(request, 'main/new_group.html', {"settings": True})

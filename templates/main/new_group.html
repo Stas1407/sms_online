@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load getters %}
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'main/css/new_group.css' %}">
@@ -28,15 +29,17 @@
       <div class="col-sm-12 column_splitter" id="top">
         <div id="splitter"></div>
       </div>
-      <div class="col-sm-12 column" id="top">
+      {% for c in conversations %}
+      <div class="col-sm-12 column test" id="top">
         <div class="person_bg">
-            <img src="{% static 'backgrounds/home_bg.jpg' %}" class="person_profile_pic rounded-circle">
+            <img src="{{ c|get_image:request.user }}" class="person_profile_pic rounded-circle">
             <div class="person_name_bg">
-                <h4 class="person_name">Name</h4>
-                <button class="add_person" id='1'></button>
+                <h4 class="person_name">{{ c|get_name:request.user }}</h4>
+                <button class="add_person" id='{{ c.id }}'></button>
             </div>
         </div>
       </div>
+      {% endfor %}
       <div class="col-sm-12 column" id="top">
         <div class="person_bg">
             <img src="{% static 'backgrounds/home_bg.jpg' %}" class="person_profile_pic rounded-circle">
