@@ -18,11 +18,19 @@ jQuery(document).ready(function(){
         $('#main_content').css('opacity', '1');
         $('#main_content').removeClass('show');
     }, 500)
-  });
-  
+  }); 
 
+var ids = []
+
+ 
 $('.add_person').click(function(){
-    $('#' + this.id).toggleClass('clicked');
+    if($('#' + this.id).hasClass('clicked')){
+      $('#' + this.id).removeClass('clicked')
+      ids.splice(ids.indexOf(this.id), 1)
+    } else {
+      $('#' + this.id).addClass('clicked');
+      ids.push(this.id)
+    }
 })
 
 $('#next').click(function(){
@@ -31,11 +39,30 @@ $('#next').click(function(){
   $('#main_content').addClass('hide_left');
   document.querySelector(".navbar").style.top = "-100px";
 
-  setTimeout(function(){
-    window.location.href = '/chat_view';
-  }, 600)
+  var content = {'ids': ids}    // send group name through ajax
+
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+  });
+  $.ajax({
+    url: window.location.href,
+    type: 'POST',
+    data: content
+  });
 })
 
+var count = 0
+$('#form').submit(function(e){
+  if(count == 0){
+    e.preventDefault();
+  }
+  count+=1
+  setTimeout(function(){
+    $('#form').submit()
+  }, 500)
+})
+
+var fileTypes = ['jpg', 'png', 'jpeg']
 document.getElementById('file_input').onchange = function (evt) {
   var tgt = evt.target || window.event.srcElement,
       files = tgt.files;
