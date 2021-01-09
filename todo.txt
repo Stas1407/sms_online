@@ -1,0 +1,5 @@
+1. Group adding view:
+    - Checking photo extension
+    - checking group name
+    - adding people
+    - save group

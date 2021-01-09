@@ -23,29 +23,11 @@ class Conversation(models.Model):
     last_message = models.OneToOneField(Message, on_delete=models.CASCADE, default=None, null=True)
     last_message_date = models.DateTimeField(default=None, null=True)
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
-    users = models.ManyToManyField(User)
+    user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="conversations", null=True)
+    user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="c", null=True)
 
     def get_absolute_url(self):
         return reverse('chat_view', kwargs={'pk': self.pk})
-
-    def get_name(self, user):
-        for u in self.users.all():
-            if u != user:
-                return u.username
-
-    def get_image(self, user):
-        for u in self.users.all():
-            if u != user:
-                return u.profile.image.url
-
-    def save(self):
-        super().save()
-
-        img = Image.open(self.image.path)
-        if img.height > 500 or img.width > 500:
-            output_size = (500, 500)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
 
 class Group(models.Model):
     name = models.CharField(max_length=40)
@@ -60,12 +42,6 @@ class Group(models.Model):
 
     def get_absolute_url(self):
         return reverse('chat_view', kwargs={'pk': self.pk})
-
-    def get_name(self, user):
-        return self.name
-
-    def get_image(self, user):
-        return self.image.url
 
     def save(self):
         super().save()
