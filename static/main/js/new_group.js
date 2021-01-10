@@ -18,6 +18,10 @@ jQuery(document).ready(function(){
         $('#main_content').css('opacity', '1');
         $('#main_content').removeClass('show');
     }, 500)
+
+    setTimeout(function(){
+      $('.alert').slideUp(500)
+    }, 1500)
   }); 
 
 var ids = []
@@ -39,16 +43,16 @@ $('#next').click(function(){
   $('#main_content').addClass('hide_left');
   document.querySelector(".navbar").style.top = "-100px";
 
-  var content = {'ids': ids}    // send group name through ajax
+  // var content = {'ids': ids, 'group_name': $('#group_name_in').val()}    
 
-  $.ajaxSetup({
-    headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
-  });
-  $.ajax({
-    url: window.location.href,
-    type: 'POST',
-    data: content
-  });
+  // $.ajaxSetup({
+  //   headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+  // });
+  // $.ajax({
+  //   url: window.location.href,
+  //   type: 'POST',
+  //   data: content
+  // });
 })
 
 var count = 0
@@ -56,6 +60,7 @@ $('#form').submit(function(e){
   if(count == 0){
     e.preventDefault();
   }
+  $('#ids').val(ids.join())
   count+=1
   setTimeout(function(){
     $('#form').submit()

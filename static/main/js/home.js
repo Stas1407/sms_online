@@ -38,9 +38,13 @@ $('.settings_inner_icon').click(function(){
 
 $('.remove').click(function(){
   var id = this.id.split('r')[1]
+  var remove = $('#'+ this.id)
   if(confirm("Are you sure you want to delete this conversation")){
-    // ajax code to do post request to delete conversation
-    alert('deleted')
+    if(remove.hasClass('rconversation')){
+      window.location.href = 'delete/conversation/'+id
+    } else{
+      window.location.href = 'delete/group/'+id
+    }
   }
 })
 

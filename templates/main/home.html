@@ -7,100 +7,43 @@
 
 {% block content %}
 <div id="main_content"> 
+  {% if conversations %}
   <div class="row">
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      <div class="settings_wrapper">
-        <div class="settings_inner_div" id="div1">
-          <div class="remove" id='r453633456455'><i class="fas fa-trash"></i></div>
-          <div class="settings_inner_icon" id='s453633456455'><i class="fas fa-tools"></i></div>
-          <div class="settings_div"><img src="{% static 'main/icons/settings_home.png' %}" class="rounded-circle settings" id="1"></div>
+    {% for c in conversations %}
+      {% if c.is_group %}
+      <div class="col-sm-12 border-bottom column" id="{{ c.id }}">
+        <img src="{{ c.image.url }}" class="rounded-circle profile_img" alt="">
+        <div class="text">
+          <h2 class="name">{{ c.name }}</h2>
+          <h4 class="last_message">{% if c.last_message %}{{ c.last_message }}{% endif %}</h4>
+        </div>
+        <div class="settings_wrapper">
+          <div class="settings_inner_div" id="div{{ c.id }}">
+            <div class="remove rgroup" id='r{{ c.id }}'><i class="fas fa-trash"></i></div>
+            <div class="settings_inner_icon" id='s{{ c.id }}'><i class="fas fa-tools"></i></div>
+            <div class="settings_div"><img src="{% static 'main/icons/settings_home.png' %}" class="rounded-circle settings" id="i{{ c.id }}"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-12 border-bottom column" id="4536334523432">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      <div class="settings_wrapper">
-        <div class="settings_inner_div" id="div2">
-          <div class="remove" id='r4536334523432'><i class="fas fa-trash"></i></div>
-          <div class="settings_inner_icon" id='s4536334523432'><i class="fas fa-tools"></i></div>
-          <div class="settings_div"><img src="{% static 'main/icons/settings_home.png' %}" class="rounded-circle settings" id="2"></div>
+      {% else %}
+      <div class="col-sm-12 border-bottom column" id="{{ c.id }}">
+        <img src="{{ c.user2.profile.image.url }}" class="rounded-circle profile_img" alt="">
+        <div class="text">
+          <h2 class="name">{{ c.user2.username }}</h2>
+          <h4 class="last_message">{% if c.last_message %}{{ c.last_message }}{% endif %}</h4>
+        </div>
+        <div class="settings_wrapper">
+          <div class="settings_inner_div" id="div{{ c.id }}">
+            <div class="remove rconversation" id='r{{ c.id }}'><i class="fas fa-trash"></i></div>
+            <div class="settings_inner_icon" id='s{{ c.id }}'><i class="fas fa-tools"></i></div>
+            <div class="settings_div"><img src="{% static 'main/icons/settings_home.png' %}" class="rounded-circle settings" id="i{{ c.id }}"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      
-    </div>
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      
-    </div>
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      
-    </div>
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      
-    </div>
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      
-    </div>
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      
-    </div>
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      
-    </div>
-    <div class="col-sm-12 border-bottom column" id="453633456455">
-      <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle profile_img" alt="">
-      <div class="text">
-        <h2 class="name">Nazwa grupy</h2>
-        <h4 class="last_message">Nick: Jakaś próbna wiadomość</h4>
-      </div>
-      
-    </div>
+      {% endif %}
+    {% endfor %}
   </div> 
+  {% endif %}
 </div>
 {% endblock content %}
 

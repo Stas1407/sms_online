@@ -11,8 +11,16 @@
 {% block content %}
 <div id="main_content">
     <div class="row">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-warning fixed-top text-center" id="message" role='alert'>
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
       <form class="col-sm-12 top_column" action="/new_group" method="POST" enctype="multipart/form-data" id="form">
         {% csrf_token %}
+        <input type="hidden" id="ids" name="ids">
         <label for="file_input">
           <div class="group_icon_wrapper">
             <img src="{% static 'main/icons/group_icon.png' %}" id="group_icon">

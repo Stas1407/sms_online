@@ -4,12 +4,15 @@ from operator import attrgetter
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from django.contrib import messages
+from itertools import chain
 
 # Create your views here.
 def home(request):
     context = {
-        'title': 'home'
+        'title': 'home',
+        "conversations": chain(request.user.conversations.all(), request.user.group_set.all())
     }
     return render(request,'main/home.html', context)
 
@@ -23,29 +26,54 @@ def chat_view(request):
 
 def new_group(request):
     if request.method == "POST":
-        if request.POST.get('group_name'):
-            name = request.POST.get('group_name')
-            g = Group()
-            if "<script>" not in name.lower():
-                g.name = name
-                g.users.add(request.user)
-                g.save()
-            else:
-                return HttpResponse("Wrong group name", status=406)
+        name = request.POST.get('group_name')
+        g = Group()
+        if "<script>" not in name.lower() and name:
+            g.name = name
+            g.save()
+            try:
+                allowed = ['jpg', 'jpeg', 'png']            
+                if request.FILES['file_in'].name.split('.')[-1] in allowed:
+                    g.image = request.FILES['file_in']
+            except Exception:
+                pass
+            g.users.add(request.user)
+        else:
+            messages.error(request, "Wrong group name")
+            context = {
+                "conversations": request.user.conversations.all()
+            }
+            return render(request, 'main/new_group.html', context)
 
-        if request.POST.getlist('ids[]'):
-           ids = request.POST.getlist('ids[]')
-           for user_id in ids:
+        ids = request.POST.get('ids').split(',')
+        for user_id in ids:
+            if user_id != '':
                 user = get_object_or_404(User, pk=user_id)
                 if user.conversations.filter(user2=request.user):
-                    print('check')
+                    g.users.add(user)
+        g.save()
 
         return HttpResponseRedirect('/chat_view')
     
     context = {
-        "conversations": sorted(request.user.conversations.all(), key=attrgetter('last_message_date'), reverse=True)
+        "conversations": request.user.conversations.all()
     }
     return render(request, 'main/new_group.html', context)
 
 def settings(request):
     return render(request, 'main/new_group.html', {"settings": True})
+
+def delete(request, id, type):
+    if type == "group":
+        try: 
+            g = request.user.group_set.get(pk=id)
+            g.delete()
+        except Exception:
+            raise Http404()
+    elif type == "conversation":
+        try:
+            c = request.user.conversations.get(pk=id)
+            c.delete()
+        except Exception:
+            raise Http404()
+    return HttpResponseRedirect('/home')
