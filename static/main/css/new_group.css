@@ -19,10 +19,15 @@ html {
     background-color: rgb(28, 22, 22, 0.91) !important;
     top: -100px;
     transition: top 0.3s;
+    z-index: 0;
 }
 
 main{
     height: 90vh;
+}
+
+.alert{
+  z-index: 10;
 }
 
 .col-md-12{

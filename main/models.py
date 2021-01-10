@@ -7,7 +7,7 @@ from django.urls import reverse
 # Create your models here.
 
 def check_path(instance, filename):
-    return 'web-private/{0}/{1}'.format(instance.id, filename.split('/')[-1])
+    return 'web-private/groups/{0}/{1}'.format(instance.id, filename.split('/')[-1])
 
 
 class Message(models.Model):
@@ -25,6 +25,10 @@ class Conversation(models.Model):
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
     user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="conversations", null=True)
     user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="c", null=True)
+    is_group = False
+
+    def __str__(self):
+        return "{0} -> {1}".format(self.user1, self.user2)
 
     def get_absolute_url(self):
         return reverse('chat_view', kwargs={'pk': self.pk})
@@ -36,6 +40,7 @@ class Group(models.Model):
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
     image = models.ImageField(upload_to=check_path, default="default.jpg")
     users = models.ManyToManyField(User)
+    is_group = True
 
     def __str__(self):
         return "{}".format(self.name)
