@@ -31,8 +31,7 @@ $('.settings_inner_icon').click(function(){
   var id = this.id.split('s')[1]
 
   setTimeout(function(){
-    window.location.href = "/settings";
-    // window.location.href = '/settings/' + id
+    window.location.href = '/settings/' + id
   }, 400)
 })
 

@@ -60,20 +60,70 @@ def new_group(request):
     }
     return render(request, 'main/new_group.html', context)
 
-def settings(request):
-    return render(request, 'main/new_group.html', {"settings": True})
+def settings(request, id):
+    if request.method == "POST":
+        name = request.POST.get('group_name')
+        g = request.user.group_set.get(pk=id)
+        print(g)
+        if "<script>" not in name.lower() and name:
+            g.name = name
+            try:
+                allowed = ['jpg', 'jpeg', 'png']            
+                if request.FILES['file_in'].name.split('.')[-1] in allowed:
+                    g.image = request.FILES['file_in']
+            except Exception:
+                pass
+        elif "<script>" in name.lower():
+            messages.error(request, "Wrong group name")
+            group = get_object_or_404(Group, pk=id)
+            context = {
+                "settings":True,
+                "name": group.name,
+                "image": group.image.url,
+                "members": group.users.all()
+            }
+            return render(request, 'main/new_group.html', context)
+
+        ids = request.POST.get('ids').split(',')
+        for user_id in ids:
+            if user_id != '':
+                user = get_object_or_404(User, pk=user_id)
+                if user.conversations.filter(user2=request.user):
+                    g.users.remove(user)
+        g.save()
+
+        return HttpResponseRedirect('/chat_view')
+
+    if request.user.group_set.filter(pk=id).count() != 0:
+        group = get_object_or_404(Group, pk=id)
+        context = {
+            "settings":True,
+            "name": group.name,
+            "image": group.image.url,
+            "members": group.users.all()
+        }
+        return render(request, 'main/new_group.html', context)
+    else:
+        raise Http404()
 
 def delete(request, id, type):
     if type == "group":
         try: 
             g = request.user.group_set.get(pk=id)
-            g.delete()
+            g.users.remove(request.user)
+            g.save()
+            if g.users.count() == 0:
+                g.delete()
         except Exception:
             raise Http404()
     elif type == "conversation":
         try:
             c = request.user.conversations.get(pk=id)
+            user = c.user2
             c.delete()
+
+            c2 = request.user.c.get(user1=user)
+            c2.delete()
         except Exception:
             raise Http404()
     return HttpResponseRedirect('/home')

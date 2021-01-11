@@ -20,7 +20,7 @@ class Unread_messages(models.Model):
     count = models.IntegerField()
 
 class Conversation(models.Model):
-    last_message = models.OneToOneField(Message, on_delete=models.CASCADE, default=None, null=True)
+    last_message = models.ForeignKey(Message, on_delete=models.CASCADE, default=None, null=True)
     last_message_date = models.DateTimeField(default=None, null=True)
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
     user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="conversations", null=True)

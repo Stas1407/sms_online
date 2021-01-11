@@ -8,7 +8,7 @@ urlpatterns = [
     path('home', views.home, name='home'),
     path('chat_view', views.chat_view, name="chat_view"),
     path('new_group', views.new_group, name="new_group"),
-    path('settings', views.settings, name="settings"),
+    path('settings/<int:id>', views.settings, name="settings"),
     path('delete/<str:type>/<int:id>', views.delete, name="delete")
 ]
 

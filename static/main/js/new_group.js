@@ -22,6 +22,8 @@ jQuery(document).ready(function(){
     setTimeout(function(){
       $('.alert').slideUp(500)
     }, 1500)
+
+    $('#form').attr("action",window.location.href)
   }); 
 
 var ids = []
@@ -42,17 +44,6 @@ $('#next').click(function(){
   $('#next').addClass('next_clicked');
   $('#main_content').addClass('hide_left');
   document.querySelector(".navbar").style.top = "-100px";
-
-  // var content = {'ids': ids, 'group_name': $('#group_name_in').val()}    
-
-  // $.ajaxSetup({
-  //   headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
-  // });
-  // $.ajax({
-  //   url: window.location.href,
-  //   type: 'POST',
-  //   data: content
-  // });
 })
 
 var count = 0
@@ -66,6 +57,7 @@ $('#form').submit(function(e){
     $('#form').submit()
   }, 500)
 })
+
 
 var fileTypes = ['jpg', 'png', 'jpeg']
 document.getElementById('file_input').onchange = function (evt) {
