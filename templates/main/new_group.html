@@ -23,13 +23,21 @@
         <input type="hidden" id="ids" name="ids">
         <label for="file_input">
           <div class="group_icon_wrapper">
-            <img src="{% static 'main/icons/group_icon.png' %}" id="group_icon">
+            {% if settings %}
+            <img src="{{ image }}" id="group_icon" class="group_icon_new">
+            {% else %}
+            <img src="{% static 'main/icons/group_icon.png' %}" id="group_icon" >
+            {% endif %}
           </div>
         </label>
         <input type="file" id="file_input" name="file_in">
         <div id="group_name_div">
+            {% if settings %}
+            <input type="text" name="group_name" id="group_name_in" value="{{name}}" autocomplete='off' spellcheck='false' autocorrect='off'>
+            {% else %}
             <input type="text" name="group_name" id="group_name_in" placeholder="Group name..." autocomplete='off' spellcheck='false' autocorrect='off'>
-        </div>
+            {% endif %}
+          </div>
         <div id="next_wrapper">
           <button type="submit" id="next" class="not_clicked"><i class="fas fa-arrow-right"></i></button>
         </div>
@@ -38,17 +46,31 @@
       <div class="col-sm-12 column_splitter" id="top">
         <div id="splitter"></div>
       </div>
-      {% for c in conversations %}
-      <div class="col-sm-12 column test">
-        <div class="person_bg">
-            <img src="{{ c.user2.profile.image.url }}" class="person_profile_pic rounded-circle">
-            <div class="person_name_bg">
-                <h4 class="person_name">{{ c.user2.username }}</h4> 
-                <button class="add_person" id='{{ c.user2.id }}'></button>
-            </div>
+      {% if settings %}
+        {% for m in members %}
+        <div class="col-sm-12 column test">
+          <div class="person_bg">
+              <img src="{{ m.profile.image.url }}" class="person_profile_pic rounded-circle">
+              <div class="person_name_bg">
+                  <h4 class="person_name">{{ m.username }}</h4> 
+                  <button class="add_person" id='{{ m.id }}'></button>
+              </div>
+          </div>
         </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
+      {% else %}
+        {% for c in conversations %}
+        <div class="col-sm-12 column test">
+          <div class="person_bg">
+              <img src="{{ c.user2.profile.image.url }}" class="person_profile_pic rounded-circle">
+              <div class="person_name_bg">
+                  <h4 class="person_name">{{ c.user2.username }}</h4> 
+                  <button class="add_person" id='{{ c.user2.id }}'></button>
+              </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
 </div>
 {% endblock content %}
 

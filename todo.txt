@@ -1,0 +1,21 @@
+{% comment %} 1. Settings:
+    - get link from home view to work
+    - pass group members to the html
+    - pass group name to the html
+    - pass group picture url to the html:
+        a) Maybe use {% if picture_url %}<script> set url as background photo </script>{% endif %}
+    - make all group member buttons as checked:
+        a) maybe add a hidden input as a switch
+    - Collect unchecked members ids, send to backend and delete
+    - Send picture and group name to backend and save {% endcomment %}
+2. Chat_view:
+    - Enable sending messages:
+        a) use ajax to send the message and refresh page
+    - Enable server messages (Group was created, Someone was added etc.)
+    - View recent chats icons
+    - View unread messages
+3. Search mechanizm:
+    - Use form to send search data to backend
+    - Pass to the html data matching the search
+    - Make it work on home view, group adding view and settings view
+4. Make everything more responsive.
