@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, Http404
 from django.contrib import messages
 from itertools import chain
+from main.auxiliary import *
 
 # Create your views here.
 def home(request):
@@ -21,8 +22,50 @@ def landing_page(request):
         return redirect('home')
     return render(request, 'main/landing_page.html')
 
-def chat_view(request):
-    return render(request, 'main/chat_view.html')
+def conversation(request, id):
+    if request.method == "POST":
+        text = request.POST.get('message_text')
+        
+        check = check_text(text)
+        if check:
+            return HttpResponse(check, status=400)
+
+        m = Message()
+        m.author = request.user
+        m.text = text
+        m.save()
+        send_message(request.user.conversations, id, m)
+        return HttpResponse("OK", status=200)
+    
+    messages_list = get_messages(request, "conversation", id)
+    context = {
+        'messages': messages_list
+    }
+
+    return render(request, 'main/chat_view.html', context)
+
+def group(request, id):
+    if request.method == "POST":
+        text = request.POST.get('message_text')
+        
+        check = check_text(text)
+        if check:
+            return HttpResponse(check, status=400)
+
+        m = Message()
+        m.author = request.user
+        m.text = text
+        m.save()
+        
+        send_message(request.user.conversations, id, m)
+        return HttpResponse("OK", status=200)
+    
+    messages_list = get_messages(request, "group", id)
+    context = {
+        'messages': messages_list
+    }
+
+    return render(request, 'main/chat_view.html', context)
 
 def new_group(request):
     if request.method == "POST":
@@ -61,7 +104,7 @@ def new_group(request):
     return render(request, 'main/new_group.html', context)
 
 def settings(request, id):
-    if request.method == "POST":
+    if request.method == "POST": 
         name = request.POST.get('group_name')
         g = request.user.group_set.get(pk=id)
         print(g)

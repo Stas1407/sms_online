@@ -59,19 +59,33 @@ $('#new_group').click(function(e){
 
 
 $('.profile_img').click(function(){
-  
+  var is_group = $(this).parent().hasClass('is_group')
+  var id = $(this).parent().attr('id')
+
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
+
   setTimeout(function(){
-    window.location.href = "/chat_view";
+    if(is_group){
+      window.location.href = "/group/"+id
+    } else {
+      window.location.href = "/conversation/"+id
+    }
   }, 600)
 })
 
 $('.text').click(function(){
+  var is_group = $(this).parent().hasClass('is_group')
+  var id = $(this).parent().attr('id')
+
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
   setTimeout(function(){
-    window.location.href = "/chat_view";
+    if(is_group){
+      window.location.href = "/group/"+id
+    } else {
+      window.location.href = "/conversation/"+id
+    }
   }, 600)
 })
 

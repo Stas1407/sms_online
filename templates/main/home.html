@@ -11,11 +11,11 @@
   <div class="row">
     {% for c in conversations %}
       {% if c.is_group %}
-      <div class="col-sm-12 border-bottom column" id="{{ c.id }}">
-        <img src="{{ c.image.url }}" class="rounded-circle profile_img" alt="">
+      <div class="col-sm-12 border-bottom column is_group" id="{{ c.id }}">
+        <img src="{{ c.image.url }}" class="rounded-circle profile_img" alt="" id="test">
         <div class="text">
           <h2 class="name">{{ c.name }}</h2>
-          <h4 class="last_message">{% if c.last_message %}{{ c.last_message.author }}:{{ c.last_message.text }}{% endif %}</h4>
+          <h4 class="last_message">{% if c.last_message %}{{ c.last_message.author }}:  {{ c.last_message.text }}{% endif %}</h4>
         </div>
         <div class="settings_wrapper">
           <div class="settings_inner_div" id="div{{ c.id }}">
@@ -39,11 +39,11 @@
           </div>
         </div>
       </div>
-      {% endif %}
+      {% endif %} 
     {% endfor %}
   </div> 
   {% endif %}
-</div>
+</div> 
 {% endblock content %}
 
 {% block js_links %}
