@@ -13,20 +13,31 @@ $('#message_in').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       $('#send_bt').trigger('click');  
-      // $('#send_bt').addClass('clicked');
 
-      // setTimeout(function(){
-      //   $('#send_bt').removeClass('clicked');
-      // }, 200);
     } 
 });
 
 $('#send_bt').click(function(){
-  $('#send_bt').addClass('clicked');
+  $('#send_bt').addClass('clicked'); 
 
   setTimeout(function(){
     $('#send_bt').removeClass('clicked');
   }, 200);
+
+  var message = $('#message_in').val()
+  var content = {'message_text': message}
+
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+  });
+  $.ajax({
+    url: window.location.href,
+    type: 'POST',
+    data: content,
+    success: function(){
+      location.reload()
+    }
+  });
 })
  
 $('.redirect').click(function(){

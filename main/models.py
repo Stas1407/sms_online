@@ -15,13 +15,16 @@ class Message(models.Model):
     text = models.CharField(max_length=200)
     date_sent = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return "{}".format(self.text)    # Change before production
+
 class Unread_messages(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     count = models.IntegerField()
-
+ 
 class Conversation(models.Model):
-    last_message = models.ForeignKey(Message, on_delete=models.CASCADE, default=None, null=True)
-    last_message_date = models.DateTimeField(default=None, null=True)
+    messages = models.ManyToManyField(Message, default=None)
+    last_message = models.ForeignKey(Message, on_delete=models.CASCADE, default=None, null=True, related_name="c_last_messages")
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
     user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="conversations", null=True)
     user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="c", null=True)
@@ -35,8 +38,8 @@ class Conversation(models.Model):
 
 class Group(models.Model):
     name = models.CharField(max_length=40)
-    last_message = models.OneToOneField(Message, on_delete=models.CASCADE, default=None, null=True)
-    last_message_date = models.DateTimeField(default=None, null=True)
+    messages = models.ManyToManyField(Message, default=None)
+    last_message = models.OneToOneField(Message, on_delete=models.CASCADE, default=None, null=True, related_name="g_last_messages")
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
     image = models.ImageField(upload_to=check_path, default="default.jpg")
     users = models.ManyToManyField(User)
