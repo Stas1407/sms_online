@@ -26,15 +26,40 @@ class Conversation(models.Model):
     messages = models.ManyToManyField(Message, default=None)
     last_message = models.ForeignKey(Message, on_delete=models.CASCADE, default=None, null=True, related_name="c_last_messages")
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
-    user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="conversations", null=True)
-    user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="c", null=True)
+    users = models.ManyToManyField(User, related_name="conversations")
     is_group = False
 
     def __str__(self):
-        return "{0} -> {1}".format(self.user1, self.user2)
+        return "{0} - {1}".format(self.users.all()[0], self.users.all()[1])
 
     def get_absolute_url(self):
         return reverse('chat_view', kwargs={'pk': self.pk})
+    
+    def get_second_user(self, user):
+        for u in self.users.all():
+            if u != user:
+                return u
+    
+    def get_image(self, user):
+        for u in self.users.all():
+            if u != user:
+                return u.profile.image.url
+    
+    def get_name(self, user):
+        for u in self.users.all():
+            if u != user:
+                return u.username
+    
+    def get_id(self, user):
+        for u in self.users.all():
+            if u != user:
+                return u.id
+    
+    def send_message(self, message):
+        self.messages.add(message)
+        self.last_message = message
+        self.save()
+        
 
 class Group(models.Model):
     name = models.CharField(max_length=40)

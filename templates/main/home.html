@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load getters %}
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
@@ -27,9 +28,9 @@
       </div>
       {% else %}
       <div class="col-sm-12 border-bottom column" id="{{ c.id }}">
-        <img src="{{ c.user2.profile.image.url }}" class="rounded-circle profile_img" alt="">
+        <img src="{{ c|get_image:request.user}}" class="rounded-circle profile_img" alt="">
         <div class="text">
-          <h2 class="name">{{ c.user2.username }}</h2>
+          <h2 class="name">{{ c|get_name:request.user }}</h2>
           <h4 class="last_message">{% if c.last_message %}{{ c.last_message.author }}:  {{ c.last_message.text }}{% endif %}</h4>
         </div>
         <div class="settings_wrapper">

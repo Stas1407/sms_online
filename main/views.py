@@ -35,6 +35,7 @@ def conversation(request, id):
         m.text = text
         m.save()
         send_message(request.user.conversations, id, m)
+
         return HttpResponse("OK", status=200)
     
     messages_list = get_messages(request, "conversation", id)
@@ -57,7 +58,7 @@ def group(request, id):
         m.text = text
         m.save()
         
-        send_message(request.user.conversations, id, m)
+        send_message(request.user.group_set, id, m)
         return HttpResponse("OK", status=200)
     
     messages_list = get_messages(request, "group", id)
@@ -92,11 +93,11 @@ def new_group(request):
         for user_id in ids:
             if user_id != '':
                 user = get_object_or_404(User, pk=user_id)
-                if user.conversations.filter(user2=request.user):
+                if check_if_connected(user, request.user):
                     g.users.add(user)
         g.save()
 
-        return HttpResponseRedirect('/chat_view')
+        return HttpResponseRedirect('/home')
     
     context = {
         "conversations": request.user.conversations.all()
@@ -107,7 +108,7 @@ def settings(request, id):
     if request.method == "POST": 
         name = request.POST.get('group_name')
         g = request.user.group_set.get(pk=id)
-        print(g)
+
         if "<script>" not in name.lower() and name:
             g.name = name
             try:
@@ -131,11 +132,10 @@ def settings(request, id):
         for user_id in ids:
             if user_id != '':
                 user = get_object_or_404(User, pk=user_id)
-                if user.conversations.filter(user2=request.user):
-                    g.users.remove(user)
+                g.users.remove(user)
         g.save()
 
-        return HttpResponseRedirect('/chat_view')
+        return HttpResponseRedirect('/home')
 
     if request.user.group_set.filter(pk=id).count() != 0:
         group = get_object_or_404(Group, pk=id)
