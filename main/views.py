@@ -36,7 +36,7 @@ def conversation(request, id):
         m.save()
         send_message(request.user.conversations, id, m)
 
-        return HttpResponse("OK", status=200)
+        return HttpResponse(m.id, status=200)
     
     messages_list = get_messages(request, "conversation", id)
     context = {
@@ -59,11 +59,12 @@ def group(request, id):
         m.save()
         
         send_message(request.user.group_set, id, m)
-        return HttpResponse("OK", status=200)
+        return HttpResponse(m.id, status=200)
     
     messages_list = get_messages(request, "group", id)
     context = {
-        'messages': messages_list
+        'messages': messages_list,
+        'is_group': True
     }
 
     return render(request, 'main/chat_view.html', context)
