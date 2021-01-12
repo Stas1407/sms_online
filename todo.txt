@@ -12,16 +12,23 @@
     {% comment %} - split up chat view to conversation_view and group_view {% endcomment %}
     - Enable sending messages:
         {% comment %} a) use ajax to send the message and refresh page {% endcomment %}
-        b) use signals to add message to the second conversation side after adding it to first one
+        {% comment %} b) use signals to add message to the second conversation side after adding it to first one {% endcomment %}
         c) think of splitting templates to group and conversation (in groups nicks have to be displayed and in conversations not)
+            1) Make missing front end with nicks
         c) send messages to front end
         d) figure out how to display which messages are mine (if message.author == request.user: class="my_message")
+        e) Maybe show messages without refreshing the page by clearing input value
+           and adding message with javascript on the client side
+        f) figure out how to listen for new messages in javascript without refreshing page
     - Enable server messages (Group was created, Someone was added etc.)
     - View recent chats icons
     - View unread messages
-3. Add signals to create profile, unread_messages on creating other models
-4. Search mechanizm:
+3. Add remove messages, users, add messages, users functions to models, add remove group if there aren't any members
+4. Add signals to create profile, unread_messages on creating other models
+5. Make code readable
+6. Search mechanizm:
     - Use form to send search data to backend
     - Pass to the html data matching the search
     - Make it work on home view, group adding view and settings view
-5. Make everything more responsive.
+7. Check security
+8. Make everything more responsive.

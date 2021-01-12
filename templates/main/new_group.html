@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load getters %}
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'main/css/new_group.css' %}">
@@ -62,10 +63,10 @@
         {% for c in conversations %}
         <div class="col-sm-12 column test">
           <div class="person_bg">
-              <img src="{{ c.user2.profile.image.url }}" class="person_profile_pic rounded-circle">
+              <img src="{{ c|get_image:request.user }}" class="person_profile_pic rounded-circle">
               <div class="person_name_bg">
-                  <h4 class="person_name">{{ c.user2.username }}</h4> 
-                  <button class="add_person" id='{{ c.user2.id }}'></button>
+                  <h4 class="person_name">{{ c|get_name:request.user }}</h4> 
+                  <button class="add_person" id='{{ c|get_id:request.user }}'></button>
               </div>
           </div>
         </div>
