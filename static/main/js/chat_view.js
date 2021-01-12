@@ -35,7 +35,9 @@ $('#send_bt').click(function(){
     type: 'POST',
     data: content,
     success: function(){
-      location.reload()
+      $('.chat').append('<div class="my_message float-right message" id="{{ message.id }}">'+message+'</div>')
+      $('.chat_view').scrollTop($('.chat_view')[0].scrollHeight)
+      $('#message_in').val("")
     }
   });
 })
@@ -109,18 +111,6 @@ class Swipe {
       return this;
   }
 
-  onUp(callback) {
-      this.onUp = callback;
-
-      return this;
-  }
-
-  onDown(callback) {
-      this.onDown = callback;
-
-      return this;
-  }
-
   handleTouchMove(evt) {
       if ( ! this.xDown || ! this.yDown ) {
           return;
@@ -138,13 +128,7 @@ class Swipe {
           } else {
               this.onRight();
           }
-      } else {
-          if ( this.yDiff > 0 ) {
-              this.onUp();
-          } else {
-              this.onDown();
-          }
-      }
+      } 
 
       // Reset values.
       this.xDown = null;

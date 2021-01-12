@@ -11,9 +11,10 @@ def check_path(instance, filename):
 
 
 class Message(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     text = models.CharField(max_length=200)
     date_sent = models.DateTimeField(default=timezone.now)
+    is_server_message = models.BooleanField(default=False)
 
     def __str__(self):
         return "{}".format(self.text)    # Change before production

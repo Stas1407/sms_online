@@ -52,13 +52,33 @@
   </div>
 </div>
 <div class="chat_view">
-  <div class="my_message float-right message">Hello how are you?</div>
-  <div class="others_message float-left message">I'm fine thanks</div>
-  <div class="input_box">
-    {% csrf_token %}
-    <input type="text" placeholder="Write message..." id="message_in" autocomplete='off' spellcheck='false' autocorrect='off'>
-    <button type="button" id="send_bt"></button>
+  <div class="chat">
+    {% if is_group %}
+      {% for message in messages %}
+        {% if message.author == request.user %}
+          <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
+        {% else %}
+        <div class="message_wrapper">
+          <h5 class="author float-left">{{message.author}}</h5>
+          <div class="others_message float-left message" id="{{ message.id }}">{{ message.text }}</div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% for message in messages %}
+        {% if message.author == request.user %}
+          <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
+        {% else %}
+          <div class="others_message float-left message" id="{{ message.id }}">{{ message.text }}</div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   </div>
+    <div class="input_box">
+      {% csrf_token %}
+      <input type="text" placeholder="Write message..." id="message_in" autocomplete='off' spellcheck='false' autocorrect='off'>
+      <button type="button" id="send_bt"></button>
+    </div>
 </div>
 {% endblock content %}
 
