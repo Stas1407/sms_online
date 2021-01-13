@@ -19,7 +19,7 @@
         d) figure out how to display which messages are mine (if message.author == request.user: class="my_message")
         e) Maybe show messages without refreshing the page by clearing input value
            and adding message with javascript on the client side {% endcomment %}
-        g) In javscript when adding sent messages attach to them id returned from backend 
+        {% comment %} g) In javscript when adding sent messages attach to them id returned from backend  {% endcomment %}
         h) figure out how to listen for new messages in javascript without refreshing page
     - Enable server messages (Group was created, Someone was added etc.)
     - Add deleting messages and send time view
