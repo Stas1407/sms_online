@@ -158,7 +158,7 @@ p{
 .my_message{
   color: white;
   position: relative;
-  background-image: linear-gradient(#4460a8, #00d4ff) !important;
+  background-image: linear-gradient(#4460a8, #00d4ff);
   margin-right: 2%;
   clear: both;
   margin-top: -1vh;
@@ -171,9 +171,17 @@ p{
 .others_message{
   color: white;
   position: relative;
-  background-image: linear-gradient(#6a7070, #627677) !important;
+  background-image: linear-gradient(#6a7070, #627677);
   margin-left: 2%;
   clear: both;
+}
+
+.server_message{
+  text-align: center;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+  color: white;
+  opacity: 60%;
 }
 
 .message{
@@ -186,6 +194,11 @@ p{
   max-width: 50%;
 }
 
+.remove{
+  background-color: white;
+  background-image: none;
+  color: red;
+}
 
 .author{
   color: white;
@@ -380,10 +393,6 @@ p{
 }
 
 @media (pointer:none), (pointer:coarse) and (orientation: portrait) and (max-height: 500px){
-  #message_in{
-    /* background-image: url('../../backgrounds/input_bg3.png'); */
-  }
-
   #send_bt{
     width:17%;
     height: 12vh;
@@ -401,11 +410,7 @@ p{
     margin-left: 55%;
   }
 
-  .profile_img{
-    /* width: 18vh;
-    height: 18vh;
-    margin-bottom: 5vh; */
-  }
+
 }
 
 

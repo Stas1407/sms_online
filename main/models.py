@@ -11,7 +11,7 @@ def check_path(instance, filename):
 
 
 class Message(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None,null=True)
     text = models.CharField(max_length=200)
     date_sent = models.DateTimeField(default=timezone.now)
     is_server_message = models.BooleanField(default=False)
@@ -61,6 +61,11 @@ class Conversation(models.Model):
         self.messages.add(message)
         self.last_message = message
         self.save()
+    
+    def delete(self):
+        for message in self.messages.all():
+            message.delete()
+        super().delete()
         
 
 class Group(models.Model):
@@ -86,3 +91,8 @@ class Group(models.Model):
             output_size = (500, 500)
             img.thumbnail(output_size)
             img.save(self.image.path)
+    
+    def delete(self):
+        for message in self.messages.all():
+            message.delete()
+        super().delete()

@@ -55,6 +55,12 @@ def conversation(request, id):
         return HttpResponse(m.id, status=200)
     
     messages_list = get_messages(request, "conversation", id)
+    for i in range(1, len(messages_list)):
+        if request.user in messages_list[-i].read_by.all():
+            break
+        else:
+            messages_list[-i].read_by.add(request.user)
+
     context = {
         'messages': messages_list
     }
@@ -92,6 +98,12 @@ def group(request, id):
         return HttpResponse(m.id, status=200)
     
     messages_list = get_messages(request, "group", id)
+    for i in range(1, len(messages_list)):
+        if request.user in messages_list[-i].read_by.all():
+            break
+        else:
+            messages_list[-i].read_by.add(request.user)
+
     context = {
         'messages': messages_list,
         'is_group': True
@@ -126,6 +138,10 @@ def new_group(request):
                 user = get_object_or_404(User, pk=user_id)
                 if check_if_connected(user, request.user):
                     g.users.add(user)
+
+        server_message = Message.objects.create(text="Group was created", is_server_message=True)
+        g.last_message = server_message
+        g.messages.add(server_message)
         g.save()
 
         return HttpResponseRedirect('/home')
@@ -193,11 +209,7 @@ def delete(request, id, type):
     elif type == "conversation":
         try:
             c = request.user.conversations.get(pk=id)
-            user = c.user2
             c.delete()
-
-            c2 = request.user.c.get(user1=user)
-            c2.delete()
         except Exception:
             raise Http404()
     return HttpResponseRedirect('/home')
