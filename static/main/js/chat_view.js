@@ -8,6 +8,65 @@ jQuery(document).ready(function(){
     Cookies.remove('same_site')
   }
 
+  if($('#is_group').val() == "true"){
+    setInterval(function(){
+      var previous_author = ""
+      var content = {'check':'check'}
+
+      $.ajaxSetup({
+        headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+      });
+      $.ajax({
+        url: window.location.href,
+        type: 'POST',
+        data: content,
+        success: function(data){
+          data = JSON.parse(data)
+          for(message of data){
+            console.log("c: "+message.author)
+            console.log("p: "+previous_author)
+            if(previous_author!=message.author){
+              console.log('tak')
+              $('.chat').append(
+                '<div class="message_wrapper"> \
+                  <h5 class="author float-left">'+message.author+'</h5> \
+                  <div class="others_message float-left message" id="'+ message.id +'">'+ message.text +'</div> \
+                </div>'
+              )
+            } else{
+              $('.chat').append(
+                '<div class="others_message float-left message" id="'+ message.id +'">'+ message.text +'</div>'
+              )
+            }
+            previous_author = message.author
+          }
+          $('.chat_view').scrollTop($('.chat_view')[0].scrollHeight)
+        }
+      });
+    }, 5000)
+  } else {
+    setInterval(function(){
+      console.log('checking for events')
+      var content = {'check':'check'}
+
+      $.ajaxSetup({
+        headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+      });
+      $.ajax({
+        url: window.location.href,
+        type: 'POST',
+        data: content,
+        success: function(data){
+          data = JSON.parse(data)
+          console.log(data)
+          for(message of data){
+            $('.chat').append('<div class="others_message float-left message" id="'+message.id+'">'+message.text+'</div>')
+            $('.chat_view').scrollTop($('.chat_view')[0].scrollHeight)
+          }
+        }
+      });
+    }, 5000)
+  }
 }); 
 
 $('#message_in').keypress(function(event){
@@ -39,7 +98,6 @@ $('#send_bt').click(function(){
       $('.chat').append('<div class="my_message float-right message" id="'+ data +'">'+message+'</div>')
       $('.chat_view').scrollTop($('.chat_view')[0].scrollHeight)
       $('#message_in').val("")
-      console.log(data)
     }
   });
 })

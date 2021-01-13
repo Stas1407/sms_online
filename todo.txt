@@ -34,3 +34,29 @@
     - Make it work on home view, group adding view and settings view
 7. Check security
 8. Make everything more responsive.
+
+
+
+
+
+
+
+
+
+Options:
+    - Ajax with setInterval
+    - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

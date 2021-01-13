@@ -8,6 +8,8 @@ from django.http import HttpResponse, Http404
 from django.contrib import messages
 from itertools import chain
 from main.auxiliary import *
+from django.db.models import Q
+import json
 
 # Create your views here.
 def home(request):
@@ -24,6 +26,19 @@ def landing_page(request):
 
 def conversation(request, id):
     if request.method == "POST":
+        if request.POST.get('check'):
+            c = request.user.conversations.get(id=id)
+            messages = c.messages.filter(~Q(read_by__in=[request.user]))
+            data = []
+
+            for message in messages:
+                message.read_by.add(request.user)
+                message.save()
+                data.append({'text':message.text, 'id':message.id, 'author':message.author.username})
+            
+            data = json.dumps(data)
+            return HttpResponse(data, status=200)
+
         text = request.POST.get('message_text')
         
         check = check_text(text)
@@ -34,6 +49,7 @@ def conversation(request, id):
         m.author = request.user
         m.text = text
         m.save()
+        m.read_by.add(request.user)
         send_message(request.user.conversations, id, m)
 
         return HttpResponse(m.id, status=200)
@@ -47,6 +63,19 @@ def conversation(request, id):
 
 def group(request, id):
     if request.method == "POST":
+        if request.POST.get('check'):
+            c = request.user.group_set.get(id=id)
+            messages = c.messages.filter(~Q(read_by__in=[request.user]))
+            data = []
+
+            for message in messages:
+                message.read_by.add(request.user)
+                message.save()
+                data.append({'text':message.text, 'id':message.id, 'author':message.author.username})
+            
+            data = json.dumps(data)
+            return HttpResponse(data, status=200)
+
         text = request.POST.get('message_text')
         
         check = check_text(text)
@@ -57,6 +86,7 @@ def group(request, id):
         m.author = request.user
         m.text = text
         m.save()
+        m.read_by.add(request.user)
         
         send_message(request.user.group_set, id, m)
         return HttpResponse(m.id, status=200)
