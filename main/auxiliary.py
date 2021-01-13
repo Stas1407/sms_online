@@ -15,7 +15,7 @@ def get_messages(request, type, id):
         else:
             raise Http404()
 
-    return messages_list
+    return list(messages_list)
 
 def check_text(text):
     if len(text) == 0:
@@ -28,6 +28,7 @@ def send_message(object, id, message):
     if len(object.filter(pk=id)) != 0:
         o = object.get(pk=id)
         o.messages.add(message)
+        o.last_message = message
         o.save()
     else:
         raise Http404()

@@ -20,9 +20,10 @@
         e) Maybe show messages without refreshing the page by clearing input value
            and adding message with javascript on the client side {% endcomment %}
         {% comment %} g) In javscript when adding sent messages attach to them id returned from backend  {% endcomment %}
-        h) figure out how to listen for new messages in javascript without refreshing page
-    - Enable server messages (Group was created, Someone was added etc.)
+        {% comment %} h) figure out how to listen for new messages in javascript without refreshing page {% endcomment %}
+    {% comment %} - Enable server messages (Group was created, Someone was added etc.) {% endcomment %}
     - Add deleting messages and send time view
+    {% comment %} - Add delteing messages after deleting conversation {% endcomment %}
     - View recent chats icons
     - View unread messages
 3. Add remove messages, users, add messages, users functions to models, add remove group if there aren't any members

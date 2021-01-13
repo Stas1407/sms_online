@@ -101,6 +101,34 @@ $('#send_bt').click(function(){
     }
   });
 })
+
+var tmp = 0;
+var text
+var id
+$('.my_message').hover(function(){
+  if(tmp == 0){
+    $("#"+this.id).animate({left: "20%"}, 300, function(){
+      $("#"+this.id).addClass('remove')
+      text = $("#"+this.id).text()
+      $("#"+this.id).prepend('<i class="fas fa-trash"></i>')
+      $("#"+this.id).animate({left: "0%"}, 300)
+    })
+    tmp = 1
+    id = this.id
+  }
+}, function(){
+  setTimeout(function(){
+    this.id = id
+    console.log(this.id)
+    $("#"+this.id).animate({left: "20%"}, 300, function(){
+      $("#"+this.id).removeClass('remove')
+      $("#"+this.id).text(text)
+      $('.fa-trash').remove()
+      $("#"+this.id).animate({left: "0%"}, 300)
+    })
+    tmp = 0
+  }, 5000)
+})
  
 $('.redirect').click(function(){
   $('.chat_view').addClass('animation_hide_on_right')
