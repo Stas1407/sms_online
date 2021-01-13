@@ -7,6 +7,7 @@ jQuery(document).ready(function(){
     $('.chat_icons').css('opacity', '1')
     Cookies.remove('same_site')
   }
+
 }); 
 
 $('#message_in').keypress(function(event){
@@ -34,10 +35,11 @@ $('#send_bt').click(function(){
     url: window.location.href,
     type: 'POST',
     data: content,
-    success: function(){
-      $('.chat').append('<div class="my_message float-right message" id="{{ message.id }}">'+message+'</div>')
+    success: function(data){
+      $('.chat').append('<div class="my_message float-right message" id="'+ data +'">'+message+'</div>')
       $('.chat_view').scrollTop($('.chat_view')[0].scrollHeight)
       $('#message_in').val("")
+      console.log(data)
     }
   });
 })
