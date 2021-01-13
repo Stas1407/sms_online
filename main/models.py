@@ -15,6 +15,7 @@ class Message(models.Model):
     text = models.CharField(max_length=200)
     date_sent = models.DateTimeField(default=timezone.now)
     is_server_message = models.BooleanField(default=False)
+    read_by = models.ManyToManyField(User, related_name="read_message")
 
     def __str__(self):
         return "{}".format(self.text)    # Change before production

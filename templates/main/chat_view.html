@@ -54,6 +54,7 @@
 <div class="chat_view">
   <div class="chat">
     {% if is_group %}
+      <input type="hidden" value="true" id="is_group">
       {% for message in messages %}
         {% if message.author == request.user %}
           <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
@@ -65,6 +66,7 @@
         {% endif %}
       {% endfor %}
     {% else %}
+    <input type="hidden" value="false" id="is_group">
       {% for message in messages %}
         {% if message.author == request.user %}
           <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
