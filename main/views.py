@@ -27,7 +27,9 @@ def landing_page(request):
 def conversation(request, id):
     if request.method == "POST":
         if request.POST.get('check'):
-            c = request.user.conversations.get(id=id)
+            c = request.user.conversations.filter(id=id)[0]
+            if not c:
+                raise Http404()
             messages = c.messages.filter(~Q(read_by__in=[request.user]))
             data = []
 
@@ -213,3 +215,21 @@ def delete(request, id, type):
         except Exception:
             raise Http404()
     return HttpResponseRedirect('/home')
+
+def delete_message(request, id):
+    message = get_object_or_404(Message, pk=id)
+    if message.author == request.user:
+        if hasattr(message, "last_message_conversation"):
+            c = message.last_message_conversation
+            messages_list = c.messages.all().order_by('-date_sent')
+            if len(messages_list) > 1:
+                new_last_message = messages_list[1]
+            else:
+                new_last_message = None
+            c.last_message = new_last_message
+            c.save()
+        message.delete()
+    else:
+        raise Http404()
+
+    return HttpResponse("Deleted", status=200)

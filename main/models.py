@@ -26,8 +26,8 @@ class Unread_messages(models.Model):
  
 class Conversation(models.Model):
     messages = models.ManyToManyField(Message, default=None)
-    last_message = models.ForeignKey(Message, on_delete=models.CASCADE, default=None, null=True, related_name="c_last_messages")
-    unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
+    last_message = models.OneToOneField(Message, on_delete=models.PROTECT, default=None, null=True, related_name="last_message_conversation")
+    unread_messages = models.ForeignKey(Unread_messages, on_delete=models.DO_NOTHING, default=None, null=True)
     users = models.ManyToManyField(User, related_name="conversations")
     is_group = False
 
@@ -71,7 +71,7 @@ class Conversation(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=40)
     messages = models.ManyToManyField(Message, default=None)
-    last_message = models.OneToOneField(Message, on_delete=models.CASCADE, default=None, null=True, related_name="g_last_messages")
+    last_message = models.OneToOneField(Message, on_delete=models.PROTECT, default=None, null=True, related_name="last_message_group")
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
     image = models.ImageField(upload_to=check_path, default="default.jpg")
     users = models.ManyToManyField(User)
