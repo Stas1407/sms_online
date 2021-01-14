@@ -100,35 +100,62 @@ $('#send_bt').click(function(){
       $('#message_in').val("")
     }
   });
+  
 })
 
-var tmp = 0;
+var tmp = 0
 var text
-var id
-$('.my_message').hover(function(){
+var id = 0
+$('.chat').on("click", ".my_message",function(){
+  console.log("tmp: "+tmp)
   if(tmp == 0){
+    tmp = 1
+    id = this.id
     $("#"+this.id).animate({left: "20%"}, 300, function(){
       $("#"+this.id).addClass('remove')
       text = $("#"+this.id).text()
+      $("#"+this.id).text("")
       $("#"+this.id).prepend('<i class="fas fa-trash"></i>')
       $("#"+this.id).animate({left: "0%"}, 300)
+
+      var timeout = setTimeout(function(){
+        $("#"+this.id).animate({left: "20%"}, 300, function(){
+          $("#"+this.id).removeClass('remove')
+          $("#"+this.id).text(text)
+          $(".fa-trash").remove()
+          $("#"+this.id).animate({left: "0%"}, 300)
+          tmp = 0
+        })
+        $('#'+this.id).unbind('mouseleave')
+      }, 5000)
+
+      $('.remove').mouseleave(function(){
+        clearTimeout(timeout)
+        $("#"+this.id).animate({left: "20%"}, 300, function(){
+          $("#"+this.id).removeClass('remove')
+          $("#"+this.id).text(text)
+          $(".fa-trash").remove()
+          $("#"+this.id).animate({left: "0%"}, 300)
+          tmp = 0
+        })
+        $('#'+this.id).unbind('mouseleave')
+      })
+
+      $('.fa-trash').click(function(){
+        if(confirm("Are you sure you want to delete this message")){
+          var id = $('.fa-trash').parent().attr('id')
+          $.ajax({
+            url: "/delete_message/" + id,
+            type: 'GET',
+            success: function(data){
+              $('#'+id).remove()
+            }
+          });
+        }
+      })
     })
-    tmp = 1
-    id = this.id
   }
-}, function(){
-  setTimeout(function(){
-    this.id = id
-    console.log(this.id)
-    $("#"+this.id).animate({left: "20%"}, 300, function(){
-      $("#"+this.id).removeClass('remove')
-      $("#"+this.id).text(text)
-      $('.fa-trash').remove()
-      $("#"+this.id).animate({left: "0%"}, 300)
-    })
-    tmp = 0
-  }, 5000)
-})
+}) 
  
 $('.redirect').click(function(){
   $('.chat_view').addClass('animation_hide_on_right')
