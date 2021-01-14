@@ -28,7 +28,7 @@ $('.settings_inner_icon').click(function(){
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
 
-  var id = this.id.split('s')[1]
+  var id = this.id.split('s')[1].replace('g', "").replace('c', "")
 
   setTimeout(function(){
     window.location.href = '/settings/' + id
@@ -36,7 +36,7 @@ $('.settings_inner_icon').click(function(){
 })
 
 $('.remove').click(function(){
-  var id = this.id.split('r')[1]
+  var id = this.id.split('r')[1].replace('g', "").replace('c', "")
   var remove = $('#'+ this.id)
   if(confirm("Are you sure you want to delete this conversation")){
     if(remove.hasClass('rconversation')){
@@ -60,7 +60,7 @@ $('#new_group').click(function(e){
 
 $('.profile_img').click(function(){
   var is_group = $(this).parent().hasClass('is_group')
-  var id = $(this).parent().attr('id')
+  var id = $(this).parent().attr('id').replace('g', "").replace('c', "")
 
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
@@ -76,7 +76,7 @@ $('.profile_img').click(function(){
 
 $('.text').click(function(){
   var is_group = $(this).parent().hasClass('is_group')
-  var id = $(this).parent().attr('id')
+  var id = $(this).parent().attr('id').replace('g', "").replace('c', "")
 
   $('#main_content').addClass('hide_left');
   $('nav').addClass('hide_up');
@@ -96,10 +96,11 @@ $('.text').click(function(){
 $('.settings_div').hover(function(){
   $('.settings_inner_div').on("mouseover",function(){
     var id = $('#'+ this.id + '> .settings_div > img').attr('id')
+    console.log(id)
     $('#' + id).addClass('settings_hover')
     
-    var id2 = $('#'+ this.id + '> .remove').attr('id');
-    var id3 = $('#'+ this.id + '> .settings_inner_icon').attr('id');
+    var id2 = $('#'+ this.id + '> .remove').attr('id')
+    var id3 = $('#'+ this.id + '> .settings_inner_icon').attr('id')
 
     // t1 = setTimeout(function(){
       $('#' + id3).addClass('settings_extended');

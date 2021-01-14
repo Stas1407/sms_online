@@ -12,31 +12,31 @@
   <div class="row">
     {% for c in conversations %}
       {% if c.is_group %}
-      <div class="col-sm-12 border-bottom column is_group" id="{{ c.id }}">
-        <img src="{{ c.image.url }}" class="rounded-circle profile_img" alt="" id="test">
+      <div class="col-sm-12 border-bottom column is_group" id="g{{ c.id }}">
+        <img src="{{ c.image.url }}" class="rounded-circle profile_img" alt="">
         <div class="text">
           <h2 class="name">{{ c.name }}</h2>
-          <h4 class="last_message">{% if c.last_message %}{% if c.last_message.author %}{{ c.last_message.author }}:{% endif %} {{ c.last_message.text }}{% endif %}</h4>
+          <h4 class="last_message">{% if c.last_message %}{% if c.last_message.author %}{{ c.last_message.author }}:{% endif %} {{ c.last_message.text|truncatechars:15 }}{% endif %}</h4>
         </div>
         <div class="settings_wrapper">
-          <div class="settings_inner_div" id="div{{ c.id }}">
-            <div class="remove rgroup" id='r{{ c.id }}'><i class="fas fa-trash"></i></div>
-            <div class="settings_inner_icon" id='s{{ c.id }}'><i class="fas fa-tools"></i></div>
-            <div class="settings_div"><img src="{% static 'main/icons/settings_home.png' %}" class="rounded-circle settings" id="i{{ c.id }}"></div>
+          <div class="settings_inner_div" id="divg{{ c.id }}">
+            <div class="remove rgroup" id='rg{{ c.id }}'><i class="fas fa-trash"></i></div>
+            <div class="settings_inner_icon" id='sg{{ c.id }}'><i class="fas fa-tools"></i></div>
+            <div class="settings_div"><img src="{% static 'main/icons/settings_home.png' %}" class="rounded-circle settings" id="ig{{ c.id }}"></div>
           </div>
         </div>
       </div>
       {% else %}
-      <div class="col-sm-12 border-bottom column" id="{{ c.id }}">
+      <div class="col-sm-12 border-bottom column" id="c{{ c.id }}">
         <img src="{{ c|get_image:request.user}}" class="rounded-circle profile_img" alt="">
         <div class="text">
           <h2 class="name">{{ c|get_name:request.user }}</h2>
-          <h4 class="last_message">{% if c.last_message %}{% if c.last_message.author %}{{ c.last_message.author }}:{% endif %}  {{ c.last_message.text }}{% endif %}</h4>
+          <h4 class="last_message">{% if c.last_message %}{% if c.last_message.author %}{{ c.last_message.author }}:{% endif %}  {{ c.last_message.text|truncatechars:15 }}{% endif %}</h4>
         </div>
         <div class="settings_wrapper">
-          <div class="settings_inner_div" id="div{{ c.id }}">
-            <div class="remove rconversation" id='r{{ c.id }}'><i class="fas fa-trash"></i></div>
-            <div class="settings_div"><img src="{% static 'main/icons/settings_home.png' %}" class="rounded-circle settings" id="i{{ c.id }}"></div>
+          <div class="settings_inner_div" id="divc{{ c.id }}">
+            <div class="remove rconversation" id='rc{{ c.id }}'><i class="fas fa-trash"></i></div>
+            <div class="settings_div"><img src="{% static 'main/icons/settings_home.png' %}" class="rounded-circle settings" id="ic{{ c.id }}"></div>
           </div>
         </div>
       </div>

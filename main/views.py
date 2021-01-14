@@ -63,8 +63,15 @@ def conversation(request, id):
         else:
             messages_list[-i].read_by.add(request.user)
 
+    conv = get_object_or_404(Conversation, pk=id)
+    conversation_list = sorted(chain(request.user.conversations.all(), request.user.group_set.all()), key=attrgetter('last_message.date_sent'), reverse=True)[:8]
+    if conv in conversation_list:
+        conversation_list.remove(conv)
+
     context = {
-        'messages': messages_list
+        'messages': messages_list,
+        'first_conversation': conv,
+        'last_conversations': conversation_list
     }
 
     return render(request, 'main/chat_view.html', context)
@@ -106,10 +113,18 @@ def group(request, id):
         else:
             messages_list[-i].read_by.add(request.user)
 
+    group = get_object_or_404(Group, pk=id)
+    conversation_list = sorted(chain(request.user.conversations.all(), request.user.group_set.all()), key=attrgetter('last_message.date_sent'), reverse=True)[:8]
+    if group in conversation_list:
+        conversation_list.remove(group)
+
     context = {
         'messages': messages_list,
+        'first_conversation': group,
+        'last_conversations': conversation_list,
         'is_group': True
     }
+
 
     return render(request, 'main/chat_view.html', context)
 
@@ -228,6 +243,15 @@ def delete_message(request, id):
                 new_last_message = None
             c.last_message = new_last_message
             c.save()
+        if hasattr(message, "last_message_group"):
+            g = message.last_message_group
+            messages_list = g.messages.all().order_by('-date_sent')
+            if len(messages_list) > 1:
+                new_last_message = messages_list[1]
+            else:
+                new_last_message = None
+            g.last_message = new_last_message
+            g.save()
         message.delete()
     else:
         raise Http404()
