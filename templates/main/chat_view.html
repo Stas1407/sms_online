@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load getters %}
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'main/css/chat_view.css' %}">
@@ -11,69 +12,68 @@
     <a class="btn btn-outline-secondary" id="back">Back</a>
   </div>  
   <div class="top"></div>
-  <div id="i1" class="flip-card mb-1">
+  {% if first_conversation.is_group %}
+  <div id="{{first_conversation.id}}" class="flip-card mb-1">
     <div class="flip-card-inner">
       <div class="flip-card-front">
-        <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i1" class="rounded-circle profile_img">
-        <p id="top_unread">2</p>
+        {% if first_conversation.is_group %}
+        <img src="{{ first_conversation.image.url }}" id="i{{ first_conversation.id }}" class="rounded-circle profile_img">
+        {% else %}
+        <img src="{{ first_conversation|get_image:request.user }}" id="i{{ first_conversation.id }}" class="rounded-circle profile_img">
+        {% endif %}
+        <p id="top_unread">{{ first_conversation|get_unread_messages:request.user }}</p>
       </div>
       <div class="flip-card-back rounded-circle profile_img">
-        <img src="{% static 'main/icons/settings.png' %}" class="rounded-circle settings">
+        <img src="{% static 'main/icons/settings.png' %}" class="rounded-circle settings" id="s{{ first_conversation.id }}">
       </div>
     </div>
   </div> 
-  <div id="i2">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i2" class="rounded-circle profile_img redirect">
-    <p>2</p>
+  {% else %}
+  <div id="c{{ first_conversation.id }}">
+    <img src="{{ first_conversation|get_image:request.user }}" id="ic{{ first_conversation.id }}" class="rounded-circle profile_img redirect">
+    <p>{{ first_conversation|get_unread_messages:request.user }}</p>
   </div>
-  <div id="i3">
-    <img src="{% static 'backgrounds/landing_bg.jpg' %}" id="i3" class="rounded-circle profile_img redirect">
-    <p>3</p>
-  </div>
-  <div id="i4">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i4" class="rounded-circle profile_img redirect">
-    <p>2</p>
-  </div>
-  <div id="i5">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img redirect">
-    <p>2</p>
-  </div>
-  <div id="i5">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img redirect">
-    <p>2</p>
-  </div>
-  <div id="i5">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img redirect">
-    <p>2</p>
-  </div>
-  <div id="i5">
-    <img src="{% static 'backgrounds/home_bg.jpg' %}" id="i5" class="rounded-circle profile_img redirect">
-    <p>2</p>
-  </div>
+  {% endif %}
+  {% for c in last_conversations %}
+    <div id="{% if c.is_group %}g{{ c.id }}{% else %}c{{ c.id }}{% endif %}">
+      {% if c.is_group %}
+      <img src="{{ c.image.url }}" id="ig{{ c.id }}" class="rounded-circle profile_img group_redirect redirect">
+      {% else %}
+      <img src="{{ c|get_image:request.user }}" id="ic{{ c.id }}" class="rounded-circle profile_img redirect">
+      {% endif %}
+      <p>{{ c|get_unread_messages:request.user }}</p>
+    </div>
+  {% endfor %}
 </div>
 <div class="chat_view">
   <div class="chat">
     {% if is_group %}
       <input type="hidden" value="true" id="is_group">
       {% for message in messages %}
-        {% if message.author == request.user %}
-          <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
-        {% elif message.is_server_message %}
-          <div class="server_message">{{ message.text }}</div>
-        {% else %}
-          <div class="message_wrapper">
-            <h5 class="author float-left">{{message.author}}</h5>
-            <div class="others_message float-left message" id="{{ message.id }}">{{ message.text }}</div>
-          </div>
+        {% if message.text %}
+          {% if message.author == request.user %}
+            <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
+          {% elif message.is_server_message %}
+            <div class="server_message">{{ message.text }}</div>
+          {% else %}
+            <div class="message_wrapper">
+              <h5 class="author float-left">{{message.author}}</h5>
+              <div class="others_message float-left message" id="{{ message.id }}">{{ message.text }}</div>
+            </div>
+          {% endif %}
         {% endif %}
       {% endfor %}
     {% else %}
     <input type="hidden" value="false" id="is_group">
       {% for message in messages %}
-        {% if message.author == request.user %}
-          <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
-        {% else %}
-          <div class="others_message float-left message" id="{{ message.id }}">{{ message.text }}</div>
+        {% if message.text %}
+          {% if message.author == request.user %}
+            <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
+          {% elif message.is_server_message %}
+            <div class="server_message">{{ message.text }}</div>
+          {% else %}
+            <div class="others_message float-left message" id="{{ message.id }}">{{ message.text }}</div>
+          {% endif %}
         {% endif %}
       {% endfor %}
     {% endif %}

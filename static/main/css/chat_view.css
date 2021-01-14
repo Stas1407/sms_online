@@ -192,6 +192,7 @@ p{
   margin-bottom: 2.1vh;
   border-radius: 15px;
   max-width: 50%;
+  cursor: pointer;
 }
 
 .remove{

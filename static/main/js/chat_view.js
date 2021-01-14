@@ -8,6 +8,13 @@ jQuery(document).ready(function(){
     Cookies.remove('same_site')
   }
 
+  var paragraphs = document.querySelectorAll('p')
+  for(p of paragraphs){
+    if(p.innerHTML == '0'){
+      p.remove()
+    }
+  }
+
   if($('#is_group').val() == "true"){
     setInterval(function(){
       var previous_author = ""
@@ -165,10 +172,14 @@ $('.redirect').click(function(){
     $('p').css('opacity', '1')
   })
   $("#"+this.id).prependTo('.top');
+  id = $(this).attr('id')
   Cookies.set('same_site', 'true');
   setTimeout(function(){
-    window.location.href = '/chat_view';
-    // window.location.href = '/chat_view' + this.id
+    if($('#'+id).hasClass('group_redirect')){
+      window.location.href = '/group/' + id.split('i')[1].replace('c', '').replace('g', '')
+    } else {
+      window.location.href = '/conversation/' + id.split('i')[1].replace('c', '').replace('g', '')
+    }
   }, 300)
 })
 
@@ -196,8 +207,11 @@ $('.settings').click(function(){
   $('.input_box').addClass('animation_hide_on_right')
   $('.chat_icons').addClass('animation_hide')
 
+  var id = this.id.toString().split('s')[1];
+  console.log(id)
+
   setTimeout(function(){
-    window.location.href = '/settings';
+    window.location.href = '/settings/' + id;
   }, 300)
 })
 
