@@ -8,9 +8,9 @@
         a) maybe add a hidden input as a switch
     - Collect unchecked members ids, send to backend and delete
     - Send picture and group name to backend and save {% endcomment %}
-2. Chat_view:
+{% comment %} 2. Chat_view: {% endcomment %}
     {% comment %} - split up chat view to conversation_view and group_view {% endcomment %}
-    - Enable sending messages:
+    {% comment %} - Enable sending messages: {% endcomment %}
         {% comment %} a) use ajax to send the message and refresh page {% endcomment %}
         {% comment %} b) use signals to add message to the second conversation side after adding it to first one {% endcomment %}
         {% comment %} c) think of splitting templates to group and conversation (in groups nicks have to be displayed and in conversations not)
@@ -26,16 +26,26 @@
     {% comment %} - Add delteing messages after deleting conversation {% endcomment %}
     {% comment %} - View recent chats icons
     - View unread messages {% endcomment %}
-    - Make last messages in home view shorter
-3. Add remove messages, users, add messages, users functions to models, add remove group if there aren't any members
-4. Add signals to create profile, unread_messages on creating other models
-5. Make code readable
-6. Search mechanizm:
-    - Use form to send search data to backend
+    {% comment %} - Make last messages in home view shorter {% endcomment %}
+{% comment %} 3. Add remove messages, users, add messages, users functions to models, add remove group if there aren't any members {% endcomment %}
+{% comment %} 4. Add signals to create profile, unread_messages on creating other models {% endcomment %}
+5. Search mechanizm:
+    {% comment %} - Use form to send search data to backend via get method
     - Pass to the html data matching the search
-    - Make it work on home view, group adding view and settings view
-7. Check security
-8. Make everything more responsive.
+    - create another view to show search results for conversations
+    - delete is not working {% endcomment %}
+    {% comment %} - enable starting conversation (home view)  {% endcomment %}
+    - adding to group (group settings) via search:
+        a) new template - group_search
+        b) make form send search data to different url
+        c) pass to the template search data
+        d) make it work
+    - adding to group (new group view) via search
+6. Add server messages to every change
+7. Profile page - Account settings:
+8. Make code readable
+9. Check security
+10. Make everything more responsive.
 
 
 

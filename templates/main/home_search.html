@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load getters %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'main/css/home_search.css' %}">
+{% endblock links %}
+
+{% block content %}
+<div id="main_content"> 
+  {% if users %}
+    <div class="row">
+      {% for u in users %}
+        <div class="col-sm-12 border-bottom column" id="{{ u.id }}">
+          <img src="{{ u.profile.image.url }}" class="rounded-circle profile_img" alt="">
+          <div class="text">
+            <h2 class="name">{{ u.username }}</h2>
+          </div>
+          <div class="icon_wrapper">
+            <i class="far fa-comment-dots"></i>
+          </div>
+        </div>
+      {% endfor %}
+    </div> 
+  {% endif %}
+</div> 
+{% endblock content %}
+
+{% block js_links %}
+<script type="text/javascript" src="{% static 'main/js/home.js' %}"></script>
+<script type="text/javascript" src="{% static 'main/js/home_search.js' %}"></script>>
+{% endblock js_links %}
