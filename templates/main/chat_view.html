@@ -80,7 +80,13 @@
   </div>
     <div class="input_box">
       {% csrf_token %}
+      {% if not messages %}
+      <input type="text" value="Hello" id="message_in" autocomplete='off' spellcheck='false' autocorrect='off' disabled>
+      {% elif not messages|check_if_can_send_message:request.user %}
+      <input type="text" value="Wait until the other person replies to your message" id="message_in" autocomplete='off' spellcheck='false' autocorrect='off' disabled>
+      {% else %}
       <input type="text" placeholder="Write a message..." id="message_in" autocomplete='off' spellcheck='false' autocorrect='off'>
+      {% endif %}
       <button type="button" id="send_bt"></button>
     </div>
 </div>

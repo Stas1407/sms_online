@@ -13,6 +13,16 @@ import json
 
 # Create your views here.
 def home(request):
+    if request.GET.get('search'):
+        search = request.GET.get('search')
+        data = User.objects.filter(username__contains=search).exclude(username=request.user.username)
+
+        context = {
+            'title': 'home',
+            "users": data
+        }
+        return render(request,'main/home_search.html', context)
+        
     context = {
         'title': 'home',
         "conversations": chain(request.user.conversations.all(), request.user.group_set.all())
@@ -46,6 +56,13 @@ def conversation(request, id):
         check = check_text(text)
         if check:
             return HttpResponse(check, status=400)
+        
+        if len(Conversation.objects.filter(id=id)) > 0:
+            c = Conversation.objects.get(id=id)
+            if c.messages.all().count() == 0 and text != 'Hello':
+                return HttpResponse("Wrong message", status=400)
+            if c.messages.all().count() == 1 and c.messages.first().author == request.user:
+                return HttpResponse("You have to wait for the other person to reply to your message to start a conversation", status=400) 
 
         m = Message()
         m.author = request.user
@@ -57,7 +74,7 @@ def conversation(request, id):
         return HttpResponse(m.id, status=200)
     
     messages_list = get_messages(request, "conversation", id)
-    for i in range(1, len(messages_list)):
+    for i in range(1, len(messages_list)+1):
         if request.user in messages_list[-i].read_by.all():
             break
         else:
@@ -128,6 +145,27 @@ def group(request, id):
 
     return render(request, 'main/chat_view.html', context)
 
+def new_conversation(request, id):
+    user = get_object_or_404(User, pk=id)
+
+    if not Conversation.objects.filter(users__in=[request.user]).filter(users__in=[user]):
+        new_conversation = Conversation()
+        new_conversation.save()
+        new_conversation.users.add(request.user)
+        new_conversation.users.add(user)
+
+        m = Message()
+        m.save()
+
+        new_conversation.last_message = m
+
+        new_conversation.save()
+    else:
+        new_conversation = Conversation.objects.filter(users__in=[request.user]).filter(users__in=[user])[0]
+
+    return HttpResponseRedirect('/conversation/'+str(new_conversation.id))
+    
+
 def new_group(request):
     if request.method == "POST":
         name = request.POST.get('group_name')
@@ -161,7 +199,7 @@ def new_group(request):
         g.messages.add(server_message)
         g.save()
 
-        return HttpResponseRedirect('/home')
+        return HttpResponseRedirect('/group/'+g.id)
     
     context = {
         "conversations": request.user.conversations.all()
@@ -199,7 +237,7 @@ def settings(request, id):
                 g.users.remove(user)
         g.save()
 
-        return HttpResponseRedirect('/home')
+        return HttpResponseRedirect('/group/'+str(g.id))
 
     if request.user.group_set.filter(pk=id).count() != 0:
         group = get_object_or_404(Group, pk=id)

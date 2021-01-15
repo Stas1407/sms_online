@@ -48,6 +48,9 @@ jQuery(document).ready(function(){
             previous_author = message.author
           }
           $('.chat_view').scrollTop($('.chat_view')[0].scrollHeight)
+          if($('.message').length == 2){
+            window.location.reload()
+          }
         }
       });
     }, 5000)
@@ -69,6 +72,9 @@ jQuery(document).ready(function(){
           for(message of data){
             $('.chat').append('<div class="others_message float-left message" id="'+message.id+'">'+message.text+'</div>')
             $('.chat_view').scrollTop($('.chat_view')[0].scrollHeight)
+            if($('.message').length == 2){
+              window.location.reload()
+            }
           }
         }
       });
@@ -105,6 +111,9 @@ $('#send_bt').click(function(){
       $('.chat').append('<div class="my_message float-right message" id="'+ data +'">'+message+'</div>')
       $('.chat_view').scrollTop($('.chat_view')[0].scrollHeight)
       $('#message_in').val("")
+      if($('.message').length == 1){
+        window.location.reload()
+      }
     }
   });
   
