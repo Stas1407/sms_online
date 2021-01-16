@@ -23,7 +23,7 @@ jQuery(document).ready(function(){
       $('.alert').slideUp(500)
     }, 1500)
 
-    $('#form').attr("action",window.location.href)
+    $('#form').attr("action", window.location.href)
   }); 
 
 var ids = []
@@ -47,15 +47,44 @@ $('#next').click(function(){
 })
 
 var count = 0
+var tmp_wrap = 0
 $('#form').submit(function(e){
   if(count == 0){
     e.preventDefault();
   }
+  if(Cookies.get('ids') && tmp_wrap == 0){
+    var ids2 = Cookies.get('ids')
+    ids2 = JSON.parse(ids2)
+    ids = [...ids, ...ids2]
+    Cookies.remove('ids')
+  }
   $('#ids').val(ids.join())
+  console.log(ids)
   count+=1
   setTimeout(function(){
     $('#form').submit()
   }, 500)
+})
+
+$('#search').focus(function(){
+  console.log('test')
+  if(Cookies.get('ids') && tmp_wrap == 0){
+    var ids2 = Cookies.get('ids')
+    ids2 = JSON.parse(ids2)
+    ids = [...ids, ...ids2]
+    tmp_wrap += 1
+  }
+  Cookies.set("ids", JSON.stringify(ids))
+  console.log(JSON.parse(Cookies.get("ids")))
+})
+
+$('.plus_icon').click(function(){
+  $('.plus_icon').addClass('plus_clicked')
+  $('#search').trigger('focus')
+})
+
+$('#search').focusout(function(){
+  $('.plus_icon').removeClass('plus_clicked')
 })
 
 

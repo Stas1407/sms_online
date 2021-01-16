@@ -199,7 +199,7 @@ def new_group(request):
         g.messages.add(server_message)
         g.save()
 
-        return HttpResponseRedirect('/group/'+g.id)
+        return HttpResponseRedirect('/group/'+str(g.id))
     
     context = {
         "conversations": request.user.conversations.all()
@@ -231,22 +231,40 @@ def settings(request, id):
             return render(request, 'main/new_group.html', context)
 
         ids = request.POST.get('ids').split(',')
-        for user_id in ids:
-            if user_id != '':
-                user = get_object_or_404(User, pk=user_id)
-                g.users.remove(user)
+        if request.GET.get('search'):
+            for user_id in ids:
+                if user_id != '':
+                    user = get_object_or_404(User, pk=user_id)
+                    g.users.add(user)
+        else:
+            for user_id in ids:
+                if user_id != '':
+                    user = get_object_or_404(User, pk=user_id)
+                    g.users.remove(user)
         g.save()
 
         return HttpResponseRedirect('/group/'+str(g.id))
 
+
     if request.user.group_set.filter(pk=id).count() != 0:
         group = get_object_or_404(Group, pk=id)
-        context = {
-            "settings":True,
-            "name": group.name,
-            "image": group.image.url,
-            "members": group.users.all()
-        }
+        
+        if request.GET.get('search'):
+            search = request.GET.get('search')
+            context = {
+                "settings":True,
+                "search": True,
+                "name": group.name,
+                "image": group.image.url,
+                "members": User.objects.filter(username__contains=search).difference(group.users.all())
+            }
+        else:                
+            context = {
+                "settings":True,
+                "name": group.name,
+                "image": group.image.url,
+                "members": group.users.all()
+            }
         return render(request, 'main/new_group.html', context)
     else:
         raise Http404()
