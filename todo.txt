@@ -35,14 +35,18 @@
     - create another view to show search results for conversations
     - delete is not working {% endcomment %}
     {% comment %} - enable starting conversation (home view)  {% endcomment %}
-    - adding to group (group settings) via search:
+    {% comment %} - adding to group (group settings) via search:
         a) new template - group_search
         b) make form send search data to different url
-        c) pass to the template search data
-        d) make it work
+        c) pass to the template search data 
+        d) add + sign to the bottom of the list of members
+        e) make it work {% endcomment %}
     - adding to group (new group view) via search
+    - add some information when there are no matches to the search
 6. Add server messages to every change
 7. Profile page - Account settings:
+    - store somehow user choice about adding him to groups
+    - in group_search view only users that agree to it
 8. Make code readable
 9. Check security
 10. Make everything more responsive.
