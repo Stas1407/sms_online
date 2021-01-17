@@ -188,11 +188,12 @@ def new_group(request):
             return render(request, 'main/new_group.html', context)
 
         ids = request.POST.get('ids').split(',')
+        print(ids)
         for user_id in ids:
             if user_id != '':
                 user = get_object_or_404(User, pk=user_id)
-                if check_if_connected(user, request.user):
-                    g.users.add(user)
+                # if check_if_connected(user, request.user):        When creating profile do something with it
+                g.users.add(user)
 
         server_message = Message.objects.create(text="Group was created", is_server_message=True)
         g.last_message = server_message
@@ -201,9 +202,16 @@ def new_group(request):
 
         return HttpResponseRedirect('/group/'+str(g.id))
     
-    context = {
-        "conversations": request.user.conversations.all()
-    }
+    if request.GET.get('search'):
+        search = request.GET.get('search')
+        context = {
+            "search": True,
+            "members": User.objects.filter(username__contains=search)
+        }
+    else:                
+        context = {
+            "conversations": request.user.conversations.all()
+        }
     return render(request, 'main/new_group.html', context)
 
 def settings(request, id):
@@ -241,6 +249,9 @@ def settings(request, id):
                 if user_id != '':
                     user = get_object_or_404(User, pk=user_id)
                     g.users.remove(user)
+        if g.users.all().count() == 0:
+            g.delete()
+            return HttpResponseRedirect('/home')
         g.save()
 
         return HttpResponseRedirect('/group/'+str(g.id))

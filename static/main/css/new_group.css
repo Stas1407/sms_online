@@ -285,6 +285,12 @@ label{
   color: black;
 }
 
+.no_matches{
+  color: white;
+  font-weight: 300;
+  opacity: 60%;
+}
+
 @media(max-height: 800px){
     #group_name_div{
         height: 35%;

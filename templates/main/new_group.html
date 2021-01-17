@@ -47,7 +47,7 @@
       <div class="col-sm-12 column_splitter" id="top">
         <div id="splitter"></div>
       </div>
-      {% if settings %}
+      {% if settings or search %}
         {% for m in members %}
         <div class="col-sm-12 column test">
           <div class="person_bg">
@@ -59,11 +59,19 @@
           </div>
         </div>
         {% endfor %}
+        {% if search and not members %}
+        <div class="col-sm-12 column test">
+          <div class="person_bg">
+              <h4 class="no_matches">There is no person matching your search</h4> 
+          </div>
+        </div>
+        {% else %}
         <div class="plus_icon_wrapper">
           <div class="plus_icon">
             <i class="fas fa-plus"></i>
           </div>
         </div>
+        {% endif %}
       {% else %}
         {% for c in conversations %}
         <div class="col-sm-12 column test">
@@ -76,6 +84,9 @@
           </div>
         </div>
         {% endfor %}
+        {% if search and not conversations %}
+        <h1>There are no matches to tour search</h1>
+        {% endif %} 
       {% endif %}
 </div>
 {% endblock content %}
