@@ -95,6 +95,8 @@ class Group(models.Model):
             img.save(self.image.path)
     
     def delete(self):
+        self.last_message = None
+        self.save()
         for message in self.messages.all():
             message.delete()
         super().delete()

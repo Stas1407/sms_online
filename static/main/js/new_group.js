@@ -24,6 +24,11 @@ jQuery(document).ready(function(){
     }, 1500)
 
     $('#form').attr("action", window.location.href)
+
+    if(Cookies.get('name')){
+      $('#group_name_in').val(Cookies.get('name'))
+      Cookies.remove('name')
+    }
   }); 
 
 var ids = []
@@ -58,6 +63,7 @@ $('#form').submit(function(e){
     ids = [...ids, ...ids2]
     Cookies.remove('ids')
   }
+  console.log(ids)
   $('#ids').val(ids.join())
   console.log(ids)
   count+=1
@@ -75,11 +81,13 @@ $('#search').focus(function(){
     tmp_wrap += 1
   }
   Cookies.set("ids", JSON.stringify(ids))
+  Cookies.set("name", $('#group_name_in').val())
   console.log(JSON.parse(Cookies.get("ids")))
 })
 
 $('.plus_icon').click(function(){
-  $('.plus_icon').addClass('plus_clicked')
+  window.scrollTo(0, 0)
+  $('.plus_icon').toggleClass('plus_clicked')
   $('#search').trigger('focus')
 })
 

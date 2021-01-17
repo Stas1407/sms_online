@@ -23,6 +23,12 @@
         </div>
       {% endfor %}
     </div> 
+  {% else %}
+    <div class="col-sm-12 column">
+      <div class="text">
+        <h4 class="name text-center text-white-50">There is no person matching your search</h4>
+      </div>
+    </div>
   {% endif %}
 </div> 
 {% endblock content %}

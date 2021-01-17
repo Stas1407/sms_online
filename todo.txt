@@ -29,7 +29,7 @@
     {% comment %} - Make last messages in home view shorter {% endcomment %}
 {% comment %} 3. Add remove messages, users, add messages, users functions to models, add remove group if there aren't any members {% endcomment %}
 {% comment %} 4. Add signals to create profile, unread_messages on creating other models {% endcomment %}
-5. Search mechanizm:
+{% comment %} 5. Search mechanism: {% endcomment %}
     {% comment %} - Use form to send search data to backend via get method
     - Pass to the html data matching the search
     - create another view to show search results for conversations
@@ -41,8 +41,8 @@
         c) pass to the template search data 
         d) add + sign to the bottom of the list of members
         e) make it work {% endcomment %}
-    - adding to group (new group view) via search
-    - add some information when there are no matches to the search
+    {% comment %} - adding to group (new group view) via search {% endcomment %}
+    {% comment %} - add some information when there are no matches to the search {% endcomment %}
 6. Add server messages to every change
 7. Profile page - Account settings:
     - store somehow user choice about adding him to groups
