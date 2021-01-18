@@ -18,7 +18,7 @@ jQuery(document).ready(function(){
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
       var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
+      if (prevScrollpos > currentScrollPos) { 
         document.querySelector(".navbar").style.top = "0px";
       } else {
         document.querySelector(".navbar").style.top = "-100px";
@@ -71,13 +71,18 @@ document.getElementById('img_input').onchange = function (evt) {
       }
       fr.readAsDataURL(files[0]);
   }
+  
 }
-
+ 
 
 //-------------------- Edit nick ----------------------------
 // Start editing
+var old_username = $('#nick').text()
 $('#nick_edit_icon').click(function(){
+  old_username = $('#nick').text()
+  console.log(old_username)
   $('#edit_nick_in').show()
+  $('#edit_nick_in').focus()
   $('#nick_done').show()
   $('#nick_edit_icon').hide()
   $('#nick').hide()
@@ -90,9 +95,38 @@ $('#nick_done').click(function(){
   $('#nick_edit_icon').show()
   $('#nick').show()
   $('#nick').text($('#edit_nick_in').val())
+
+  var content = {'username': $('#edit_nick_in').val()} 
+
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+  });
+  $.ajax({
+    url: '/change_username/',
+    type: 'POST',
+    data: content,
+    error: function(jqXHR, textStatus, errorThrown){
+      $('#nick').text(old_username)
+      $('#edit_nick_in').val(old_username)
+      alert(jqXHR.responseText)
+    }
+  });
 })
 //-----------------------------------------------------------
 
+//------------------- Edit email ---------------------------
+$('#email_in').focusout(function(){
+  var content = {'email': $('#email_in').val()} 
+
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+  });
+  $.ajax({
+    url: '/change_email/',
+    type: 'POST',
+    data: content,
+  });
+})
 
 //-------------------- Edit password ------------------------
 var stage = 0
