@@ -164,7 +164,7 @@ p{
   margin-top: -1vh;
 }
 
-.my_message:first-child{
+.my_message:first-of-type{
   margin-top: 2vh;
 }
 
@@ -176,14 +176,6 @@ p{
   clear: both;
 }
 
-.server_message{
-  text-align: center;
-  margin-bottom: 2vh;
-  margin-top: 2vh;
-  color: white;
-  opacity: 60%;
-}
-
 .message{
   font-size: 115%;
   padding: 5px;
@@ -193,6 +185,23 @@ p{
   border-radius: 15px;
   max-width: 50%;
   cursor: pointer;
+}
+
+.server_message{
+  text-align: center;
+  position: relative;
+  color: white;
+  font-weight: 100;
+  background-image: none;
+  display: block;
+  text-align: center;
+  opacity: 60%;
+  max-width: 100%;
+  width: 100%;
+}
+
+.server_message:first-of-type{
+  margin-top: 2vh;
 }
 
 .remove{
