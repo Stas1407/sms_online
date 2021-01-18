@@ -12,26 +12,27 @@
         <div id="picture_and_nick_bg">
             <label for="img_input">
                 <div id="img_wrapper">
-                    <img src="{% static 'backgrounds/home_bg.jpg' %}" class="rounded-circle" id="profile_pic">
+                    <img src="{{ request.user.profile.image.url }}" class="rounded-circle" id="profile_pic">
                     <div id="camera_icon">
                         <i class="fas fa-camera"></i>
                     </div>
                 </div>
             </label>
             <input type="file" id="img_input" style="display: none;">
-            <div id="nick_wrapper">
-                <h2 id="nick">Stasninja</h2>
-                <input type="text" id="edit_nick_in" value="Stasninja">
+            <div id="nick_wrapper"> 
+                {% csrf_token %}
+                <h2 id="nick">{{ request.user.username }}</h2>
+                <input type="text" id="edit_nick_in" value="{{ request.user.username }}">
                 <i class="fas fa-check fa-lg" id="nick_done"></i>
                 <i class="fas fa-pencil-alt" id="nick_edit_icon"></i>
-            </div>
+            </div> 
         </div>
     </div>
     <div class="col-sm-12" id="second_row">
         <div id="username_and_passwd_bg">
             <label class="text_label">Email</label>
             <div class="input_wrapper">
-                <input type="email" value="stanislaw.rajm@gmail.com" class="in"></input>
+                <input type="email" value="{{ request.user.email }}" class="in" id="email_in"></input>
                 <i class="fas fa-pencil-alt inside_input"></i>
             </div>
             <label class="text_label" id="passwd_label">Password</label>

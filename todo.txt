@@ -50,10 +50,11 @@
     - store somehow user choice about adding him to groups
     - make forgot your password link work - send email with password change link
     - in group_search view only users that agree to it (conversation isn't started until it has 2 messages)
-8. Make code readable
-9. Make everything more responsive.
-10. Check security
-11. Hosting - docker?, heroku
+8. Add unread messages notification on the home page
+9. Make code readable
+10. Make everything more responsive.
+11. Check security
+12. Hosting - docker?, heroku
 
 
 
