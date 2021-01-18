@@ -45,23 +45,20 @@
     {% comment %} - add some information when there are no matches to the search {% endcomment %}
 6. Add server messages to every change
 7. Profile page - Account settings:
+    - collect data from font-end and send them to the backend (ajax?)
+    - save everything in the backend
     - store somehow user choice about adding him to groups
-    - in group_search view only users that agree to it
+    - make forgot your password link work - send email with password change link
+    - in group_search view only users that agree to it (conversation isn't started until it has 2 messages)
 8. Make code readable
-9. Check security
-10. Make everything more responsive.
+9. Make everything more responsive.
+10. Check security
+11. Hosting - docker?, heroku
 
 
 
 
 
-
-
-
-
-Options:
-    - Ajax with setInterval
-    - 
 
 
 

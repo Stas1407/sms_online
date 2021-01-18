@@ -54,7 +54,7 @@
           {% if message.author == request.user %}
             <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
           {% elif message.is_server_message %}
-            <div class="server_message">{{ message.text }}</div>
+            <div class="server_message my_message float-right message">{{ message.text }}</div>
           {% else %}
             <div class="message_wrapper">
               <h5 class="author float-left">{{message.author}}</h5>
@@ -63,7 +63,7 @@
           {% endif %}
         {% endif %}
       {% endfor %}
-    {% else %}
+    {% else %} 
     <input type="hidden" value="false" id="is_group">
       {% for message in messages %}
         {% if message.text %}

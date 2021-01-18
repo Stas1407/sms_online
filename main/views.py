@@ -188,7 +188,7 @@ def new_group(request):
             return render(request, 'main/new_group.html', context)
 
         ids = request.POST.get('ids').split(',')
-        print(ids)
+
         for user_id in ids:
             if user_id != '':
                 user = get_object_or_404(User, pk=user_id)
@@ -243,12 +243,22 @@ def settings(request, id):
             for user_id in ids:
                 if user_id != '':
                     user = get_object_or_404(User, pk=user_id)
+                    sMessage = Message()
+                    sMessage.text = "User {} was added to the group".format(user.username)
+                    sMessage.is_server_message = True
+                    sMessage.save() 
                     g.users.add(user)
+                    g.messages.add(sMessage)
         else:
             for user_id in ids:
                 if user_id != '':
                     user = get_object_or_404(User, pk=user_id)
+                    sMessage = Message()
+                    sMessage.text = "User {} was deleted from the group".format(user.username)
+                    sMessage.is_server_message = True
+                    sMessage.save() 
                     g.users.remove(user)
+                    g.messages.add(sMessage)
         if g.users.all().count() == 0:
             g.delete()
             return HttpResponseRedirect('/home')

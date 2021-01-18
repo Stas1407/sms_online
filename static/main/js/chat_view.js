@@ -123,11 +123,10 @@ var tmp = 0
 var text
 var id = 0
 $('.chat').on("click", ".my_message",function(){
-  console.log("tmp: "+tmp)
   if(tmp == 0){
     tmp = 1
     id = this.id
-    $("#"+this.id).animate({left: "20%"}, 300, function(){
+    $("#"+this.id).animate({left: "100%"}, 300, function(){
       $("#"+this.id).addClass('remove')
       text = $("#"+this.id).text()
       $("#"+this.id).text("")
@@ -135,7 +134,7 @@ $('.chat').on("click", ".my_message",function(){
       $("#"+this.id).animate({left: "0%"}, 300)
 
       var timeout = setTimeout(function(){
-        $("#"+this.id).animate({left: "20%"}, 300, function(){
+        $("#"+this.id).animate({left: "100%"}, 300, function(){
           $("#"+this.id).removeClass('remove')
           $("#"+this.id).text(text)
           $(".fa-trash").remove()
@@ -147,7 +146,7 @@ $('.chat').on("click", ".my_message",function(){
 
       $('.remove').mouseleave(function(){
         clearTimeout(timeout)
-        $("#"+this.id).animate({left: "20%"}, 300, function(){
+        $("#"+this.id).animate({left: "100%"}, 300, function(){
           $("#"+this.id).removeClass('remove')
           $("#"+this.id).text(text)
           $(".fa-trash").remove()
