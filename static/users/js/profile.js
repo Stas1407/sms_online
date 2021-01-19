@@ -71,7 +71,8 @@ document.getElementById('img_input').onchange = function (evt) {
       }
       fr.readAsDataURL(files[0]);
   }
-  
+  console.log($('#img_input').val())
+  $('#image_form').submit()
 }
  
 

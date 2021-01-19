@@ -3,7 +3,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 
 # Create your views here.
 def register(request):
@@ -42,5 +42,25 @@ def change_email(request):
             return HttpResponse()
         else:
             return HttpResponse("Wrong email", status=400)
+    else:
+        raise Http404()
+
+def change_image(request):
+    if request.method == "POST" and request.FILES['img_input']:
+        image = request.FILES['img_input']
+        allowed = ['jpg', 'jpeg', 'png']
+        if image.name.split('.')[-1] in allowed:
+            request.user.profile.image = image
+            request.user.profile.save()
+            print(request.user.profile.image)
+            return HttpResponseRedirect('/profile')
+        else:
+            return HttpResponse("Wrong image", status=400)
+    else:
+        raise Http404()
+
+def change_password(request):
+    if request.method == "POST" and request.POST.get('password'):
+        return HttpResponse()
     else:
         raise Http404()

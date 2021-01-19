@@ -91,6 +91,7 @@ main{
     width: 180px;
     margin-bottom: 7%;
     box-shadow: -9px -9px 9px #3d3838, 9px 9px 9px rgba(12, 12, 12, 0.616);
+    cursor: pointer;
 }
 
 #img_wrapper{
@@ -109,6 +110,7 @@ main{
     position: absolute;
     margin-left: 25%;
     margin-top: 27%;
+    cursor: pointer;
 }
 
 #nick_wrapper{

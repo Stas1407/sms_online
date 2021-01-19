@@ -26,5 +26,7 @@ urlpatterns = [
     path('profile/', user_views.profile, name='profile'),
     path('change_username/', user_views.change_username, name="change_username"),
     path('change_email/', user_views.change_email, name="change_email"),
+    path('change_profile_image/', user_views.change_image, name="change_image"),
+    path('change_password/', user_views.change_password, name="change_password"),
     path('', include('main.urls')),
 ]
