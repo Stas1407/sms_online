@@ -18,7 +18,10 @@
                     </div>
                 </div>
             </label>
-            <input type="file" id="img_input" style="display: none;">
+            <form action="/change_profile_image/" method="POST" id="image_form" enctype="multipart/form-data"> 
+                {% csrf_token %}
+                <input type="file" id="img_input" style="display: none;" name="img_input">
+            </form>
             <div id="nick_wrapper"> 
                 {% csrf_token %}
                 <h2 id="nick">{{ request.user.username }}</h2>
