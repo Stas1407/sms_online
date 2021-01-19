@@ -4,6 +4,7 @@ jQuery(document).ready(function(){
 
     $('#old_passwd_done_icon').hide()
     $('#new_passwd_done_icon').hide()
+    $('#repeat_passwd_done_icon').hide()
 
     var cw = $('#profile_pic').width();
     $('#profile_pic').css({'height':cw+'px'});   
@@ -173,50 +174,57 @@ $('#old_passwd_done_icon').click(function(){
   }, 400)
 
   old_password = $('#passwd_in').val()    // Save an old password
+  var content = {"old_password": old_password}
 
-  var correct = true
   // -------------- Check if old password is correct ------------
-
-  // -----------------------------------------------------------
-  if(!correct){
-    // Wait until label hides and change text
-    setTimeout(function(){
-      $('#passwd_label').text('Wrong password')
-    }, 400)
-
-    setTimeout(function(){
-      $('#passwd_label').animate({opacity: '100%'})   // Show label
-
-      // Return to starting point
-      $('#old_passwd_done_icon').hide(300)
-      $('#passwd_edit_icon').show(300)
-      current_bt = $('#passwd_edit_icon')
-      stage = 0;
-    }, 500)
-
-    setTimeout(function(){
-      $('#passwd_label').text('Password')
-    }, 2000)
-
-  } else {
-    setTimeout(function(){
-      $('#passwd_label').animate({opacity: '100%'})   // Show label
-      $('#old_passwd_done_icon').hide(300)            // Hide old icon
-      $('#new_passwd_done_icon').show(300)            // Show new icon (To trigger next stage)
-      current_bt = $('#new_passwd_done_icon')
-      $('#passwd_in').val('')                         // Reset input value
-    }, 500)
-  }
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+  });
+  $.ajax({
+    url: '/change_password/',
+    type: 'POST',
+    data: content,
+    error: function(){
+      setTimeout(function(){
+        $('#passwd_label').text('Wrong password')
+      }, 400)
+    
+      setTimeout(function(){
+        $('#passwd_label').animate({opacity: '100%'})   // Show label
+    
+        // Return to the starting point
+        $('#old_passwd_done_icon').hide(300)
+        $('#passwd_edit_icon').show(300)
+        current_bt = $('#passwd_edit_icon')
+        stage = 0;
+      }, 500)
+    
+      setTimeout(function(){
+        $('#passwd_in').trigger('focusout')
+        $('#passwd_in').trigger('focus')
+      }, 1500)
+    },
+    success: function(){
+      setTimeout(function(){
+        $('#passwd_label').animate({opacity: '100%'})   // Show label
+        $('#old_passwd_done_icon').hide(300)            // Hide old icon
+        $('#new_passwd_done_icon').show(300)            // Show new icon (To trigger next stage)
+        current_bt = $('#new_passwd_done_icon')
+        $('#passwd_in').val('')                         // Reset input value
+      }, 500)
+    }
+  });
 })
 
-// Repeat password
+var confirm_password;
+// Repeat password (check new password)
 $('#new_passwd_done_icon').click(function(){
   // Hide label
   $('#passwd_label').animate({opacity: '0'})
   
   // Wait until label hides and change text
   setTimeout(function(){
-    $('#passwd_label').text('Confirm tour')
+    $('#passwd_label').text('Confirm your password')
   }, 400)
 
   new_password = $('#passwd_in').val()
@@ -236,88 +244,89 @@ $('#new_passwd_done_icon').click(function(){
     }, 2000)
   } else {
 
-    // Show label, change input value not to contain password
+    // Show label, change input value to nothing
     setTimeout(function(){
       $('#passwd_label').animate({opacity: '100%'})
-      $('#passwd_in').val('**************')
+      confirm_password = $('#passwd_in').val()
+      $('#passwd_in').val('')
+      $('#new_passwd_done_icon').hide(300)            // Hide old icon
+      $('#repeat_passwd_done_icon').show(300)            // Show new icon (To trigger next stage)
+      current_bt = $('#repeat_passwd_done_icon')
     }, 500)
-
-    // Hide label again
-    setTimeout(function(){
-      $('#passwd_label').animate({opacity: '0'})
-    }, 1500)
-    
-    // Reset label text to the starting one
-    setTimeout(function(){
-      $('#passwd_label').text('Password')
-    }, 2000)
-
-    // Reset input state to the starting one
-    setTimeout(function(){
-      $('#passwd_label').animate({opacity: '100%'})
-      $('#new_passwd_done_icon').hide(300)
-      $('#passwd_edit_icon').show(300)
-      current_bt = $('#passwd_edit_icon')
-    }, 2500)
-    
-    stage = 0;  // Go back to beginning
   }
 })
 
 
-// Done - Save new password
-$('#new_passwd_done_icon').click(function(){
+// Done - Save new password / check if user confirmed password
+$('#repeat_passwd_done_icon').click(function(){
   // Hide label
   $('#passwd_label').animate({opacity: '0'})
   
+  // Check if new password and repeated/confirmed password are the same
+  if(confirm_password != $('#passwd_in').val()){
+    setTimeout(function(){
+      $('#passwd_label').text("Passwords don't match")
+    }, 400)
+
+    setTimeout(function(){
+      $('#passwd_label').animate({opacity: '100%'})   // Show label
+    }, 500)
+
+    setTimeout(function(){
+      $('#passwd_label').text('Confirm your password')
+    }, 2000)
+    return 
+  }
+
   // Wait until label hides and change text
   setTimeout(function(){
     $('#passwd_label').text('Done')
   }, 400)
 
   new_password = $('#passwd_in').val()
+  content = {'new_password': new_password, 'old_password': old_password}
 
-  if(new_password.length < 8){
-    // Wait until label hides and change text
-    setTimeout(function(){
-      $('#passwd_label').text('Password is too short')
-    }, 400)
+  // send new password with old password to the backend
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+  });
+  $.ajax({
+    url: '/change_password/',
+    type: 'POST',
+    data: content,
+    error: function(){
+      $('#passwd_label').text("Something went wrong")
+      window.location.refresh()
+    }
+  })
 
-    setTimeout(function(){
-      $('#passwd_label').animate({opacity: '100%'})   // Show label
-    }, 500)
+  // Show label, change input value not to contain password
+  setTimeout(function(){
+    $('#passwd_label').animate({opacity: '100%'})
+    $('#passwd_in').val('**************')
+  }, 500)
 
-    setTimeout(function(){
-      $('#passwd_label').text('Type in a new password')
-    }, 2000)
-  } else {
+  // Hide label again
+  setTimeout(function(){
+    $('#passwd_label').animate({opacity: '0'})
+  }, 1500)
+  
+  // Reset label text to the starting one
+  setTimeout(function(){
+    $('#passwd_label').text('Password')
+  }, 2000)
 
-    // Show label, change input value not to contain password
-    setTimeout(function(){
-      $('#passwd_label').animate({opacity: '100%'})
-      $('#passwd_in').val('**************')
-    }, 500)
+  // Reset input state to the starting one
+  setTimeout(function(){
+    $('#passwd_label').animate({opacity: '100%'})
+    $('#repeat_passwd_done_icon').hide(300)
+    $('#passwd_edit_icon').show(300)
+    current_bt = $('#passwd_edit_icon')
+  }, 2500)
 
-    // Hide label again
-    setTimeout(function(){
-      $('#passwd_label').animate({opacity: '0'})
-    }, 1500)
-    
-    // Reset label text to the starting one
-    setTimeout(function(){
-      $('#passwd_label').text('Password')
-    }, 2000)
+  $('#passwd_in').trigger('focusout')
 
-    // Reset input state to the starting one
-    setTimeout(function(){
-      $('#passwd_label').animate({opacity: '100%'})
-      $('#new_passwd_done_icon').hide(300)
-      $('#passwd_edit_icon').show(300)
-      current_bt = $('#passwd_edit_icon')
-    }, 2500)
-    
-    stage = 0;  // Go back to beginning
-  }
+  stage = 0;  // Go back to beginning
 })
 
 // Check if enter was clicked and trigger a button click
