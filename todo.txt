@@ -43,12 +43,12 @@
         e) make it work {% endcomment %}
     {% comment %} - adding to group (new group view) via search {% endcomment %}
     {% comment %} - add some information when there are no matches to the search {% endcomment %}
-6. Add server messages to every change
+{% comment %} 6. Add server messages to every change
 7. Profile page - Account settings:
     - collect data from font-end and send them to the backend (ajax?)
-    - save everything in the backend
+    - save everything in the backend {% endcomment %}
+    {% comment %} - make forgot your password link work - send email with password change link {% endcomment %}
     - store somehow user choice about adding him to groups
-    - make forgot your password link work - send email with password change link
     - in group_search view only users that agree to it (conversation isn't started until it has 2 messages)
 8. Add unread messages notification on the home page
 9. Make code readable

@@ -10,12 +10,13 @@ from django.contrib.auth import authenticate, login
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and len(User.objects.filter(email=form.cleaned_data.get('email'))) == 0:
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Your acount has been created! You are now able to login.')
             return redirect('login')
     else:
+        messages.error(request, f'Account with this email address already exists')
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
@@ -37,7 +38,7 @@ def change_username(request):
 def change_email(request):
     if request.method == "POST" and request.POST.get('email'):
         email = request.POST.get('email')
-        if '@' in email and "<script>" not in email.lower():
+        if '@' in email and "<script>" not in email.lower() and len(User.objects.filter(email=email)) == 0:
             request.user.email = email
             request.user.save()
             return HttpResponse()
