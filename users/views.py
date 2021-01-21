@@ -87,3 +87,12 @@ def change_password(request):
             raise Http404()
     else:
         raise Http404()
+
+def change_adding_to_groups(request):
+    if request.method == "POST" and request.POST.get('switch'):
+        setting = request.user.userchoices.everyone_can_add_to_group
+        request.user.userchoices.everyone_can_add_to_group = not setting
+        request.user.userchoices.save() 
+        return HttpResponse()
+    else:
+        raise Http404()

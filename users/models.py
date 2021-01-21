@@ -22,3 +22,11 @@ class Profile(models.Model):
             output_size = (500, 500)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class UserChoices(models.Model):
+    everyone_can_add_to_group = models.BooleanField(default=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'UserChoices - {self.user.username}'

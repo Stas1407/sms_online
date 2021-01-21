@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from main.models import *
+from users.models import UserChoices
 from operator import attrgetter
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -9,6 +10,7 @@ from django.contrib import messages
 from itertools import chain
 from main.auxiliary import *
 from django.db.models import Q
+from django.db.models import Count
 import json
 
 # Create your views here.
@@ -206,11 +208,11 @@ def new_group(request):
         search = request.GET.get('search')
         context = {
             "search": True,
-            "members": User.objects.filter(username__contains=search)
+            "members": User.objects.filter(username__contains=search).exclude(userchoices__everyone_can_add_to_group=False)
         }
     else:                
         context = {
-            "conversations": request.user.conversations.all()
+            "conversations": request.user.conversations.annotate(num_messages=Count('messages')).filter(num_messages__gte=2)
         }
     return render(request, 'main/new_group.html', context)
 
@@ -277,7 +279,7 @@ def settings(request, id):
                 "search": True,
                 "name": group.name,
                 "image": group.image.url,
-                "members": User.objects.filter(username__contains=search).difference(group.users.all())
+                "members": User.objects.filter(username__contains=search).exclude(userchoices__everyone_can_add_to_group=False).difference(group.users.all())
             }
         else:                
             context = {
