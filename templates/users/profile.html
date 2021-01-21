@@ -55,7 +55,7 @@
             <div id="manage_wrapper">
                 <p id="everybody">Everybody</p>
                 <div id="switch">
-                    <div id="switch_inner"></div>
+                    <div id="switch_inner" class="{% if not request.user.userchoices.everyone_can_add_to_group %} switch_clicked {% endif %}"></div>
                 </div>
                 <p id="conversation">Only a person I've started a conversation with</p>
             </div>

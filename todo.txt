@@ -48,8 +48,8 @@
     - collect data from font-end and send them to the backend (ajax?)
     - save everything in the backend {% endcomment %}
     {% comment %} - make forgot your password link work - send email with password change link {% endcomment %}
-    - store somehow user choice about adding him to groups
-    - in group_search view only users that agree to it (conversation isn't started until it has 2 messages)
+    {% comment %} - store somehow user choice about adding him to groups {% endcomment %}
+    {% comment %} - in group_search view only users that agree to it (conversation isn't started until it has 2 messages) {% endcomment %}
 8. Add unread messages notification on the home page
 9. Make code readable
 10. Make everything more responsive.

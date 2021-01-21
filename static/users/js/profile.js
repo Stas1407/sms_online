@@ -44,6 +44,17 @@ $(window).resize(function(){
 
 $('#switch_inner').click(function(){
   $('#switch_inner').toggleClass('switch_clicked')
+  
+  var content = {'switch': 'clicked'} 
+
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() }
+  });
+  $.ajax({
+    url: '/change_adding_to_groups/',
+    type: 'POST',
+    data: content,
+  });
 })
 
 $('#done_bt').click(function(){
@@ -72,7 +83,7 @@ document.getElementById('img_input').onchange = function (evt) {
       }
       fr.readAsDataURL(files[0]);
   }
-  console.log($('#img_input').val())
+
   $('#image_form').submit()
 }
  
