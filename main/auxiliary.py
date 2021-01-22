@@ -33,6 +33,7 @@ def send_message(object, id, message):
     else:
         raise Http404()
 
+# check if 2 users have conversation with each other
 def check_if_connected(u1, u2):
     if Conversation.objects.filter(users__in=[u1]).filter(users__in=[u2]):
         return True

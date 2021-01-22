@@ -181,6 +181,21 @@ main{
   background-color: white;
 }
 
+.unread_messages{
+  position: absolute;
+  background-color: white;
+  width: 4vh;
+  height: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 0.8;
+  margin-left: 15%;
+  margin-top: 15%;
+}
+
 @media(min-width:1800px) and (min-height: 850px){
   #main_content{
     width: 75%;
