@@ -15,8 +15,10 @@ import json
 
 # Create your views here.
 def home(request):
+    # If user searches for something send him search results
     if request.GET.get('search'):
         search = request.GET.get('search')
+        # Get other users that match the search and remove from the list current user
         data = User.objects.filter(username__contains=search).exclude(username=request.user.username)
 
         context = {
@@ -27,7 +29,7 @@ def home(request):
         
     context = {
         'title': 'home',
-        "conversations": chain(request.user.conversations.all(), request.user.group_set.all())
+        "conversations": chain(request.user.conversations.all(), request.user.group_set.all())   
     }
     return render(request,'main/home.html', context)
 
@@ -38,13 +40,15 @@ def landing_page(request):
 
 def conversation(request, id):
     if request.method == "POST":
+        # Check if request if automatic (Browser checks every 2 seconds for new messages)
         if request.POST.get('check'):
             c = request.user.conversations.filter(id=id)[0]
             if not c:
                 raise Http404()
-            messages = c.messages.filter(~Q(read_by__in=[request.user]))
+            messages = c.messages.filter(~Q(read_by__in=[request.user]))    # Get unread messages
             data = []
 
+            # Mark all of the messages to send as read by the user
             for message in messages:
                 message.read_by.add(request.user)
                 message.save()
@@ -59,8 +63,11 @@ def conversation(request, id):
         if check:
             return HttpResponse(check, status=400)
         
-        if len(Conversation.objects.filter(id=id)) > 0:
+        # Check if conversation exists
+        if len(Conversation.objects.filter(id=id)) > 0: 
             c = Conversation.objects.get(id=id)
+
+            # Conversation which doesn't contain 2 messages isn't started and user can't send new messages to it until the other person replys
             if c.messages.all().count() == 0 and text != 'Hello':
                 return HttpResponse("Wrong message", status=400)
             if c.messages.all().count() == 1 and c.messages.first().author == request.user:
@@ -75,6 +82,7 @@ def conversation(request, id):
 
         return HttpResponse(m.id, status=200)
     
+    # Get messages list and mark them as read by the user
     messages_list = get_messages(request, "conversation", id)
     for i in range(1, len(messages_list)+1):
         if request.user in messages_list[-i].read_by.all():
@@ -97,11 +105,13 @@ def conversation(request, id):
 
 def group(request, id):
     if request.method == "POST":
+        # Check if request if automatic (Browser checks every 2 seconds for new messages)
         if request.POST.get('check'):
             c = request.user.group_set.get(id=id)
             messages = c.messages.filter(~Q(read_by__in=[request.user]))
             data = []
 
+            # Mark all of the messages to send as read by the user
             for message in messages:
                 message.read_by.add(request.user)
                 message.save()
@@ -125,6 +135,7 @@ def group(request, id):
         send_message(request.user.group_set, id, m)
         return HttpResponse(m.id, status=200)
     
+    # Get messages list and mark them as read by the user
     messages_list = get_messages(request, "group", id)
     for i in range(1, len(messages_list)):
         if request.user in messages_list[-i].read_by.all():
@@ -132,10 +143,11 @@ def group(request, id):
         else:
             messages_list[-i].read_by.add(request.user)
 
+    # Get groups with latest messages
     group = get_object_or_404(Group, pk=id)
     conversation_list = sorted(chain(request.user.conversations.all(), request.user.group_set.all()), key=attrgetter('last_message.date_sent'), reverse=True)[:8]
     if group in conversation_list:
-        conversation_list.remove(group)
+        conversation_list.remove(group)  # Current group is passed separately as first_conversation
 
     context = {
         'messages': messages_list,
@@ -150,6 +162,7 @@ def group(request, id):
 def new_conversation(request, id):
     user = get_object_or_404(User, pk=id)
 
+    # Check if conversation doesn't already exists
     if not Conversation.objects.filter(users__in=[request.user]).filter(users__in=[user]):
         new_conversation = Conversation()
         new_conversation.save()
@@ -159,7 +172,7 @@ def new_conversation(request, id):
         m = Message()
         m.save()
 
-        new_conversation.last_message = m
+        new_conversation.last_message = m        # Conversation must have a last message
 
         new_conversation.save()
     else:
@@ -172,15 +185,21 @@ def new_group(request):
     if request.method == "POST":
         name = request.POST.get('group_name')
         g = Group()
+
+        # Check and save group name
         if "<script>" not in name.lower() and name:
             g.name = name
             g.save()
+
+            # Check the group photo
             try:
                 allowed = ['jpg', 'jpeg', 'png']            
                 if request.FILES['file_in'].name.split('.')[-1] in allowed:
                     g.image = request.FILES['file_in']
             except Exception:
                 pass
+
+            # Add user who created group to its members
             g.users.add(request.user)
         else:
             messages.error(request, "Wrong group name")
@@ -190,7 +209,7 @@ def new_group(request):
             return render(request, 'main/new_group.html', context)
 
         ids = request.POST.get('ids').split(',')
-
+        # Add users who user selected to the group
         for user_id in ids:
             if user_id != '':
                 user = get_object_or_404(User, pk=user_id)
@@ -204,6 +223,7 @@ def new_group(request):
 
         return HttpResponseRedirect('/group/'+str(g.id))
     
+    # If user was searching for additional users pass search results to front-end
     if request.GET.get('search'):
         search = request.GET.get('search')
         context = {
@@ -221,8 +241,11 @@ def settings(request, id):
         name = request.POST.get('group_name')
         g = request.user.group_set.get(pk=id)
 
+        # Check group name and save it
         if "<script>" not in name.lower() and name:
             g.name = name
+
+            # Check group image
             try:
                 allowed = ['jpg', 'jpeg', 'png']            
                 if request.FILES['file_in'].name.split('.')[-1] in allowed:
@@ -241,6 +264,7 @@ def settings(request, id):
             return render(request, 'main/new_group.html', context)
 
         ids = request.POST.get('ids').split(',')
+        # If user searched for new users he wants to add them to the group
         if request.GET.get('search'):
             for user_id in ids:
                 if user_id != '':
@@ -251,6 +275,7 @@ def settings(request, id):
                     sMessage.save() 
                     g.users.add(user)
                     g.messages.add(sMessage)
+        # else remove selected user from the group
         else:
             for user_id in ids:
                 if user_id != '':
@@ -261,6 +286,7 @@ def settings(request, id):
                     sMessage.save() 
                     g.users.remove(user)
                     g.messages.add(sMessage)
+        # If there aren't any users left in the group delete it
         if g.users.all().count() == 0:
             g.delete()
             return HttpResponseRedirect('/home')
@@ -268,7 +294,7 @@ def settings(request, id):
 
         return HttpResponseRedirect('/group/'+str(g.id))
 
-
+    # If the group exists pass to the front-end it's current settings
     if request.user.group_set.filter(pk=id).count() != 0:
         group = get_object_or_404(Group, pk=id)
         
@@ -294,6 +320,7 @@ def settings(request, id):
 
 def delete(request, id, type):
     if type == "group":
+        # User can't delete a group he can only leave it
         try: 
             g = request.user.group_set.get(pk=id)
             g.users.remove(request.user)
@@ -312,7 +339,10 @@ def delete(request, id, type):
 
 def delete_message(request, id):
     message = get_object_or_404(Message, pk=id)
+
+    # User can't delete other users messages
     if message.author == request.user:
+        # if message is a latest message replace it to the older one
         if hasattr(message, "last_message_conversation"):
             c = message.last_message_conversation
             messages_list = c.messages.all().order_by('-date_sent')

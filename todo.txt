@@ -50,7 +50,7 @@
     {% comment %} - make forgot your password link work - send email with password change link {% endcomment %}
     {% comment %} - store somehow user choice about adding him to groups {% endcomment %}
     {% comment %} - in group_search view only users that agree to it (conversation isn't started until it has 2 messages) {% endcomment %}
-8. Add unread messages notification on the home page
+{% comment %} 8. Add unread messages notification on the home page {% endcomment %}
 9. Make code readable
 10. Make everything more responsive.
 11. Check security
