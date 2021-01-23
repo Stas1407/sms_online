@@ -30,7 +30,6 @@ body, html{
 }
 
 .custom{
-  height: 8vh;
   width: 20%;
   height: 120%;
   text-align: center;
@@ -49,97 +48,181 @@ span{
     left: -5vh;
   }
   .content_div{
-    left: 25vh;
+    left: 15vh;
+  }
+}
+
+@media(max-width:1200px) and (min-height:900px){
+  .dymki{
+    top: 10vh;
+    left: -5vh;
   }
 }
 
 @media(max-width: 1200px) {
   .content_div{
     left: 15vh;
+    top: 30vh;
   }
 } 
 
 @media(max-width: 800px) {
+  html, body{
+    background-image: url("../../backgrounds/mobile_bg.png");
+  }
+
   .content_div{
-    left: 6vh;
+    left: 0vh;
+    width: 100%;
     top: 30vh;
   }
 
   .custom{
-    font-size: 3vw;
+    width: 45%;
   }
 
   #main_text{
-    font-size: 4vw;
+    font-size: 6vw;
+  }
+
+  span{
+    font-size: 3vw;
+  }
+  
+  .dymki{
+    left: -5vh;
+  }
+
+  .dymek5{
+    left: 100% !important;
   }
 }
 
-@media (max-aspect-ratio: 16/9){
+@media(max-width: 600px){
+  #main_text{
+    font-size: 7vw;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: portrait){
+  body, html{
+    background-image: url("../../backgrounds/mobile_bg.png");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
   #main_text{
     font-size: 10vw;
   }
 
   .content_div{
-    position: relative;
-    display: block;
-    left: -3vh;
     top: 22vh;
-    margin: 0 auto;
+    left: 0;
+    width: 100%;
+  }
+
+  .col-md-12{
+    width: 100%;
+    padding: 0;
   }
 
   .custom{
-    width: 50%;
-    height: 7vh;
+    height: 9vh;
+    width: 45%;
   }
 
   span{
-    font-size: 5vw;
-  }
-
-  #login_bt{
-    position: absolute;
-    left: -5%;
-  }
-
-  #register_bt{
-    position: relative;
-    left: 30%;
+    font-size: 6vw;
   }
 
   .dymki{
+    top: -7vh;
+    left: -10vh;
+  }
+
+  .dymek5{
+    left: 100% !important;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape){
+  body, html{
+    background-image: url("../../backgrounds/mobile_bg.png");
+    background-repeat: no-repeat;
+  }
+
+  #main_text{
+    font-size: 7vw;
+  }
+
+  .content_div{
+    top: 15vh;
+    left: 0;
+    width: 100%;
+  }
+
+  .col-md-12{
+    width: 100%;
+    padding: 5%;
+  }
+
+  .custom{
+    margin-top: 2vh;
+    height: 16vh;
+    width: 45%;
+  }
+
+  span{
+    font-size: 4vw;
     position: relative;
-    top: 4vh;
-    left: -18vh;
+
+  }
+
+  .dymki{
+    top: -40vh;
+    left: -20vh;
+  }
+  .dymek5{
+    left: 100% !important;
   }
 }
 
 @media (pointer:none), (pointer:coarse) and (orientation: landscape) and (min-width: 700px){
   #main_text{
-    font-size: 6vw;
+    font-size: 7vw;
   }
 
   .dymki{
-    top: -2vh;
+    top: -15vh;
   }
 
   .custom{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45%;
+    width: 45% !important;
     height: 12vh;
   }
 
   #register_bt{
-    margin-left: 16% !important;
     background-color: #06131C;
   }
 
   #login_bt{
-    margin-left: 4% !important;
     background-color: #0087FE;
   }
 }
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape) and (min-width: 1000px){
+  .dymki{
+    top: -20vh;
+  }
+
+  .custom{
+    width: 45% !important;
+    height: 15vh;
+  }
+}
+
 
 
 @keyframes wobble {
