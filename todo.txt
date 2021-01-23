@@ -51,7 +51,7 @@
     {% comment %} - store somehow user choice about adding him to groups {% endcomment %}
     {% comment %} - in group_search view only users that agree to it (conversation isn't started until it has 2 messages) {% endcomment %}
 {% comment %} 8. Add unread messages notification on the home page {% endcomment %}
-9. Make code readable
+{% comment %} 9. Make code readable {% endcomment %}
 10. Make everything more responsive.
 11. Check security
 12. Hosting - docker?, heroku
