@@ -16,7 +16,6 @@ def register(request):
             messages.success(request, f'Your acount has been created! You are now able to login.')
             return redirect('login')
     else:
-        messages.error(request, f'Account with this email address already exists')
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 

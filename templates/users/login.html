@@ -17,7 +17,7 @@
           {{ message }}
         </div>
       {% endfor %}
-    {% endif %}
+    {% endif %} 
     <form method="post">
       {% csrf_token %}
       <div class="picture_div">
@@ -40,3 +40,7 @@
 
   <script type="text/javascript" src="{% static 'main/js/transition.js' %}"></script>
 {% endblock content %}
+
+{% block js_links %}
+<script type="text/javascript" src="{% static 'users/js/login.js' %}"></script>
+{% endblock js_links %}
