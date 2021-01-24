@@ -200,6 +200,7 @@ main{
   #main_content{
     width: 75%;
     top: -2.5vh;
+    height: 93.5vh;
   }
 }
 
@@ -209,47 +210,80 @@ main{
   }
 }
 
-@media (max-aspect-ratio: 16/9) {
-  @media (min-height: 850px){
-    #main_content{
-      top: -3vh;
-    }
+@media (max-width: 1000px){
+  #main_content{
+    top: -2vh;
+    height: 93.5vh;
+    width: 100%;
   }
 
-  @media (pointer:none), (pointer:coarse) {
-
-    html, body{
-      width: 100%;
-      height: 100%;
-      overflow-x: hidden;
-    }
-
-    .name{
-      font-size: 6vw !important;
-    }
-
-    .last_message{
-      font-size: 4vw !important;
-    }
-
-    #main_content{
-      top: 0;
-      height: 104vh !important;
-      overflow-x: hidden;
-    }
-
-    main{
-      overflow-x: hidden;
-      height: 100vh;
-    }
+  .name{
+    font-size: 2.5vw;
   }
 
-  #search:focus{
-    width: 55vh;
+  .last_message{
+    font-size: 2vw;
   }
 }
 
-@media (pointer:none), (pointer:coarse) and (orientation: landscape){
+@media(min-height: 900px){
+  @media(max-width: 1700px){
+    #main_content{
+      height: 93.5vh;
+    }
+  }
+
+  @media(max-width: 1665px){
+    #main_content{
+      top: -3.5vh;
+    }
+  }
+
+  @media(max-width: 1200px){
+    #main_content{
+      width: 75%;
+    }
+    .name{
+      font-size: 2.5vw;
+    }
+    .last_message{
+      font-size: 2vw;
+    }
+  }
+
+  @media(max-width: 1000px){
+    #main_content{
+      width: 100%;
+    }
+    .name{
+      font-size: 3vw;
+    }
+    .last_message{
+      font-size: 2.5vw;
+    }
+  }
+}
+
+@media(max-height: 600px){
+  #main_content{
+    width: 50%;
+    top: 1vh;
+  }
+
+  #wrap{
+    margin-left: 5vh;
+  }
+
+  #search:focus{
+    width: 80vh;
+  }
+
+  .column{
+    height: 18vh;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: portrait){
   html, body{
     width: 100%;
     height: 100%;
@@ -258,102 +292,52 @@ main{
 
   #main_content{
     margin-top: 0vh;
-    left: 0%;
-    top: 5vh !important;
-    height: 104vh !important;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 7.7vh;
+    bottom: 0;
     overflow-x: hidden;
   }
 
-  #search:focus{
+  /* #search:focus{
     width: 200vh !important;
-  }
+  } */
 
   .column{
-    height: 24vh;
+    height: 17vh;
   }
 
   .profile_img{
-    width: 18vh;
-    height: 18vh;
+    width: 13vh;
+    height: 13vh;
+  }
+
+  .text{
+    margin-top: 2vh;
   }
 
   .name{
-    margin-top: -1vh !important;
-    font-size: 4.2vw !important;
+    font-size: 6vw !important;
   }
 
   .last_message{
-    font-size: 3vw !important;
+    font-size: 4.5vw !important;
   }
 
   main{
     overflow-x: hidden;
     height: 100vh;
   }
-  
-  @media(max-height: 300px){
-    #main_content{
-      top: 27vh !important;
-    }
 
-    .column{
-      height: 50vh;
-    }
-
-    .profile_img{
-      width: 34vh;
-      height: 34vh;
-    }
-
-    .text{
-      margin-left: 3%;
-    }
+  .settings_wrapper{
+    margin-left: -3%;
   }
-}
-
-@media (pointer:none), (pointer:coarse) and (orientation: portrait) and (max-height: 500px){
-  #main_content{
-    left: -17%;
-    top: 2vh !important;
-  }
-
-  .column{
-    height: 23vh;
-  }
-
-  .profile_img{
-    width: 18vh;
-    height: 18vh;
-  }
-}
-
-@media (max-width: 991px){
-  #main_content{
-    width: 100%;
-    top: -3.5vh;
-  }
-
-  .name{
-    font-size: 3.2vw;
-    margin-top: 1vh;
-  }
-
-  .last_message{
-    font-size: 2vw;
-    width: 150%;
-    margin-top: 1vh;
-  }
-
-  @media (max-width: 800px){
-      #main_content{
-        width: 150%;
-      }
-  }
-  @media (max-width: 760px){
-      #main_content{
-        width: 180%;
-      }
-  }
+/* 
+  .settings{
+    width: 2.5vh;
+    height: 2.5vh;
+  } */
 }
 
 @media (pointer:none), (pointer:coarse) and (orientation: landscape){
@@ -362,13 +346,46 @@ main{
   }
 
   #main_content{
-    width: 100%;
-    top: -1.5vh !important;
+    width: 60%;
+    height: unset;
+    position: fixed;
+    top: 8.5vh;
+    bottom: 0;
   }
   main{
     overflow: hidden;
   }
 
+  .name{
+    font-size: 3vw;
+  }
+
+  .column{
+    height: 19vh;
+  }
+
+  .last_message{
+    font-size: 2.5vw;
+  }
+
+  .text{
+    margin-top: 2vh;
+  }
+
+  .profile_img{
+    width: 14vh;
+    height: 14vh;
+  }
+
+  #search:focus{
+    width: 50vh;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: portrait) and (min-height: 900px){
+  #main_content{
+    top: 6vh;
+  }
 }
 
 
