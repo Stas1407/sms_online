@@ -90,8 +90,8 @@ $('.text').click(function(){
 })
 
 
-// var t1;
-// var t2;
+var t1;
+var t2;
 
 $('.settings_div').hover(function(){
   $('.settings_inner_div').on("mouseover",function(){
@@ -102,18 +102,18 @@ $('.settings_div').hover(function(){
     var id2 = $('#'+ this.id + '> .remove').attr('id')
     var id3 = $('#'+ this.id + '> .settings_inner_icon').attr('id')
 
-    // t1 = setTimeout(function(){
+    t1 = setTimeout(function(){
       $('#' + id3).addClass('settings_extended');
-    // }, 100)
+    }, 100)
 
-    // t2 = setTimeout(function(){
+    t2 = setTimeout(function(){
       $('#' + id2).addClass('remove_extended');
-    // }, 400)
+    }, 400)
   })
 
   $('.settings_inner_div').on("mouseleave", function(){
-    // window.clearTimeout(t1)
-    // window.clearTimeout(t2)
+    window.clearTimeout(t1)
+    window.clearTimeout(t2)
     $('.settings_inner_div').unbind('mouseenter mouseleave mouseover');
     var id3 = $('#'+ this.id + '> .settings_inner_icon').attr('id')
     var id2 = $('#'+ this.id + '> .remove').attr('id')

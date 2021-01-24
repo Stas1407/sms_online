@@ -61,8 +61,9 @@
     - chat view
     - new group
     - profile
-11. Check security
-12. Hosting - docker?, heroku
+11. Make authentication work
+12. Check security
+13. Hosting - docker?, heroku
 
 
 
