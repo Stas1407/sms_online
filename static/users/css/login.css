@@ -12,6 +12,7 @@ body, html{
   padding: 5%;
   position: relative;
   left: 70vh;
+  top: 2vh;
   display: table-cell;
   vertical-align: bottom;
 }
@@ -43,9 +44,18 @@ legend{
   font-weight: 500;
 }
 
+@media(max-width: 1300px){
+  .content-section{
+    left: unset;
+    right: 5%;
+    position: fixed;
+    top: 12%;
+  }
+}
 
 @media(max-height: 800px) {
   .content-section{
+    position: relative;
     display: block;
     height: 85vh;
   }
@@ -56,25 +66,67 @@ legend{
   }
 }
 
-@media (max-aspect-ratio: 16/9) {
+@media(max-height: 600px){
   .content-section{
-    left: -5vh;
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    height: 89vh;
+    padding-top: 10vh;
+    left: 100vh;
+    height: 85vh;
+    width: 40%;
+    top: 3vh;
+    overflow: visible;
   }
-  @media (pointer:none), (pointer:coarse) {
+  .small{
+    margin-top: 2vh;
+  }
+
+  .picture_div{
+    display: none;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: portrait){
+  html, body{
+    overflow-y: scroll;
+  }
+
+  .content-section{
+    overflow-y: scroll;
+    position: fixed;
+    top: 7vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  @media (max-width: 350px){
     .content-section{
-      position: fixed;
-      top: 7vh;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 0;
+      padding-top: 10vh;
     }
+
+    .picture_div{
+      display: none;
+    }
+  }
+  @media (min-width: 750px){
+    .content-section{
+      top: 7vh
+    }
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape) and (max-height: 450px){
+  .content-section{
+    overflow: scroll;
+    position: fixed;
+    top: 9vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
   }
 }
 
@@ -85,6 +137,14 @@ legend{
 
   .content-section{
     overflow: scroll;
+    position: fixed;
+    top: 7vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
   }
 
   .picture{
