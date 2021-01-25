@@ -54,12 +54,12 @@
 {% comment %} 9. Make code readable {% endcomment %}
 10. Make everything more responsive:
     {% comment %} - Landing page  {% endcomment %}
-    - Login page / touch screen is working
-    - Register page
-    - logout page
-    - home page
+    {% comment %} - Login page / touch screen is working
+    - Register page {% endcomment %}
+    {% comment %} - logout page {% endcomment %}
+    {% comment %} - home page {% endcomment %}
     - chat view
-    - new group
+    - new group 
     - profile
 11. Make authentication work
 12. Check security
