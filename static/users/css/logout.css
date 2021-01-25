@@ -6,7 +6,8 @@ html, body{
 main{
   overflow-y: hidden;
   position: relative;
-  left: 40vh;
-  top: 10vh;
   color: white;
+  position: fixed;
+  right: 5%;
+  top: 10%;
 }
