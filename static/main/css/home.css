@@ -192,8 +192,8 @@ main{
   border-radius: 50%;
   color: rgba(0, 0, 0, 0.6);
   opacity: 0.8;
-  margin-left: 15%;
-  margin-top: 15%;
+  margin-left: 11vh;
+  margin-top: 10vh;
 }
 
 @media(min-width:1800px) and (min-height: 850px){

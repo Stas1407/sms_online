@@ -420,11 +420,13 @@ p{
     margin-left: 55%;
   }
 
-
+  .chat_view{
+    padding-bottom: 10vh !important;
+  }
 }
 
 
-
+ 
 @keyframes show{
   0%{
     opacity: 0;
