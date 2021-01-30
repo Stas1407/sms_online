@@ -17,7 +17,7 @@ html {
 }
 
 .no_border{
-    display: flex;
+    display: flex; 
     align-items: center;
     height: 70%;
     margin-top: auto;
@@ -334,6 +334,7 @@ main{
   outline: none;
 }
 
+
 @media(min-width:1800px) and (min-height: 850px){
     #main_content{
       width: 75%;
@@ -345,6 +346,49 @@ main{
       top: -3.5vh;
     }
 }
+
+@media (min-height: 900px){
+  .forgot_passwd{
+    margin-top: 55%;
+  }
+
+  #camera_icon{
+    margin-top: 20%;
+    margin-left: 20%;
+    width: 8%;
+  }
+
+  #nick_done{
+    margin-left: 53%;
+  }
+}
+
+@media (max-height: 600px){
+  #main_content{
+    margin-top: 3vh !important;
+  }
+
+  #profile_pic{
+    width: 32%;
+  }
+
+  #first_row{
+    height: 50vh;
+  }
+  #camera_icon{
+    margin-top: 20%;
+    margin-left: 20%;
+  }
+
+  #second_row{
+    height: 60vh;
+  }
+
+  #third_row{
+    height: 55vh;
+  }
+}
+
 @media (max-aspect-ratio: 16/9) {
     @media (min-height: 850px){
       #main_content{
@@ -404,8 +448,64 @@ main{
       left: -17%;
       top: 2vh !important;
     }
+
+    #first_row{
+      height: 65vh;
+    }
+
+    #second_row{
+      height: 70vh !important;
+    }
+
+    #third_row{
+      height: 70vh !important;
+    }
+
+    #camera_icon{
+      margin-left: 10% !important;
+      margin-top: 10% !important;
+    }
 }
-  
+
+@media (pointer:none), (pointer:coarse) and (orientation: portrait){
+  #main_content{
+    position: fixed;
+    left: -5%;
+    right: 5%;
+    bottom: 0;
+    top: 7.5vh !important;
+    width: 110% !important;
+    height: unset !important;
+  }
+
+  #camera_icon{
+    margin-left: 18%;
+    margin-top: 18%;
+    width: 13%;
+  }
+
+  #second_row{
+    height: 45vh;
+  }
+
+  .forgot_passwd{
+    margin-top: 38%;
+  }
+
+  #third_row{
+    height: 50vh;
+  }
+
+  .text_label{
+    width: 90%;
+  }
+
+  #switch_inner{
+    height: 100% !important;
+    width: 60%;
+  }
+}
+
 @media (max-width: 991px){
     #main_content{
       width: 100%;
