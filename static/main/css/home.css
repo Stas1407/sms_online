@@ -388,6 +388,16 @@ main{
   }
 }
 
+@media (pointer:none), (pointer:coarse) and (orientation: portrait) and (max-height: 500px){
+  #main_content{
+    left: 0%;
+    width: 100%;
+    top: 12.5vh !important;
+  }
+
+}
+
+
 
 @keyframes hide_on_the_left {
 	0% {

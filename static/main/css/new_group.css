@@ -8,9 +8,9 @@ body, html{
 
 html::-webkit-scrollbar {
     display: none;
-}
+} 
 
-html {
+html { 
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
@@ -80,6 +80,8 @@ main{
 
 .group_icon_new{
   height: 20vh!important;
+  width: 20vh !important;
+  border-radius: 50%;
 }
 
 label{
@@ -291,6 +293,21 @@ label{
   opacity: 60%;
 }
 
+@media(max-height: 600px){
+  #main_content{
+    margin-top: 3vh !important;
+  }
+
+  .column{
+    height: 20vh;
+  }
+
+  .group_icon_new{
+    width: 25vh !important;
+    height: 25vh !important;
+  }
+}
+
 @media(max-height: 800px){
     #group_name_div{
         height: 35%;
@@ -367,10 +384,30 @@ label{
 
 @media (pointer:none), (pointer:coarse) and (orientation: portrait){
   #main_content{
-    width: 150% !important;
-    top:0;
+    width: 145% !important;
+    margin-top: 1vh;
   }
 
+  #next{
+    width: 12%;
+    margin-right: 2%;
+  }
+
+  .top_column{
+    height: 25vh;
+  }
+
+  #group_icon{
+    width: 16vh;
+    height: 16vh;
+    margin-top: 3vh;
+  }
+
+  .group_icon_new{
+    height: 10vh!important;
+    width: 10vh !important;
+    border-radius: 50%;
+  }
 }
 
 @media (pointer:none), (pointer:coarse) and (orientation: portrait) and (max-height: 500px){
