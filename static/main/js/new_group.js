@@ -29,7 +29,13 @@ jQuery(document).ready(function(){
       $('#group_name_in').val(Cookies.get('name'))
       Cookies.remove('name')
     }
+
+    $('.person_profile_pic').width($('.person_profile_pic').height())
   }); 
+
+$(window).resize(function() {
+  $('.person_profile_pic').width($('.person_profile_pic').height())
+})
 
 var ids = []
 

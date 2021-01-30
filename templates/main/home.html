@@ -17,7 +17,7 @@
         <div class="text">
           <h2 class="name">{{ c.name }}</h2>
           <h4 class="last_message">{% if c.last_message %}{% if c.last_message.author %}{{ c.last_message.author }}:{% endif %} {{ c.last_message.text|truncatechars:20 }}{% endif %}</h4>
-        </div>
+        </div> 
         <div class="settings_wrapper">
           <div class="settings_inner_div" id="divg{{ c.id }}">
             <div class="remove rgroup" id='rg{{ c.id }}'><i class="fas fa-trash"></i></div>
