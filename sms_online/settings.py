@@ -52,7 +52,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'login_required.middleware.LoginRequiredMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -145,13 +144,6 @@ EMAIL_HOST_USER = os.environ.get('USER')
 EMAIL_HOST_PASSWORD = os.environ.get('PASSWORD')
 
 EMAIL_USE_TLS = True
-
-LOGIN_REQUIRED_IGNORE_VIEW_NAMES = [
-    'logout',
-    'login',
-    'register',
-    'landing_page'
-]
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 

@@ -19,9 +19,11 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
+@login_required
 def profile(request):
     return render(request, 'users/profile.html')
 
+@login_required
 def change_username(request):
     if request.method == "POST" and request.POST.get('username'):
         name = request.POST.get('username')
@@ -34,6 +36,7 @@ def change_username(request):
     else:
         raise Http404()
 
+@login_required
 def change_email(request):
     if request.method == "POST" and request.POST.get('email'):
         email = request.POST.get('email')
@@ -46,6 +49,7 @@ def change_email(request):
     else:
         raise Http404()
 
+@login_required
 def change_image(request):
     if request.method == "POST" and request.FILES['img_input']:
         image = request.FILES['img_input']
@@ -60,6 +64,7 @@ def change_image(request):
     else:
         raise Http404()
 
+@login_required
 def change_password(request):
     if request.method == "POST":
         if request.POST.get('new_password') and request.POST.get('old_password'):
@@ -87,6 +92,7 @@ def change_password(request):
     else:
         raise Http404()
 
+@login_required
 def change_adding_to_groups(request):
     if request.method == "POST" and request.POST.get('switch'):
         setting = request.user.userchoices.everyone_can_add_to_group

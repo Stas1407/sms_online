@@ -12,8 +12,10 @@ from main.auxiliary import *
 from django.db.models import Q
 from django.db.models import Count
 import json
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def home(request):
     # If user searches for something send him search results
     if request.GET.get('search'):
@@ -38,6 +40,7 @@ def landing_page(request):
         return redirect('home')
     return render(request, 'main/landing_page.html')
 
+@login_required
 def conversation(request, id):
     if request.method == "POST":
         # Check if request if automatic (Browser checks every 2 seconds for new messages)
@@ -103,6 +106,7 @@ def conversation(request, id):
 
     return render(request, 'main/chat_view.html', context)
 
+@login_required
 def group(request, id):
     if request.method == "POST":
         # Check if request if automatic (Browser checks every 2 seconds for new messages)
@@ -159,6 +163,7 @@ def group(request, id):
 
     return render(request, 'main/chat_view.html', context)
 
+@login_required
 def new_conversation(request, id):
     user = get_object_or_404(User, pk=id)
 
@@ -180,7 +185,7 @@ def new_conversation(request, id):
 
     return HttpResponseRedirect('/conversation/'+str(new_conversation.id))
     
-
+@login_required
 def new_group(request):
     if request.method == "POST":
         name = request.POST.get('group_name')
@@ -236,6 +241,7 @@ def new_group(request):
         }
     return render(request, 'main/new_group.html', context)
 
+@login_required
 def settings(request, id):
     if request.method == "POST": 
         name = request.POST.get('group_name')
@@ -318,6 +324,7 @@ def settings(request, id):
     else:
         raise Http404()
 
+@login_required
 def delete(request, id, type):
     if type == "group":
         # User can't delete a group he can only leave it
@@ -337,6 +344,7 @@ def delete(request, id, type):
             raise Http404()
     return HttpResponseRedirect('/home')
 
+@login_required
 def delete_message(request, id):
     message = get_object_or_404(Message, pk=id)
 
