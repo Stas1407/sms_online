@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from PIL import Image
 from django.urls import reverse
+import os
 
 # Create your models here.
 
@@ -99,4 +100,5 @@ class Group(models.Model):
         self.save()
         for message in self.messages.all():
             message.delete()
+        os.remove(self.image.path)
         super().delete()

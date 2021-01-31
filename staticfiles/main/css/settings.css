@@ -1,0 +1,7 @@
+.add_person{
+    background-image: url('../icons/remove.png') !important;
+}
+
+.clicked{
+    background-image: url('../icons/remove_clicked.png') !important;
+}

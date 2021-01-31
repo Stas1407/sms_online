@@ -1,0 +1,13 @@
+.name{
+    margin-top: 5%;
+}
+
+.icon_wrapper{
+    width: 10%;
+    font-size: 200%;
+    opacity: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

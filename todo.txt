@@ -52,7 +52,7 @@
     {% comment %} - in group_search view only users that agree to it (conversation isn't started until it has 2 messages) {% endcomment %}
 {% comment %} 8. Add unread messages notification on the home page {% endcomment %}
 {% comment %} 9. Make code readable {% endcomment %}
-10. Make everything more responsive:
+{% comment %} 10. Make everything more responsive: {% endcomment %}
     {% comment %} - Landing page  {% endcomment %}
     {% comment %} - Login page / touch screen is working
     - Register page {% endcomment %}
@@ -60,12 +60,17 @@
     {% comment %} - home page {% endcomment %}
     {% comment %} - chat view {% endcomment %}
     {% comment %} - new group  {% endcomment %}
-    - profile
+    {% comment %} - profile {% endcomment %}
     {% comment %} - home view - phone with opened search bar {% endcomment %}
-11. Make authentication work
-12. Check security
-13. Hosting - docker?, heroku
-
+{% comment %} 11. Make authentication work
+12. Check security {% endcomment %}
+13. Hosting - docker?, heroku:
+    {% comment %} - add environment variables {% endcomment %}
+    {% comment %} - add virtual env {% endcomment %}
+    - set debug to false
+    - check if works
+    - organize git
+    - push to heroku
 
 
 
