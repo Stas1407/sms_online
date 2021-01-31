@@ -1,0 +1,13 @@
+html, body{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+main{
+  overflow-y: hidden;
+  position: relative;
+  color: white;
+  position: fixed;
+  right: 5%;
+  top: 10%;
+}

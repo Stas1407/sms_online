@@ -1,0 +1,1 @@
+web: gunicorn sms_online.wsgi --log-file -
