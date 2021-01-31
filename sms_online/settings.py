@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['smsonlineproject.herokuapp.com']
 
@@ -134,7 +134,7 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = '/login'
+LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = '/login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
