@@ -50,6 +50,17 @@ main{
     top: -2vh;
     border-top: none;
     opacity: 0;
+    overflow-y: scroll !important;
+}
+
+#main_content::-webkit-scrollbar {
+  display: none;
+}
+
+
+#main_content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .profile_img{
