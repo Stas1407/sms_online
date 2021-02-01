@@ -62,6 +62,7 @@ var tmp_wrap = 0
 $('#form').submit(function(e){
   if(count == 0){
     e.preventDefault();
+    return
   }
   if(Cookies.get('ids') && tmp_wrap == 0){
     var ids2 = Cookies.get('ids')
