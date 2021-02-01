@@ -62,21 +62,22 @@ var tmp_wrap = 0
 $('#form').submit(function(e){
   if(count == 0){
     e.preventDefault();
-    return
   }
-  if(Cookies.get('ids') && tmp_wrap == 0){
-    var ids2 = Cookies.get('ids')
-    ids2 = JSON.parse(ids2)
-    ids = [...ids, ...ids2]
-    Cookies.remove('ids')
+  if(count != 1){
+    if(Cookies.get('ids') && tmp_wrap == 0){
+      var ids2 = Cookies.get('ids')
+      ids2 = JSON.parse(ids2)
+      ids = [...ids, ...ids2]
+      Cookies.remove('ids')
+    }
+    console.log(ids)
+    $('#ids').val(ids.join())
+    console.log(ids)
+    count+=1
+    setTimeout(function(){
+      $('#form').submit()
+    }, 500)
   }
-  console.log(ids)
-  $('#ids').val(ids.join())
-  console.log(ids)
-  count+=1
-  setTimeout(function(){
-    $('#form').submit()
-  }, 500)
 })
 
 $('#search').focus(function(){
