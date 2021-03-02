@@ -8,7 +8,7 @@
 
 {% block content %} 
 <div id="main_content"> 
-  {% if conversations %}
+  {% if conversations|length > 0 %}
   <div class="row">
     {% for c in conversations %}
       {% if c.is_group %}
@@ -49,6 +49,12 @@
       {% endif %} 
     {% endfor %}
   </div> 
+  {% else %}
+    <div class="no_conversations_wrapper">
+      <i class="fas fa-arrow-up fa-8x"></i>
+      You don't have any conversations. <br>
+      Find somebody to talk with using search icon.
+    </div>
   {% endif %}
 </div> 
 {% endblock content %}

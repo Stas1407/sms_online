@@ -31,7 +31,7 @@ def home(request):
         
     context = {
         'title': 'home',
-        "conversations": chain(request.user.conversations.all(), request.user.group_set.all())   
+        "conversations": list(chain(request.user.conversations.all(), request.user.group_set.all()))   
     }
     return render(request,'main/home.html', context)
 
