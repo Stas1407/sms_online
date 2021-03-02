@@ -44,10 +44,10 @@ main{
 #main_content{
     background-color: rgb(28, 22, 22, 0.91);
     background-attachment: fixed;
-    min-height: 92vh;
+    min-height: 93vh;
     width: 55%;
     position: absolute;
-    top: -2vh;
+    top: -3vh;
     border-top: none;
     opacity: 0;
     overflow-y: scroll !important;
@@ -207,17 +207,29 @@ main{
   margin-top: 10vh;
 }
 
+.no_conversations_wrapper{
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  height: 100%;
+}
+
+
 @media(min-width:1800px) and (min-height: 850px){
   #main_content{
     width: 75%;
     top: -2.5vh;
-    height: 93.5vh;
+    height: 94.5vh;
   }
 }
 
 @media (min-width: 1666px) and (min-height: 850px){
   #main_content{
-    top: -3.5vh;
+    top: -4vh;
   }
 }
 
@@ -240,13 +252,13 @@ main{
 @media(min-height: 900px){
   @media(max-width: 1700px){
     #main_content{
-      height: 93.5vh;
+      height: 94.5vh;
     }
   }
 
   @media(max-width: 1665px){
     #main_content{
-      top: -3.5vh;
+      top: -4.5vh;
     }
   }
 
