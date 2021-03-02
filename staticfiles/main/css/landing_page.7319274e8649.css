@@ -1,0 +1,327 @@
+
+body, html{
+  overflow-x: hidden;
+}
+
+ .content_div{
+   display: table;
+   position: relative;
+   left: 20vh;
+   top: 25vh;
+   color: white;
+   text-align: center;
+   width: 120%;
+ }
+
+ .dymki{
+   position: relative;
+   top: 9vh;
+ }
+
+ .inner {
+   display: table-cell;
+   vertical-align: middle;
+   text-align: center;
+ }
+
+#main_text{
+  margin-bottom: 6vh;
+  font-size: 3.5vw;
+}
+
+.custom{
+  width: 20%;
+  height: 120%;
+  text-align: center;
+}
+
+span{
+  font-size: 2vw;
+  font-weight: 500;
+  position: relative;
+  top: 7%;
+}
+
+@media(min-height:900px){
+  .dymki{
+    top: 5vh;
+    left: -5vh;
+  }
+  .content_div{
+    left: 15vh;
+  }
+}
+
+@media(max-width:1200px) and (min-height:900px){
+  .dymki{
+    top: 10vh;
+    left: -5vh;
+  }
+}
+
+@media(max-width: 1200px) {
+  .content_div{
+    left: 15vh;
+    top: 30vh;
+  }
+} 
+
+@media(max-width: 800px) {
+  html, body{
+    background-image: url("../../backgrounds/mobile_bg.f93cb92494d5.png");
+  }
+
+  .content_div{
+    left: 0vh;
+    width: 100%;
+    top: 30vh;
+  }
+
+  .custom{
+    width: 45%;
+  }
+
+  #main_text{
+    font-size: 6vw;
+  }
+
+  span{
+    font-size: 3vw;
+  }
+  
+  .dymki{
+    left: -5vh;
+  }
+
+  .dymek5{
+    left: 100% !important;
+  }
+}
+
+@media(max-width: 600px){
+  #main_text{
+    font-size: 7vw;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: portrait){
+  body, html{
+    background-image: url("../../backgrounds/mobile_bg.f93cb92494d5.png");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #main_text{
+    font-size: 10vw;
+  }
+
+  .content_div{
+    top: 22vh;
+    left: 0;
+    width: 100%;
+  }
+
+  .col-md-12{
+    width: 100%;
+    padding: 0;
+  }
+
+  .custom{
+    height: 9vh;
+    width: 45%;
+  }
+
+  span{
+    font-size: 6vw;
+  }
+
+  .dymki{
+    top: -7vh;
+    left: -10vh;
+  }
+
+  .dymek5{
+    left: 100% !important;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape){
+  body, html{
+    background-image: url("../../backgrounds/mobile_bg.f93cb92494d5.png");
+    background-repeat: no-repeat;
+  }
+
+  #main_text{
+    font-size: 7vw;
+  }
+
+  .content_div{
+    top: 15vh;
+    left: 0;
+    width: 100%;
+  }
+
+  .col-md-12{
+    width: 100%;
+    padding: 5%;
+  }
+
+  .custom{
+    margin-top: 2vh;
+    height: 16vh;
+    width: 45%;
+  }
+
+  span{
+    font-size: 4vw;
+    position: relative;
+
+  }
+
+  .dymki{
+    top: -40vh;
+    left: -20vh;
+  }
+  .dymek5{
+    left: 100% !important;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape) and (min-width: 700px){
+  #main_text{
+    font-size: 7vw;
+  }
+
+  .dymki{
+    top: -15vh;
+  }
+
+  .custom{
+    width: 45% !important;
+    height: 12vh;
+  }
+
+  #register_bt{
+    background-color: #06131C;
+  }
+
+  #login_bt{
+    background-color: #0087FE;
+  }
+}
+
+@media (pointer:none), (pointer:coarse) and (orientation: landscape) and (min-width: 1000px){
+  .dymki{
+    top: -20vh;
+  }
+
+  .custom{
+    width: 45% !important;
+    height: 15vh;
+  }
+}
+
+
+
+@keyframes wobble {
+
+	33% {
+		transform: translateX(-50px);
+	}
+
+	66% {
+		transform: translateX(50px);
+	}
+
+}
+
+@keyframes up {
+
+	0% {
+		opacity: 0;
+	}
+
+	2%, 38% {
+		opacity: 1;
+	}
+
+	40% {
+		opacity: 0;
+		transform: translateY(-30vh);
+	}
+
+  100% {
+    opacity: 0;
+    transform: translateY(-30vh);
+  }
+}
+
+.dymki{
+  display: block;
+  pointer-events: none;
+}
+
+.dymek1{
+  position: relative;
+  left: 50%;
+  top: -10vh;
+  width: 5vh;
+  height: 5vh;
+  animation: wobble 3s infinite ease-in-out;
+}
+
+.dymek2{
+  position: relative;
+  left: 70%;
+  top: -15vh;
+  width: 6vh;
+  height: 6vh;
+  animation: wobble 3s 1s infinite ease-in-out;
+}
+.dymek3{
+  position: relative;
+  left: 90%;
+  top: -20vh;
+  width: 4vh;
+  height: 4vh;
+  animation: wobble 3s 2s infinite ease-in-out;
+}
+.dymek4{
+  position: relative;
+  left: 100%;
+  top: -22vh;
+  width: 3vh;
+  height: 3vh;
+  animation: wobble 3s 1s infinite ease-in-out;
+}
+.dymek5{
+  position: relative;
+  top: -28vh;
+  left: 130%;
+  width: 5vh;
+  height: 5vh;
+  animation: wobble 3s 0.5s infinite ease-in-out;
+}
+
+.up1{
+  opacity: 0;
+  animation: up 7.5s infinite;
+}
+.up2{
+  opacity: 0;
+  animation: up 7.5s 6s infinite;
+}
+.up3{
+  opacity: 0;
+  animation: up 7.5s 8s infinite;
+}
+.up4{
+  opacity: 0;
+  animation: up 7.5s 2s infinite;
+}
+.up5{
+  opacity: 0;
+  animation: up 7.5s 4s infinite;
+}
