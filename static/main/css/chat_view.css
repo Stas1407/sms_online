@@ -76,6 +76,18 @@ p{
   display: none;
 }
 
+.conv_name{
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+  margin: 0 auto;
+  margin-top: -18px;
+}
+
+.icon{
+  padding-bottom: 15px;
+}
+
 .chat_view{
   position: fixed;
   top: 0;

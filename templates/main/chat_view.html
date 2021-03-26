@@ -13,15 +13,16 @@
   </div>  
   <div class="top"></div>
   {% if first_conversation.is_group %}
-  <div id="{{first_conversation.id}}" class="flip-card mb-1">
+  <div id="{{first_conversation.id}}" class="flip-card mb-4">
     <div class="flip-card-inner">
-      <div class="flip-card-front">
+      <div class="flip-card-front icon">
         {% if first_conversation.is_group %}
         <img src="{{ first_conversation.image.url }}" id="i{{ first_conversation.id }}" class="rounded-circle profile_img">
         {% else %}
         <img src="{{ first_conversation|get_image:request.user }}" id="i{{ first_conversation.id }}" class="rounded-circle profile_img">
         {% endif %}
         <p id="top_unread">{{ first_conversation|get_unread_messages:request.user }}</p>
+        <span class="conv_name">{{ first_conversation.name }}</span>
       </div>
       <div class="flip-card-back rounded-circle profile_img">
         <img src="{% static 'main/icons/settings.png' %}" class="rounded-circle settings" id="s{{ first_conversation.id }}">
@@ -29,17 +30,20 @@
     </div>
   </div> 
   {% else %}
-  <div id="c{{ first_conversation.id }}">
+  <div id="c{{ first_conversation.id }}" class="icon"> 
     <img src="{{ first_conversation|get_image:request.user }}" id="ic{{ first_conversation.id }}" class="rounded-circle profile_img redirect">
     <p>{{ first_conversation|get_unread_messages:request.user }}</p>
+    <span class="conv_name">{{ first_conversation|get_name:request.user }}</span>
   </div>
   {% endif %}
   {% for c in last_conversations %}
-    <div id="{% if c.is_group %}g{{ c.id }}{% else %}c{{ c.id }}{% endif %}">
+    <div id="{% if c.is_group %}g{{ c.id }}{% else %}c{{ c.id }}{% endif %}" class="icon {% if c.is_group %}group_redirect{% endif %}">
       {% if c.is_group %}
-      <img src="{{ c.image.url }}" id="ig{{ c.id }}" class="rounded-circle profile_img group_redirect redirect">
+          <img src="{{ c.image.url }}" id="ig{{ c.id }}" class="rounded-circle profile_img group_redirect redirect">
+          <span class="conv_name">{{ c.name }}</span>
       {% else %}
-      <img src="{{ c|get_image:request.user }}" id="ic{{ c.id }}" class="rounded-circle profile_img redirect">
+          <img src="{{ c|get_image:request.user }}" id="ic{{ c.id }}" class="rounded-circle profile_img redirect">
+          <span class="conv_name">{{ c|get_name:request.user }}</span>
       {% endif %}
       <p>{{ c|get_unread_messages:request.user }}</p>
     </div>
@@ -50,7 +54,7 @@
     {% if is_group %}
       <input type="hidden" value="true" id="is_group">
       {% for message in messages %}
-        {% if message.text %}
+        {% if message.text %} 
           {% if message.author == request.user %}
             <div class="my_message float-right message" id="{{ message.id }}">{{ message.text }}</div>
           {% elif message.is_server_message %}

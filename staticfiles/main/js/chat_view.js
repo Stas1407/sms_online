@@ -172,7 +172,7 @@ $('.chat').on("click", ".my_message",function(){
   }
 }) 
  
-$('.redirect').click(function(){
+$('.icon').click(function(){
   $('.chat_view').addClass('animation_hide_on_right')
   $('.input_box').addClass('animation_hide_on_right')
   $('.flip-card').hover(function(){
@@ -181,12 +181,13 @@ $('.redirect').click(function(){
   })
   $("#"+this.id).prependTo('.top');
   id = $(this).attr('id')
+  console.log(id)
   Cookies.set('same_site', 'true');
   setTimeout(function(){
     if($('#'+id).hasClass('group_redirect')){
-      window.location.href = '/group/' + id.split('i')[1].replace('c', '').replace('g', '')
+      window.location.href = '/group/' + id.replace('c', '').replace('g', '')
     } else {
-      window.location.href = '/conversation/' + id.split('i')[1].replace('c', '').replace('g', '')
+      window.location.href = '/conversation/' + id.replace('c', '').replace('g', '')
     }
   }, 300)
 })
