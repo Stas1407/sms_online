@@ -38,11 +38,13 @@ $('.settings_inner_icon').click(function(){
 $('.remove').click(function(){
   var id = this.id.split('r')[1].replace('g', "").replace('c', "")
   var remove = $('#'+ this.id)
-  if(confirm("Are you sure you want to delete this conversation")){
-    if(remove.hasClass('rconversation')){
-      window.location.href = 'delete/conversation/'+id
-    } else{
-      window.location.href = 'delete/group/'+id
+  if(remove.hasClass('rgroup')){
+    if(confirm("Are you sure you want to sign out of this group? ")){
+      window.location.href = '/delete/group/'+id
+    }
+  } else {
+    if(confirm("Are you sure you want to delete this conversation")){
+      window.location.href = '/delete/conversation/'+id
     }
   }
 })
