@@ -76,7 +76,7 @@ class Group(models.Model):
     messages = models.ManyToManyField(Message, default=None)
     last_message = models.OneToOneField(Message, on_delete=models.DO_NOTHING, default=None, null=True, related_name="last_message_group")
     unread_messages = models.ForeignKey(Unread_messages, on_delete=models.CASCADE, default=None, null=True)
-    image = models.ImageField(upload_to=check_path, default="default.jpg")
+    image = models.ImageField(upload_to=check_path, default=r"default-group.png")
     users = models.ManyToManyField(User)
     is_group = True
 

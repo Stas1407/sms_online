@@ -24,14 +24,14 @@ def home(request):
         data = User.objects.filter(username__contains=search).exclude(username=request.user.username)
 
         context = {
-            'title': 'home',
+            'title': 'Home',
             "users": data
         }
         return render(request,'main/home_search.html', context)
         
     context = {
-        'title': 'home',
-        "conversations": list(chain(request.user.conversations.all(), request.user.group_set.all()))   
+        'title': 'Home',
+        "conversations": list(chain(request.user.conversations.all(), request.user.group_set.all()))  
     }
     return render(request,'main/home.html', context)
 
@@ -232,71 +232,80 @@ def new_group(request):
     if request.GET.get('search'):
         search = request.GET.get('search')
         context = {
+            "title": "New group",
             "search": True,
             "members": User.objects.filter(username__contains=search).exclude(userchoices__everyone_can_add_to_group=False)
         }
     else:                
         context = {
+            "title": "New group",
             "conversations": request.user.conversations.annotate(num_messages=Count('messages')).filter(num_messages__gte=2)
         }
     return render(request, 'main/new_group.html', context)
 
 @login_required
 def settings(request, id):
-    if request.method == "POST": 
-        name = request.POST.get('group_name')
-        g = request.user.group_set.get(pk=id)
+    if request.method == "POST":
+        try:
+            name = request.POST.get('group_name')
+            g = request.user.group_set.get(pk=id)
 
-        # Check group name and save it
-        if "<script>" not in name.lower() and name:
-            g.name = name
+            # Check group name and save it
+            if "<script>" not in name.lower() and name:
+                g.name = name
 
-            # Check group image
-            try:
-                allowed = ['jpg', 'jpeg', 'png']            
-                if request.FILES['file_in'].name.split('.')[-1] in allowed:
-                    g.image = request.FILES['file_in']
-            except Exception:
-                pass
-        elif "<script>" in name.lower():
-            messages.error(request, "Wrong group name")
-            group = get_object_or_404(Group, pk=id)
+                # Check group image
+                try:
+                    allowed = ['jpg', 'jpeg', 'png']            
+                    if request.FILES['file_in'].name.split('.')[-1] in allowed:
+                        g.image = request.FILES['file_in']
+                except Exception:
+                    pass
+            elif "<script>" in name.lower():
+                messages.error(request, "Wrong group name")
+                group = get_object_or_404(Group, pk=id)
+                context = {
+                    "settings":True,
+                    "name": group.name,
+                    "image": group.image.url,
+                    "members": group.users.all()
+                }
+                return render(request, 'main/new_group.html', context)
+
+            ids = request.POST.get('ids').split(',')
+            # If user searched for new users he wants to add them to the group
+            if request.GET.get('search'):
+                for user_id in ids:
+                    if user_id != '':
+                        user = get_object_or_404(User, pk=user_id)
+                        sMessage = Message()
+                        sMessage.text = "User {} was added to the group".format(user.username)
+                        sMessage.is_server_message = True
+                        sMessage.save() 
+                        g.users.add(user)
+                        g.messages.add(sMessage)
+            # else remove selected user from the group
+            else:
+                for user_id in ids:
+                    if user_id != '':
+                        user = get_object_or_404(User, pk=user_id)
+                        sMessage = Message()
+                        sMessage.text = "User {} was deleted from the group".format(user.username)
+                        sMessage.is_server_message = True
+                        sMessage.save() 
+                        g.users.remove(user)
+                        g.messages.add(sMessage)
+            # If there aren't any users left in the group delete it
+            if g.users.all().count() == 0:
+                g.delete()
+                return HttpResponseRedirect('/home')
+            g.save()
+        except Exception:
             context = {
-                "settings":True,
-                "name": group.name,
-                "image": group.image.url,
-                "members": group.users.all()
+                'title': 'Home',
+                "conversations": list(chain(request.user.conversations.all(), request.user.group_set.all()))  
             }
-            return render(request, 'main/new_group.html', context)
-
-        ids = request.POST.get('ids').split(',')
-        # If user searched for new users he wants to add them to the group
-        if request.GET.get('search'):
-            for user_id in ids:
-                if user_id != '':
-                    user = get_object_or_404(User, pk=user_id)
-                    sMessage = Message()
-                    sMessage.text = "User {} was added to the group".format(user.username)
-                    sMessage.is_server_message = True
-                    sMessage.save() 
-                    g.users.add(user)
-                    g.messages.add(sMessage)
-        # else remove selected user from the group
-        else:
-            for user_id in ids:
-                if user_id != '':
-                    user = get_object_or_404(User, pk=user_id)
-                    sMessage = Message()
-                    sMessage.text = "User {} was deleted from the group".format(user.username)
-                    sMessage.is_server_message = True
-                    sMessage.save() 
-                    g.users.remove(user)
-                    g.messages.add(sMessage)
-        # If there aren't any users left in the group delete it
-        if g.users.all().count() == 0:
-            g.delete()
-            return HttpResponseRedirect('/home')
-        g.save()
+            return render(request, "main/home.html", context)
 
         return HttpResponseRedirect('/group/'+str(g.id))
 
@@ -307,6 +316,7 @@ def settings(request, id):
         if request.GET.get('search'):
             search = request.GET.get('search')
             context = {
+                "title": "Group settings",
                 "settings":True,
                 "search": True,
                 "name": group.name,
@@ -315,6 +325,7 @@ def settings(request, id):
             }
         else:                
             context = {
+                "title": "Group settings",
                 "settings":True,
                 "name": group.name,
                 "image": group.image.url,
