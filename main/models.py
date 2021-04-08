@@ -101,5 +101,8 @@ class Group(models.Model):
         self.save()
         for message in self.messages.all():
             message.delete()
-        os.remove(self.image.path)
+        
+        if self.image.name != 'default-group.png':
+            os.remove(self.image.path)
+        
         super().delete()
