@@ -1,0 +1,8 @@
+.idea
+__pycache__
+migrations
+__init__.py
+db.sqlite3
+Procfile
+runtime.txt
+todo.txt

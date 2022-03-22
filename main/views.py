@@ -42,49 +42,6 @@ def landing_page(request):
 
 @login_required
 def conversation(request, id):
-    if request.method == "POST":
-        # Check if request if automatic (Browser checks every 2 seconds for new messages)
-        if request.POST.get('check'):
-            c = request.user.conversations.filter(id=id)[0]
-            if not c:
-                raise Http404()
-            messages = c.messages.filter(~Q(read_by__in=[request.user]))    # Get unread messages
-            data = []
-
-            # Mark all of the messages to send as read by the user
-            for message in messages:
-                message.read_by.add(request.user)
-                message.save()
-                data.append({'text':message.text, 'id':message.id, 'author':message.author.username})
-            
-            data = json.dumps(data)
-            return HttpResponse(data, status=200)
-
-        text = request.POST.get('message_text')
-        
-        check = check_text(text)
-        if check:
-            return HttpResponse(check, status=400)
-        
-        # Check if conversation exists
-        if len(Conversation.objects.filter(id=id)) > 0: 
-            c = Conversation.objects.get(id=id)
-
-            # Conversation which doesn't contain 2 messages isn't started and user can't send new messages to it until the other person replys
-            if c.messages.all().count() == 0 and text != 'Hello':
-                return HttpResponse("Wrong message", status=400)
-            if c.messages.all().count() == 1 and c.messages.first().author == request.user:
-                return HttpResponse("You have to wait for the other person to reply to your message to start a conversation", status=400) 
-
-        m = Message()
-        m.author = request.user
-        m.text = text
-        m.save()
-        m.read_by.add(request.user)
-        send_message(request.user.conversations, id, m)
-
-        return HttpResponse(m.id, status=200)
-    
     # Get messages list and mark them as read by the user
     messages_list = get_messages(request, "conversation", id)
     for i in range(1, len(messages_list)+1):
