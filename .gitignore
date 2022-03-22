@@ -5,3 +5,4 @@ __init__.py
 Procfile
 runtime.txt
 todo.txt
+db.sqlite3
