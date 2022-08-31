@@ -4,4 +4,4 @@
 
 Website which allows you to create groups, customize your profile and chat with your friends online.
 
-Link: https://smsonlineproject.herokuapp.com/
+Link: https://smsonline.stas1407.ml/
